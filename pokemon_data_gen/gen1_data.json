@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Pikachu",
+    "regional_dex": 25,
+    "types": ["Electric"],
+    "games": {
+      "Red": {
+        "locations": [
+          {
+            "region": "Kanto",
+            "area": "Viridian Forest",
+            "coordinates": [],
+            "method": "Grass",
+            "level_range": [3, 5],
+            "appearance_rate": "5%"
+          }
+        ]
+      },
+      "Blue": {
+        "locations": [
+          {
+            "region": "Kanto",
+            "area": "Viridian Forest",
+            "coordinates": [],
+            "method": "Grass",
+            "level_range": [3, 5],
+            "appearance_rate": "5%"
+          }
+        ]
+      },
+      "Yellow": {
+        "starter": true,
+        "gift": true,
+        "gift_location": "Pallet Town",
+        "notes": "Received from Professor Oak as a starter Pokémon."
+      }
+    }
+  },
+  {
+    "name": "Raichu",
+    "regional_dex": 26,
+    "types": ["Electric"],
+    "games": {
+      "Red": {
+        "obtainable": true,
+        "method": "Evolution (Thunder Stone)",
+        "base_pokemon": "Pikachu"
+      },
+      "Blue": {
+        "obtainable": true,
+        "method": "Evolution (Thunder Stone)",
+        "base_pokemon": "Pikachu"
+      },
+      "Yellow": {
+        "obtainable": false,
+        "method": "Trade",
+        "notes": "Cannot evolve Pikachu in this version."
+      }
+    }
+  },
+  {
+    "name": "Bulbasaur",
+    "regional_dex": 1,
+    "types": ["Grass", "Poison"],
+    "games": {
+      "Red": {
+        "starter": true,
+        "gift": true,
+        "gift_location": "Pallet Town",
+        "notes": "Received from Professor Oak as a starter Pokémon."
+      },
+      "Blue": {
+        "starter": true,
+        "gift": true,
+        "gift_location": "Pallet Town",
+        "notes": "Received from Professor Oak as a starter Pokémon."
+      },
+      "Yellow": {
+        "gift": true,
+        "gift_location": "Cerulean City",
+        "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher.",
+        "shortcut": "Use the potion glitch to raise Pikachu's friendship quickly. Simply use a potion (or other HP-restoring items) on Pikachu, even when it's at full health, repeatedly to increase its friendship level."
+      }
+    }
+  },
+  {
+    "name": "Weedle",
+    "regional_dex": 13,
+    "types": ["Bug", "Poison"],
+    "games": {
+      "Red": {
+        "locations": [
+          {
+            "region": "Kanto",
+            "area": ["Route 2", "Route 24", "Route 25", "Viridian Forest"],
+            "coordinates": [],
+            "method": "Grass",
+            "level_range": [3, 5],
+            "appearance_rate": "5%"
+          }
+        ]
+      },
+      "Blue": {
+        "locations": [
+          {
+            "region": "Kanto",
+            "area": ["Route 25", "Viridian Forest"],
+            "coordinates": [],
+            "method": "Grass",
+            "level_range": [3, 5],
+            "appearance_rate": "5%"
+          }
+        ]
+      },
+      "Yellow": {
+        "obtainable": false,
+        "method": "Trade",
+        "notes": "Cannot obtain Weedle in this version."
+      }
+    }
+  }
+]
