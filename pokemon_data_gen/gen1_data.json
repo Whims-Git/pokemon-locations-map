@@ -5,6 +5,7 @@
     "types": ["Electric"],
     "games": {
       "Red": {
+        "obtainable": true,
         "locations": [
           {
             "region": "Kanto",
@@ -17,6 +18,7 @@
         ]
       },
       "Blue": {
+        "obtainable": true,
         "locations": [
           {
             "region": "Kanto",
@@ -29,6 +31,7 @@
         ]
       },
       "Yellow": {
+        "obtainable": true,
         "starter": true,
         "gift": true,
         "gift_location": "Pallet Town",
@@ -64,18 +67,21 @@
     "types": ["Grass", "Poison"],
     "games": {
       "Red": {
+        "obtainable": true,
         "starter": true,
         "gift": true,
         "gift_location": "Pallet Town",
         "notes": "Received from Professor Oak as a starter Pokémon."
       },
       "Blue": {
+        "obtainable": true,
         "starter": true,
         "gift": true,
         "gift_location": "Pallet Town",
         "notes": "Received from Professor Oak as a starter Pokémon."
       },
       "Yellow": {
+        "obtainable": true,
         "gift": true,
         "gift_location": "Cerulean City",
         "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher.",
@@ -89,6 +95,7 @@
     "types": ["Bug", "Poison"],
     "games": {
       "Red": {
+        "obtainable": true,
         "locations": [
           {
             "region": "Kanto",
@@ -101,6 +108,7 @@
         ]
       },
       "Blue": {
+        "obtainable": true,
         "locations": [
           {
             "region": "Kanto",
