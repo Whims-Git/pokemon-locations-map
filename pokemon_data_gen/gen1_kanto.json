@@ -1,198 +1,238 @@
 {
   "locations": [
     {
+      "id": "pallet_town",
       "name": "Pallet Town",
       "region": "Kanto",
-      "coordinates": [],
+      "coordinates": [2343, 1424],
       "type": "town"
     },
     {
-      "name": "Viridian City",
+      "id": "route_1",
+      "name": "Route 1",
       "region": "Kanto",
-      "coordinates": [],
-      "type": "city"
-    },
-    {
-      "name": "Viridian Forest",
-      "region": "Kanto",
-      "coordinates": [],
-      "type": "forest"
-    },
-    {
-      "name": "Route 2",
-      "region": "Kanto",
-      "coordinates": [],
+      "coordinates": [2860, 1452],
       "type": "route"
     },
     {
+      "id": "viridian_city",
+      "name": "Viridian City",
+      "region": "Kanto",
+      "coordinates": [3472, 1435],
+      "type": "city"
+    },
+    {
+      "id": "viridian_forest",
+      "name": "Viridian Forest",
+      "region": "Kanto",
+      "coordinates": [4516, 1832],
+      "type": "forest"
+    },
+    {
+      "id": "route_2",
+      "name": "Route 2",
+      "region": "Kanto",
+      "coordinates": [4282, 1416],
+      "type": "route"
+    },
+    {
+      "id": "pewter_city",
       "name": "Pewter City",
       "region": "Kanto",
       "coordinates": [],
       "type": "city"
     },
     {
+      "id": "route_3",
       "name": "Route 3",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "mt_moon",
       "name": "Mt. Moon",
       "region": "Kanto",
       "coordinates": [],
       "type": "mountain"
     },
     {
+      "id": "route_4",
       "name": "Route 4",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "cerulean_city",
       "name": "Cerulean City",
       "region": "Kanto",
       "coordinates": [],
       "type": "city"
     },
     {
+      "id": "route_24",
       "name": "Route 24",
       "region": "Kanto",
-      "coordinates": [],
+      "coordinates": [6497, 3911],
       "type": "route"
     },
     {
+      "id": "route_25",
       "name": "Route 25",
       "region": "Kanto",
-      "coordinates": [],
+      "coordinates": [6760, 4313],
       "type": "route"
     },
     {
+      "id": "route_5",
       "name": "Route 5",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "vermilion_city",
       "name": "Vermilion City",
       "region": "Kanto",
       "coordinates": [],
       "type": "city"
     },
     {
+      "id": "route_6",
       "name": "Route 6",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "route_11",
       "name": "Route 11",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "route_9",
       "name": "Route 9",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "route_10",
       "name": "Route 10",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "rock_tunnel",
       "name": "Rock Tunnel",
       "region": "Kanto",
       "coordinates": [],
       "type": "cave"
     },
     {
+      "id": "lavender_town",
       "name": "Lavender Town",
       "region": "Kanto",
       "coordinates": [],
       "type": "town"
     },
     {
+      "id": "route_7",
       "name": "Route 7",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "celadon_city",
       "name": "Celadon City",
       "region": "Kanto",
       "coordinates": [],
       "type": "city"
     },
     {
+      "id": "route_8",
       "name": "Route 8",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "route_12",
       "name": "Route 12",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "route_13",
       "name": "Route 13",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "route_14",
       "name": "Route 14",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "route_15",
       "name": "Route 15",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "fuchsia_city",
       "name": "Fuchsia City",
       "region": "Kanto",
       "coordinates": [],
       "type": "city"
     },
     {
+      "id": "safari_zone",
       "name": "Safari Zone",
       "region": "Kanto",
       "coordinates": [],
       "type": "special"
     },
     {
+      "id": "route_18",
       "name": "Route 18",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "route_19",
       "name": "Route 19",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "route_20",
       "name": "Route 20",
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
     },
     {
+      "id": "cinnabar_island",
       "name": "Cinnabar Island",
       "region": "Kanto",
       "coordinates": [],
       "type": "island"
     },
     {
+      "id": "pokemon_mansion",
       "name": "Pokémon Mansion",
       "region": "Kanto",
       "coordinates": [],

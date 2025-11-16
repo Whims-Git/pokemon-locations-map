@@ -1,0 +1,179 @@
+{
+  "pokemon": [
+    {
+      "id": "pikachu",
+      "name": "Pikachu",
+      "regional_dex": 25,
+      "types": ["Electric"],
+      "sprite": "pikachu.png",
+      "games": {
+        "Red": {
+          "obtainable": true,
+          "locations": [
+            {
+              "location_id": "viridian_forest",
+              "method": "Grass",
+              "level_range": [3, 5],
+              "appearance_rate": "5%"
+            }
+          ]
+        },
+        "Blue": {
+          "obtainable": true,
+          "locations": [
+            {
+              "location_id": "viridian_forest",
+              "method": "Grass",
+              "level_range": [3, 5],
+              "appearance_rate": "5%"
+            }
+          ]
+        },
+        "Yellow": {
+          "obtainable": true,
+          "starter": true,
+          "gift": true,
+          "locations": [
+            {
+              "location_id": "pallet_town",
+              "notes": "Received from Professor Oak as a starter Pokémon."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "raichu",
+      "name": "Raichu",
+      "regional_dex": 26,
+      "types": ["Electric"],
+      "sprite": "raichu.png",
+      "games": {
+        "Red": {
+          "obtainable": true,
+          "method": "Evolution (Thunder Stone)",
+          "base_pokemon": "Pikachu",
+          "locations": [
+            {
+              "location_id": "viridian_forest"
+            }
+          ]
+        },
+        "Blue": {
+          "obtainable": true,
+          "method": "Evolution (Thunder Stone)",
+          "base_pokemon": "Pikachu",
+          "locations": [
+            {
+              "location_id": "viridian_forest"
+            }
+          ]
+        },
+        "Yellow": {
+          "obtainable": false,
+          "method": "Trade",
+          "notes": "Cannot evolve Pikachu in this version."
+        }
+      }
+    },
+    {
+      "id": "bulbasaur",
+      "name": "Bulbasaur",
+      "regional_dex": 1,
+      "types": ["Grass", "Poison"],
+      "sprite": "bulbasaur.png",
+      "games": {
+        "Red": {
+          "obtainable": true,
+          "starter": true,
+          "locations": [
+            {
+              "location_id": "pallet_town",
+              "notes": "Received from Professor Oak as a starter Pokémon."
+            }
+          ]
+        },
+        "Blue": {
+          "obtainable": true,
+          "starter": true,
+          "locations": [
+            {
+              "location_id": "pallet_town",
+              "notes": "Received from Professor Oak as a starter Pokémon."
+            }
+          ]
+        },
+        "Yellow": {
+          "obtainable": true,
+          "locations": [
+            {
+              "location_id": "cerulean_city",
+              "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher.",
+              "shortcut": "Use the potion glitch to raise Pikachu's friendship quickly. Simply use a potion (or other HP-restoring items) on Pikachu, even when it's at full health, repeatedly to increase its friendship level."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "weedle",
+      "name": "Weedle",
+      "regional_dex": 13,
+      "types": ["Bug", "Poison"],
+      "sprite": "weedle.png",
+      "games": {
+        "Red": {
+          "obtainable": true,
+          "locations": [
+            {
+              "location_id": "route_2",
+              "method": "Grass",
+              "level_range": [3, 5],
+              "appearance_rate": "5%"
+            },
+            {
+              "location_id": "route_24",
+              "method": "Grass",
+              "level_range": [7],
+              "appearance_rate": "20%"
+            },
+            {
+              "location_id": "route_25",
+              "method": "Grass",
+              "level_range": [3, 5],
+              "appearance_rate": "5%"
+            },
+            {
+              "location_id": "viridian_forest",
+              "method": "Grass",
+              "level_range": [3, 5],
+              "appearance_rate": "45%"
+            }
+          ]
+        },
+        "Blue": {
+          "obtainable": true,
+          "locations": [
+            {
+              "location_id": "route_25",
+              "method": "Grass",
+              "level_range": [8],
+              "appearance_rate": "1%"
+            },
+            {
+              "location_id": "viridian_forest",
+              "method": "Grass",
+              "level_range": [3],
+              "appearance_rate": "5%"
+            }
+          ]
+        },
+        "Yellow": {
+          "obtainable": false,
+          "method": "Trade",
+          "notes": "Cannot obtain Weedle in this version."
+        }
+      }
+    }
+  ]
+}
