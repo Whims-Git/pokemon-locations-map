@@ -5,7 +5,6 @@
       "name": "Pikachu",
       "regional_dex": 25,
       "types": ["Electric"],
-      "sprite": "pikachu.png",
       "games": {
         "Red": {
           "obtainable": true,
@@ -47,7 +46,6 @@
       "name": "Raichu",
       "regional_dex": 26,
       "types": ["Electric"],
-      "sprite": "raichu.png",
       "games": {
         "Red": {
           "obtainable": true,
@@ -81,7 +79,6 @@
       "name": "Bulbasaur",
       "regional_dex": 1,
       "types": ["Grass", "Poison"],
-      "sprite": "bulbasaur.png",
       "games": {
         "Red": {
           "obtainable": true,
@@ -120,7 +117,6 @@
       "name": "Weedle",
       "regional_dex": 13,
       "types": ["Bug", "Poison"],
-      "sprite": "weedle.png",
       "games": {
         "Red": {
           "obtainable": true,

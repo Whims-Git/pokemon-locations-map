@@ -37,6 +37,11 @@ map.on('mousemove', function(e) {
     `Coordinates: [${Math.round(coords.lat)}, ${Math.round(coords.lng)}]`;
 });
 
+// Create a pane for Pokémon visibility circles so they sit under markers
+map.createPane('pokemonCirclePane');
+map.getPane('pokemonCirclePane').style.zIndex = 400;
+map.getPane('pokemonCirclePane').style.pointerEvents = 'none';
+
 // Global state for markers and data
 let allMarkers = [];
 let pokemonData = {};
@@ -153,6 +158,17 @@ function updateMarkers(game) {
       const lat = location.coordinates[0];
       const lng = location.coordinates[1];
       console.log(`Adding marker for ${poke.name} at [${lat}, ${lng}]`);
+      
+      // Add visibility circle underneath marker
+      L.circleMarker([lat, lng], {
+        pane: 'pokemonCirclePane',
+        radius: 14,
+        color: '#000',
+        weight: 2,
+        fillColor: '#ffe066',
+        fillOpacity: 0.9,
+        interactive: false
+      }).addTo(map);
       
       // Create marker with custom pokemon icon
       const pokemonIcon = createPokemonIcon(poke.id);
