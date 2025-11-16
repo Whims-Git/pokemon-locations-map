@@ -10,7 +10,7 @@
           {
             "region": "Kanto",
             "area": "Viridian Forest",
-            "coordinates": [6880, 6380],
+            "coordinates": [],
             "method": "Grass",
             "level_range": [3, 5],
             "appearance_rate": "5%"
@@ -23,7 +23,7 @@
           {
             "region": "Kanto",
             "area": "Viridian Forest",
-            "coordinates": [6880, 6380],
+            "coordinates": [],
             "method": "Grass",
             "level_range": [3, 5],
             "appearance_rate": "5%"
@@ -35,7 +35,7 @@
         "starter": true,
         "gift": true,
         "gift_location": "Pallet Town",
-        "coordinates": [6880, 7260],
+        "coordinates": [],
         "notes": "Received from Professor Oak as a starter Pokémon."
       }
     }
@@ -49,13 +49,13 @@
         "obtainable": true,
         "method": "Evolution (Thunder Stone)",
         "base_pokemon": "Pikachu",
-        "coordinates": [6880, 6380]
+        "coordinates": []
       },
       "Blue": {
         "obtainable": true,
         "method": "Evolution (Thunder Stone)",
         "base_pokemon": "Pikachu",
-        "coordinates": [6880, 6380]
+        "coordinates": []
       },
       "Yellow": {
         "obtainable": false,
@@ -74,7 +74,7 @@
         "starter": true,
         "gift": true,
         "gift_location": "Pallet Town",
-        "coordinates": [6880, 7260],
+        "coordinates": [],
         "notes": "Received from Professor Oak as a starter Pokémon."
       },
       "Blue": {
@@ -82,14 +82,14 @@
         "starter": true,
         "gift": true,
         "gift_location": "Pallet Town",
-        "coordinates": [6880, 7260],
+        "coordinates": [],
         "notes": "Received from Professor Oak as a starter Pokémon."
       },
       "Yellow": {
         "obtainable": true,
         "gift": true,
         "gift_location": "Cerulean City",
-        "coordinates": [8200, 4620],
+        "coordinates": [],
         "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher.",
         "shortcut": "Use the potion glitch to raise Pikachu's friendship quickly. Simply use a potion (or other HP-restoring items) on Pikachu, even when it's at full health, repeatedly to increase its friendship level."
       }

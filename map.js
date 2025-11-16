@@ -37,6 +37,35 @@ map.on('mousemove', function(e) {
     `Coordinates: [${Math.round(coords.lat)}, ${Math.round(coords.lng)}]`;
 });
 
-// Test marker for Weedle in Viridian Forest
-const weedleMarker = L.marker([4516, 1832]).addTo(map);
-weedleMarker.bindPopup('Weedle - Viridian Forest');
+// Create a pane for Pokémon visibility circles so they sit under markers
+map.createPane('pokemonCirclePane');
+map.getPane('pokemonCirclePane').style.zIndex = 400;
+map.getPane('pokemonCirclePane').style.pointerEvents = 'none';
+
+// Define a custom icon for Weedle
+const weedleIcon = L.icon({
+  iconUrl: 'assets/sprites/gen_1_sprites/gen1_weedle.png',
+  iconSize: [48, 48],
+  // anchor so the bottom center of the icon points to the map coordinate
+  iconAnchor: [24, 44],
+  popupAnchor: [0, -40],
+  className: 'pokemon-icon'
+});
+
+// Coordinates for Weedle in Viridian Forest
+const weedleCoords = [4516, 1832];
+
+// Add a circle under the icon to improve visibility
+const weedleCircle = L.circleMarker(weedleCoords, {
+  pane: 'pokemonCirclePane',
+  radius: 14,
+  color: '#000000',
+  weight: 2,
+  fillColor: '#ffe066',
+  fillOpacity: 0.9,
+  interactive: false
+}).addTo(map);
+
+// Add the Weedle marker using the custom icon
+const weedleMarker = L.marker(weedleCoords, { icon: weedleIcon }).addTo(map);
+weedleMarker.bindPopup('<strong>Weedle</strong><br>Viridian Forest');
