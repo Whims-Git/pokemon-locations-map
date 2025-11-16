@@ -49,18 +49,44 @@ let locationsData = {};
 let currentGame = 'Red';
 let pokemonIcons = {}; // Cache for pokemon icons
 
+// Color map for different pokemon types
+const typeColors = {
+  'Electric': '#FFD700',
+  'Grass': '#90EE90',
+  'Poison': '#DA70D6',
+  'Bug': '#A0A020',
+  'Normal': '#A8A878',
+  'Flying': '#A890F0',
+  'Fire': '#F08030',
+  'Water': '#6890F0'
+};
+
 // Function to create a custom icon for a pokemon
-function createPokemonIcon(pokemonId) {
+function createPokemonIcon(pokemonId, types = []) {
   if (pokemonIcons[pokemonId]) {
     return pokemonIcons[pokemonId];
   }
   
+  const spriteUrl = `./assets/images/sprites/gen_1_sprites/${pokemonId}.png`;
+  
+  // Get color based on primary type
+  const color = typeColors[types[0]] || '#A8A878';
+  
+  // Create a colored circle as fallback (if sprite doesn't load)
+  const svg = `<svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="22" fill="${color}" stroke="#000" stroke-width="2"/>
+    <text x="24" y="28" font-size="18" font-weight="bold" text-anchor="middle" fill="#000">${pokemonId.charAt(0).toUpperCase()}</text>
+  </svg>`;
+  const svgUrl = 'data:image/svg+xml;base64,' + btoa(svg);
+  
   const icon = L.icon({
-    iconUrl: `./assets/images/sprites/gen_1_sprites/${pokemonId}.png`,
+    iconUrl: spriteUrl,
     iconSize: [48, 48],
     iconAnchor: [24, 44],
     popupAnchor: [0, -40],
-    className: 'pokemon-icon'
+    className: 'pokemon-icon',
+    // Fallback to SVG if sprite doesn't load
+    errorUrl: svgUrl
   });
   
   pokemonIcons[pokemonId] = icon;
@@ -171,7 +197,7 @@ function updateMarkers(game) {
       }).addTo(map);
       
       // Create marker with custom pokemon icon
-      const pokemonIcon = createPokemonIcon(poke.id);
+      const pokemonIcon = createPokemonIcon(poke.id, poke.types);
       const marker = L.marker([lat, lng], { icon: pokemonIcon }).addTo(map);
       
       // Build popup text
