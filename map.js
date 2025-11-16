@@ -42,6 +42,25 @@ let allMarkers = [];
 let pokemonData = {};
 let locationsData = {};
 let currentGame = 'Red';
+let pokemonIcons = {}; // Cache for pokemon icons
+
+// Function to create a custom icon for a pokemon
+function createPokemonIcon(pokemonId) {
+  if (pokemonIcons[pokemonId]) {
+    return pokemonIcons[pokemonId];
+  }
+  
+  const icon = L.icon({
+    iconUrl: `./assets/images/sprites/gen_1_sprites/${pokemonId}.png`,
+    iconSize: [48, 48],
+    iconAnchor: [24, 44],
+    popupAnchor: [0, -40],
+    className: 'pokemon-icon'
+  });
+  
+  pokemonIcons[pokemonId] = icon;
+  return icon;
+}
 
 // Add game filter control
 const gameControl = L.control({ position: 'topright' });
@@ -135,8 +154,9 @@ function updateMarkers(game) {
       const lng = location.coordinates[1];
       console.log(`Adding marker for ${poke.name} at [${lat}, ${lng}]`);
       
-      // Create marker with default Leaflet icon
-      const marker = L.marker([lat, lng]).addTo(map);
+      // Create marker with custom pokemon icon
+      const pokemonIcon = createPokemonIcon(poke.id);
+      const marker = L.marker([lat, lng], { icon: pokemonIcon }).addTo(map);
       
       // Build popup text
       let popupText = `<strong>${poke.name}</strong><br>${location.name}`;
