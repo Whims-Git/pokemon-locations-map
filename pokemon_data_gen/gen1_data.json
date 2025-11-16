@@ -10,7 +10,7 @@
           {
             "region": "Kanto",
             "area": "Viridian Forest",
-            "coordinates": [],
+            "coordinates": [6880, 6380],
             "method": "Grass",
             "level_range": [3, 5],
             "appearance_rate": "5%"
@@ -23,7 +23,7 @@
           {
             "region": "Kanto",
             "area": "Viridian Forest",
-            "coordinates": [],
+            "coordinates": [6880, 6380],
             "method": "Grass",
             "level_range": [3, 5],
             "appearance_rate": "5%"
@@ -35,6 +35,7 @@
         "starter": true,
         "gift": true,
         "gift_location": "Pallet Town",
+        "coordinates": [6880, 7260],
         "notes": "Received from Professor Oak as a starter Pokémon."
       }
     }
@@ -47,12 +48,14 @@
       "Red": {
         "obtainable": true,
         "method": "Evolution (Thunder Stone)",
-        "base_pokemon": "Pikachu"
+        "base_pokemon": "Pikachu",
+        "coordinates": [6880, 6380]
       },
       "Blue": {
         "obtainable": true,
         "method": "Evolution (Thunder Stone)",
-        "base_pokemon": "Pikachu"
+        "base_pokemon": "Pikachu",
+        "coordinates": [6880, 6380]
       },
       "Yellow": {
         "obtainable": false,
@@ -71,6 +74,7 @@
         "starter": true,
         "gift": true,
         "gift_location": "Pallet Town",
+        "coordinates": [6880, 7260],
         "notes": "Received from Professor Oak as a starter Pokémon."
       },
       "Blue": {
@@ -78,12 +82,14 @@
         "starter": true,
         "gift": true,
         "gift_location": "Pallet Town",
+        "coordinates": [6880, 7260],
         "notes": "Received from Professor Oak as a starter Pokémon."
       },
       "Yellow": {
         "obtainable": true,
         "gift": true,
         "gift_location": "Cerulean City",
+        "coordinates": [8200, 4620],
         "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher.",
         "shortcut": "Use the potion glitch to raise Pikachu's friendship quickly. Simply use a potion (or other HP-restoring items) on Pikachu, even when it's at full health, repeatedly to increase its friendship level."
       }
@@ -99,11 +105,35 @@
         "locations": [
           {
             "region": "Kanto",
-            "area": ["Route 2", "Route 24", "Route 25", "Viridian Forest"],
-            "coordinates": [],
+            "area": "Route 2",
+            "coordinates": [2790, 1460],
             "method": "Grass",
             "level_range": [3, 5],
             "appearance_rate": "5%"
+          },
+          {
+            "region": "Kanto",
+            "area": "Route 24",
+            "coordinates": [6446, 3817],
+            "method": "Grass",
+            "level_range": [7],
+            "appearance_rate": "20%"
+          },
+          {
+            "region": "Kanto",
+            "area": "Route 25",
+            "coordinates": [6804, 4089],
+            "method": "Grass",
+            "level_range": [3, 5],
+            "appearance_rate": "5%"
+          },
+          {
+            "region": "Kanto",
+            "area": "Viridian Forest",
+            "coordinates": [4516, 1832],
+            "method": "Grass",
+            "level_range": [3, 5],
+            "appearance_rate": "45%"
           }
         ]
       },
@@ -112,10 +142,18 @@
         "locations": [
           {
             "region": "Kanto",
-            "area": ["Route 25", "Viridian Forest"],
-            "coordinates": [],
+            "area": "Route 25",
+            "coordinates": [6804, 4089],
             "method": "Grass",
-            "level_range": [3, 5],
+            "level_range": [8],
+            "appearance_rate": "1%"
+          },
+          {
+            "region": "Kanto",
+            "area": "Viridian Forest",
+            "coordinates": [4516, 1832],
+            "method": "Grass",
+            "level_range": [3],
             "appearance_rate": "5%"
           }
         ]

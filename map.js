@@ -15,3 +15,28 @@ const image = L.imageOverlay('assets/images/gen1_map.png', mapBounds).addTo(map)
 
 // Set the map view to fit the image
 map.fitBounds(mapBounds);
+
+// Add coordinate display on mouse move
+const coordinateDisplay = L.control({ position: 'topleft' });
+coordinateDisplay.onAdd = function (map) {
+  const div = L.DomUtil.create('div', 'coordinate-display');
+  div.style.background = 'white';
+  div.style.padding = '10px';
+  div.style.borderRadius = '5px';
+  div.style.fontSize = '14px';
+  div.style.fontFamily = 'monospace';
+  div.innerHTML = 'Coordinates: [0, 0]';
+  return div;
+};
+coordinateDisplay.addTo(map);
+
+// Update coordinates on mouse move
+map.on('mousemove', function(e) {
+  const coords = e.latlng;
+  document.querySelector('.coordinate-display').innerHTML = 
+    `Coordinates: [${Math.round(coords.lat)}, ${Math.round(coords.lng)}]`;
+});
+
+// Test marker for Weedle in Viridian Forest
+const weedleMarker = L.marker([4516, 1832]).addTo(map);
+weedleMarker.bindPopup('Weedle - Viridian Forest');
