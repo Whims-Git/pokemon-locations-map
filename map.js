@@ -189,8 +189,13 @@ function updateMarkers(game) {
       const lng = location.coordinates[1];
       console.log(`Adding marker for ${poke.name} at [${lat}, ${lng}]`);
       
+      // Create marker with custom pokemon icon
+      const pokemonIcon = createPokemonIcon(poke.id);
+      const marker = L.marker([lat, lng], { icon: pokemonIcon }).addTo(map);
+
       // Add visibility circle underneath marker
-      L.circleMarker([lat, lng], {
+      if (marker) {
+        L.circleMarker([lat, lng], {
         pane: 'pokemonCirclePane',
         radius: 14,
         color: '#000',
@@ -199,10 +204,7 @@ function updateMarkers(game) {
         fillOpacity: 0.9,
         interactive: false
       }).addTo(map);
-      
-      // Create marker with custom pokemon icon
-      const pokemonIcon = createPokemonIcon(poke.id);
-      const marker = L.marker([lat, lng], { icon: pokemonIcon }).addTo(map);
+    }
       
       // Build popup text
       let popupText = `<strong>${poke.name}</strong><br>${location.name}`;
@@ -215,6 +217,7 @@ function updateMarkers(game) {
       }
       if (locEntry.appearance_rate) popupText += `<br>Rate: ${locEntry.appearance_rate}`;
       if (locEntry.notes) popupText += `<br>Notes: ${locEntry.notes}`;
+      if (locEntry.shortcut) popupText += `<br>Notes: ${locEntry.shortcut}`;
       
       marker.bindPopup(popupText);
       allMarkers.push(marker);
