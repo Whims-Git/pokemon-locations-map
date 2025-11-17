@@ -11,7 +11,7 @@
           "locations": [
             {
               "location_id": "viridian_forest",
-              "method": "Grass",
+              "method": "Walking",
               "level_range": [3, 5],
               "appearance_rate": "5%"
             }
@@ -22,7 +22,7 @@
           "locations": [
             {
               "location_id": "viridian_forest",
-              "method": "Grass",
+              "method": "Walking",
               "level_range": [3, 5],
               "appearance_rate": "5%"
             }
@@ -49,21 +49,45 @@
       "games": {
         "Red": {
           "obtainable": true,
-          "method": "Evolution (Thunder Stone)",
+          "evolution": "Evolution stone (Thunder stone)",
           "base_pokemon": "Pikachu",
           "locations": [
             {
-              "location_id": "viridian_forest"
+              "location_id": "cerulean_cave_1F",
+              "method": "Walking",
+              "level_range": [53],
+              "appearance_rate": "4%"
+            },
+            {
+              "location_id": "cerulean_cave_B1F",
+              "method": "Walking",
+              "level_range": [64],
+              "appearance_rate": "10%"
             }
           ]
         },
         "Blue": {
           "obtainable": true,
-          "method": "Evolution (Thunder Stone)",
+          "evolution": "Evolution stone (Thunder stone)",
           "base_pokemon": "Pikachu",
           "locations": [
             {
-              "location_id": "viridian_forest"
+              "location_id": "power_plant",
+              "method": "Walking",
+              "level_range": [33, 36],
+              "appearance_rate": "5%"
+            },
+            {
+              "location_id": "cerulean_cave_1F",
+              "method": "Walking",
+              "level_range": [53],
+              "appearance_rate": "4%"
+            },
+            {
+              "location_id": "cerulean_cave_B1F",
+              "method": "Walking",
+              "level_range": [64],
+              "appearance_rate": "10%"
             }
           ]
         },
@@ -83,6 +107,7 @@
         "Red": {
           "obtainable": true,
           "starter": true,
+          "gift": true,
           "locations": [
             {
               "location_id": "pallet_town",
@@ -93,6 +118,7 @@
         "Blue": {
           "obtainable": true,
           "starter": true,
+          "gift": true,
           "locations": [
             {
               "location_id": "pallet_town",
@@ -102,6 +128,7 @@
         },
         "Yellow": {
           "obtainable": true,
+          "gift": true,
           "locations": [
             {
               "location_id": "cerulean_city",
@@ -123,25 +150,25 @@
           "locations": [
             {
               "location_id": "route_2",
-              "method": "Grass",
+              "method": "Walking",
               "level_range": [3, 5],
               "appearance_rate": "5%"
             },
             {
               "location_id": "route_24",
-              "method": "Grass",
+              "method": "Walking",
               "level_range": [7],
               "appearance_rate": "20%"
             },
             {
               "location_id": "route_25",
-              "method": "Grass",
+              "method": "Walking",
               "level_range": [3, 5],
               "appearance_rate": "5%"
             },
             {
               "location_id": "viridian_forest",
-              "method": "Grass",
+              "method": "Walking",
               "level_range": [3, 5],
               "appearance_rate": "45%"
             }
@@ -152,13 +179,13 @@
           "locations": [
             {
               "location_id": "route_25",
-              "method": "Grass",
+              "method": "Walking",
               "level_range": [8],
               "appearance_rate": "1%"
             },
             {
               "location_id": "viridian_forest",
-              "method": "Grass",
+              "method": "Walking",
               "level_range": [3],
               "appearance_rate": "5%"
             }

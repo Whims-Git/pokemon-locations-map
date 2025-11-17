@@ -67,7 +67,28 @@
       "id": "cerulean_city",
       "name": "Cerulean City",
       "region": "Kanto",
-      "coordinates": [],
+      "coordinates": [5868, 3909],
+      "type": "city"
+    },
+    {
+      "id": "cerulean_cave_1F",
+      "name": "Cerulean Cave 1F",
+      "region": "Kanto",
+      "coordinates": [6707, 3304],
+      "type": "city"
+    },
+    {
+      "id": "cerulean_cave_2F",
+      "name": "Cerulean Cave 2F",
+      "region": "Kanto",
+      "coordinates": [7095, 3361],
+      "type": "city"
+    },
+    {
+      "id": "cerulean_cave_B1F",
+      "name": "Cerulean Cave B1F",
+      "region": "Kanto",
+      "coordinates": [6343, 3363],
       "type": "city"
     },
     {
@@ -125,6 +146,13 @@
       "region": "Kanto",
       "coordinates": [],
       "type": "route"
+    },
+    {
+      "id": "power_plant",
+      "name": "Power Plant",
+      "region": "Kanto",
+      "coordinates": [5019, 4703],
+      "type": "building"
     },
     {
       "id": "rock_tunnel",
