@@ -67,27 +67,31 @@ function createPokemonIcon(pokemonId, types = []) {
     return pokemonIcons[pokemonId];
   }
   
-  const spriteUrl = `./assets/images/sprites/gen_1_sprites/${pokemonId}.png`;
-  
   // Get color based on primary type
   const color = typeColors[types[0]] || '#A8A878';
   
-  // Create a colored circle as fallback (if sprite doesn't load)
-  const svg = `<svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="24" cy="24" r="22" fill="${color}" stroke="#000" stroke-width="2"/>
-    <text x="24" y="28" font-size="18" font-weight="bold" text-anchor="middle" fill="#000">${pokemonId.charAt(0).toUpperCase()}</text>
+  // Try to load sprite; if it fails, use SVG fallback
+  const spriteUrl = `./assets/sprites/gen_1_sprites/${pokemonId}.png`;
+  const fallbackSvg = `<svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="20" fill="${color}" stroke="#000" stroke-width="2"/>
+    <text x="24" y="30" font-size="20" font-weight="bold" font-family="Arial" text-anchor="middle" fill="#000">${pokemonId.charAt(0).toUpperCase()}</text>
   </svg>`;
-  const svgUrl = 'data:image/svg+xml;base64,' + btoa(svg);
+  const fallbackUrl = 'data:image/svg+xml;base64,' + btoa(fallbackSvg);
   
   const icon = L.icon({
     iconUrl: spriteUrl,
     iconSize: [48, 48],
     iconAnchor: [24, 44],
     popupAnchor: [0, -40],
-    className: 'pokemon-icon',
-    // Fallback to SVG if sprite doesn't load
-    errorUrl: svgUrl
+    className: 'pokemon-icon'
   });
+  
+  // Add error handler to use fallback if sprite doesn't load
+  const img = new Image();
+  img.onerror = function() {
+    icon.options.iconUrl = fallbackUrl;
+  };
+  img.src = spriteUrl;
   
   pokemonIcons[pokemonId] = icon;
   return icon;
@@ -197,7 +201,7 @@ function updateMarkers(game) {
       }).addTo(map);
       
       // Create marker with custom pokemon icon
-      const pokemonIcon = createPokemonIcon(poke.id, poke.types);
+      const pokemonIcon = createPokemonIcon(poke.id);
       const marker = L.marker([lat, lng], { icon: pokemonIcon }).addTo(map);
       
       // Build popup text
