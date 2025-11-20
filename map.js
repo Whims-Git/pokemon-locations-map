@@ -158,14 +158,16 @@ fetch('./pokemon_data_gen/gen1_kanto.json')
 
 // Function to update markers based on selected game
 function updateMarkers(game) {
-  // Clear all existing markers
-  allMarkers.forEach(marker => map.removeLayer(marker));
+  // Clear all existing groups (each group contains a marker + its circle)
+  allMarkers.forEach(group => {
+    if (map.hasLayer(group)) map.removeLayer(group);
+  });
   allMarkers = [];
-  
+
   console.log(`Updating markers for game: ${game}`);
   console.log('Pokemon data:', pokemonData);
   console.log('Locations data:', locationsData);
-  
+
   // Iterate through all pokemon and add markers for their locations in the selected game
   pokemonData.forEach(poke => {
     const gameData = poke.games && poke.games[game];
@@ -173,29 +175,28 @@ function updateMarkers(game) {
       console.log(`${poke.name} - No ${game} locations`);
       return;
     }
-    
+
     console.log(`${poke.name} - Found ${game} locations:`, gameData.locations);
-    
+
     gameData.locations.forEach(locEntry => {
       const location = locationsData[locEntry.location_id];
       console.log(`Looking up location: ${locEntry.location_id}`, location);
-      
+
       if (!location || !location.coordinates || location.coordinates.length < 2) {
         console.log(`Location ${locEntry.location_id} has no valid coordinates`);
         return;
       }
-      
+
       const lat = location.coordinates[0];
       const lng = location.coordinates[1];
       console.log(`Adding marker for ${poke.name} at [${lat}, ${lng}]`);
-      
-      // Create marker with custom pokemon icon
-      const pokemonIcon = createPokemonIcon(poke.id);
-      const marker = L.marker([lat, lng], { icon: pokemonIcon }).addTo(map);
 
-      // Add visibility circle underneath marker
-      if (marker) {
-        L.circleMarker([lat, lng], {
+      // Create marker with custom pokemon icon
+      const pokemonIcon = createPokemonIcon(poke.id, poke.types || []);
+      const marker = L.marker([lat, lng], { icon: pokemonIcon });
+
+      // Create visibility circle underneath marker
+      const circle = L.circleMarker([lat, lng], {
         pane: 'pokemonCirclePane',
         radius: 14,
         color: '#000',
@@ -203,10 +204,12 @@ function updateMarkers(game) {
         fillColor: '#ffe066',
         fillOpacity: 0.9,
         interactive: false
-      }).addTo(map);
-    }
-      
-      // Build popup text
+      });
+
+      // Make a single group so we can add/remove both items together
+      const group = L.layerGroup([circle, marker]).addTo(map);
+
+      // Build popup text (same as your current implementation)
       let popupText = `<strong>${poke.name}</strong><br>${location.name}`;
       if (locEntry.method) popupText += `<br>Method: ${locEntry.method}`;
       if (locEntry.level_range) {
@@ -218,11 +221,13 @@ function updateMarkers(game) {
       if (locEntry.appearance_rate) popupText += `<br>Rate: ${locEntry.appearance_rate}`;
       if (locEntry.notes) popupText += `<br>Notes: ${locEntry.notes}`;
       if (locEntry.shortcut) popupText += `<br>Notes: ${locEntry.shortcut}`;
-      
+
       marker.bindPopup(popupText);
-      allMarkers.push(marker);
+
+      // Track this group (so removal is simple)
+      allMarkers.push(group);
     });
   });
-  
-  console.log(`Total markers added: ${allMarkers.length}`);
+
+  console.log(`Total marker groups added: ${allMarkers.length}`);
 }
