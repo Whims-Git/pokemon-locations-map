@@ -36,6 +36,7 @@
             {
               "location_id": "pallet_town",
               "level_range": [5, 5],
+              "appearance_rate": "100%",
               "notes": "Received from Professor Oak as a starter Pokémon."
             }
           ]
@@ -113,6 +114,7 @@
             {
               "location_id": "pallet_town",
               "level_range": [5, 5],
+              "appearance_rate": "100%",
               "notes": "Received from Professor Oak as a starter Pokémon."
             }
           ]
@@ -125,6 +127,7 @@
             {
               "location_id": "pallet_town",
               "level_range": [5, 5],
+              "appearance_rate": "100%",
               "notes": "Received from Professor Oak as a starter Pokémon."
             }
           ]
@@ -136,6 +139,7 @@
             {
               "location_id": "cerulean_city",
               "level_range": [10, 10],
+              "appearance_rate": "100%",
               "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher.",
               "shortcut": "Use the potion glitch to raise Pikachu's friendship quickly. Simply use a potion (or other HP-restoring items) on Pikachu, even when it's at full health, repeatedly to increase its friendship level."
             }
