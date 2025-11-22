@@ -52,13 +52,20 @@ let pokemonIcons = {}; // Cache for pokemon icons
 // Color map for different pokemon types
 const typeColors = {
   'Electric': '#FFD700',
-  'Grass': '#90EE90',
-  'Poison': '#DA70D6',
+  'Grass': '#1fc91fff',
+  'Poison': '#670063ff',
   'Bug': '#A0A020',
-  'Normal': '#A8A878',
+  'Normal': '#afafafff',
   'Flying': '#A890F0',
-  'Fire': '#F08030',
-  'Water': '#6890F0'
+  'Fire': '#e22b1aff',
+  'Water': '#2e68efff',
+  'Psychic': '#c107b7ff',
+  'Rock': '#7e420aff',
+  'Ground': '#c16d07ff',
+  'Ghost': '#d581e4ff',
+  'Ice': '#23bde8ff',
+  'Dragon': '#2c00f2ff',
+  'Fighting': '#ffa641ff'
 };
 
 // Function to create a custom icon for a pokemon
@@ -209,7 +216,7 @@ function updateMarkers(game) {
       // Make a single group so we can add/remove both items together
       const group = L.layerGroup([circle, marker]).addTo(map);
 
-      // Build popup text (same as your current implementation)
+      // Build popup text
       let popupText = `<strong>${poke.name}</strong><br>${location.name}`;
       if (locEntry.method) popupText += `<br>Method: ${locEntry.method}`;
       if (locEntry.level_range) {
