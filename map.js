@@ -241,6 +241,17 @@ function updateMarkers(game) {
 
     marker.bindPopup(popupHtml, { maxWidth: 400 });
 
+    // Create visibility circle for this location (kept under markers via pane)
+    const circle = L.circleMarker([lat, lng], {
+      pane: 'pokemonCirclePane',
+      radius: 16,
+      color: '#000',
+      weight: 2,
+      fillColor: '#ffe066',
+      fillOpacity: 0.9,
+      interactive: false
+    });
+
     // Putting both the circle and the marker into a single group for easy removal
     const group = L.layerGroup([circle, marker]).addTo(map);
     allMarkers.push(group);
