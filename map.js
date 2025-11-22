@@ -242,18 +242,27 @@ function updateMarkers(game) {
     marker.bindPopup(popupHtml, { maxWidth: 400 });
 
     // Create visibility circle for this location (kept under markers via pane)
-    const circle = L.circleMarker([lat, lng], {
-      pane: 'pokemonCirclePane',
-      radius: 16,
-      color: '#000',
-      weight: 2,
-      fillColor: '#ffe066',
-      fillOpacity: 0.9,
-      interactive: false
-    });
+    let circle = null;
+    try {
+      circle = L.circleMarker([lat, lng], {
+        pane: 'pokemonCirclePane',
+        radius: 16,
+        color: '#000',
+        weight: 2,
+        fillColor: '#ffe066',
+        fillOpacity: 0.9,
+        interactive: false
+      });
+    } catch (err) {
+      console.warn('Failed to create circle for', locationId, err);
+      circle = null;
+    }
 
     // Putting both the circle and the marker into a single group for easy removal
-    const group = L.layerGroup([circle, marker]).addTo(map);
+    const layers = [];
+    if (circle) layers.push(circle);
+    layers.push(marker);
+    const group = L.layerGroup(layers).addTo(map);
     allMarkers.push(group);
 
     // Attach event handler to bind checkbox behavior once popup is opened
