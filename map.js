@@ -172,69 +172,115 @@ function updateMarkers(game) {
   allMarkers = [];
 
   console.log(`Updating markers for game: ${game}`);
-  console.log('Pokemon data:', pokemonData);
-  console.log('Locations data:', locationsData);
 
-  // Iterate through all pokemon and add markers for their locations in the selected game
+  // Build a map of location_id => array of { poke, locEntry }
+  const locationMap = {}; // { locationId: [{poke, locEntry}, ...] }
+
   pokemonData.forEach(poke => {
     const gameData = poke.games && poke.games[game];
-    if (!gameData || !gameData.locations) {
-      console.log(`${poke.name} - No ${game} locations`);
-      return;
-    }
-
-    console.log(`${poke.name} - Found ${game} locations:`, gameData.locations);
+    if (!gameData || !gameData.locations) return;
 
     gameData.locations.forEach(locEntry => {
-      const location = locationsData[locEntry.location_id];
-      console.log(`Looking up location: ${locEntry.location_id}`, location);
-
-      if (!location || !location.coordinates || location.coordinates.length < 2) {
-        console.log(`Location ${locEntry.location_id} has no valid coordinates`);
-        return;
-      }
-
-      const lat = location.coordinates[0];
-      const lng = location.coordinates[1];
-      console.log(`Adding marker for ${poke.name} at [${lat}, ${lng}]`);
-
-      // Create marker with custom pokemon icon
-      const pokemonIcon = createPokemonIcon(poke.id, poke.types || []);
-      const marker = L.marker([lat, lng], { icon: pokemonIcon });
-
-      // Create visibility circle underneath marker
-      const circle = L.circleMarker([lat, lng], {
-        pane: 'pokemonCirclePane',
-        radius: 14,
-        color: '#000',
-        weight: 2,
-        fillColor: '#ffe066',
-        fillOpacity: 0.9,
-        interactive: false
-      });
-
-      // Make a single group so we can add/remove both items together
-      const group = L.layerGroup([circle, marker]).addTo(map);
-
-      // Build popup text
-      let popupText = `<strong>${poke.name}</strong><br>${location.name}`;
-      if (locEntry.method) popupText += `<br>Method: ${locEntry.method}`;
-      if (locEntry.level_range) {
-        const levelStr = Array.isArray(locEntry.level_range) 
-          ? locEntry.level_range.join('-') 
-          : locEntry.level_range;
-        popupText += `<br>Level: ${levelStr}`;
-      }
-      if (locEntry.appearance_rate) popupText += `<br>Rate: ${locEntry.appearance_rate}`;
-      if (locEntry.notes) popupText += `<br>Notes: ${locEntry.notes}`;
-      if (locEntry.shortcut) popupText += `<br>Notes: ${locEntry.shortcut}`;
-
-      marker.bindPopup(popupText);
-
-      // Track this group (so removal is simple)
-      allMarkers.push(group);
+      // Expect locEntry.location_id to reference locationsData
+      const locationId = locEntry.location_id;
+      if (!locationMap[locationId]) locationMap[locationId] = [];
+      locationMap[locationId].push({ poke, locEntry });
     });
   });
 
-  console.log(`Total marker groups added: ${allMarkers.length}`);
+  // For each location that has at least one pokemon, create a single marker with popup listing
+  Object.keys(locationMap).forEach(locationId => {
+    const location = locationsData[locationId];
+    if (!location || !location.coordinates || location.coordinates.length < 2) {
+      console.log(`Skipping location ${locationId} - no coords`);
+      return;
+    }
+
+    const lat = location.coordinates[0];
+    const lng = location.coordinates[1];
+
+    // Build popup HTML with a list of pokemon rows
+    // Each row: icon, name, level(s), rate, checkbox
+    const rows = locationMap[locationId].map(({ poke, locEntry }) => {
+      const spritePath = `./assets/sprites/gen_1_sprites/${poke.id}.png`;
+      // Determine level text
+      let levelText = '';
+      if (locEntry.level_range) {
+        levelText = Array.isArray(locEntry.level_range) ? `${locEntry.level_range[0]}-${locEntry.level_range[1]}` : `${locEntry.level_range}`;
+      }
+      const rateText = locEntry.appearance_rate || locEntry.appearance || '';
+      const checkboxId = `chk_${game}_${poke.id}_${locationId}`;
+      const stored = localStorage.getItem(checkboxId);
+      const checkedAttr = stored === 'true' ? 'checked' : '';
+
+      return `
+        <div class="popup-row" data-poke-id="${poke.id}" data-location-id="${locationId}" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05)">
+          <img src="${spritePath}" alt="${poke.name}" width="32" height="32" onerror="this.style.opacity=.6;this.src='./assets/images/placeholder.png'"/>
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:600">${poke.name}</div>
+            <div style="font-size:12px;color:#333">Lvl ${levelText} &nbsp; • &nbsp; ${rateText}</div>
+          </div>
+          <div>
+            <input type="checkbox" id="${checkboxId}" ${checkedAttr} />
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    const popupHtml = `
+      <div style="min-width:240px">
+        <div style="font-weight:bold;margin-bottom:6px">${location.name}</div>
+        ${rows}
+      </div>
+    `;
+
+    const marker = L.marker([lat, lng], {
+      title: location.name,
+      riseOnHover: true
+    });
+
+    marker.bindPopup(popupHtml, { maxWidth: 400 });
+
+    // Putting both the circle and the marker into a single group for easy removal
+    const group = L.layerGroup([circle, marker]).addTo(map);
+    allMarkers.push(group);
+
+    // Attach event handler to bind checkbox behavior once popup is opened
+    marker.on('popupopen', (e) => {
+
+      const popupEl = e.popup.getElement();
+      if (!popupEl) return;
+
+      const inputs = popupEl.querySelectorAll('input[type="checkbox"]');
+      inputs.forEach(input => {
+        const id = input.id;
+
+        const stored = localStorage.getItem(id);
+        if (stored !== null) input.checked = stored === 'true';
+
+        input.addEventListener('change', (evt) => {
+          const isChecked = evt.target.checked;
+          localStorage.setItem(id, isChecked ? 'true' : 'false');
+
+          const row = evt.target.closest('.popup-row');
+          if (row) {
+            row.style.opacity = isChecked ? '0.5' : '1.0';
+          }
+
+        });
+      });
+
+      // Also, set initial row opacity based on stored checkbox state
+      const rowsEls = popupEl.querySelectorAll('.popup-row');
+      rowsEls.forEach(row => {
+        const pokeId = row.getAttribute('data-poke-id');
+        const locId = row.getAttribute('data-location-id');
+        const cbId = `chk_${game}_${pokeId}_${locId}`;
+        const val = localStorage.getItem(cbId);
+        if (val === 'true') row.style.opacity = '0.5';
+      });
+    });
+  });
+
+  console.log(`Total location markers added: ${allMarkers.length}`);
 }
