@@ -218,7 +218,7 @@ function updateMarkers(game) {
           <img src="${spritePath}" alt="${poke.name}" width="32" height="32" onerror="this.style.opacity=.6;this.src='./assets/images/placeholder.png'"/>
           <div style="flex:1;min-width:0">
             <div style="font-weight:600">${poke.name}</div>
-            <div style="font-size:12px;color:#333">Lvl ${levelText} &nbsp; • &nbsp; ${rateText}</div>
+            <div style="font-size:12px;color:#333">Lv: ${levelText} &nbsp; • &nbsp; ${rateText}</div>
           </div>
           <div>
             <input type="checkbox" id="${checkboxId}" ${checkedAttr} />

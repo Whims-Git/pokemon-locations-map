@@ -35,6 +35,7 @@
           "locations": [
             {
               "location_id": "pallet_town",
+              "level_range": [5, 5],
               "notes": "Received from Professor Oak as a starter Pokémon."
             }
           ]
@@ -55,13 +56,13 @@
             {
               "location_id": "cerulean_cave_1F",
               "method": "Walking",
-              "level_range": [53],
+              "level_range": [53, 53],
               "appearance_rate": "4%"
             },
             {
               "location_id": "cerulean_cave_B1F",
               "method": "Walking",
-              "level_range": [64],
+              "level_range": [64, 64],
               "appearance_rate": "10%"
             }
           ]
@@ -80,13 +81,13 @@
             {
               "location_id": "cerulean_cave_1F",
               "method": "Walking",
-              "level_range": [53],
+              "level_range": [53, 53],
               "appearance_rate": "4%"
             },
             {
               "location_id": "cerulean_cave_B1F",
               "method": "Walking",
-              "level_range": [64],
+              "level_range": [64, 64],
               "appearance_rate": "10%"
             }
           ]
@@ -111,6 +112,7 @@
           "locations": [
             {
               "location_id": "pallet_town",
+              "level_range": [5, 5],
               "notes": "Received from Professor Oak as a starter Pokémon."
             }
           ]
@@ -122,6 +124,7 @@
           "locations": [
             {
               "location_id": "pallet_town",
+              "level_range": [5, 5],
               "notes": "Received from Professor Oak as a starter Pokémon."
             }
           ]
@@ -132,6 +135,7 @@
           "locations": [
             {
               "location_id": "cerulean_city",
+              "level_range": [10, 10],
               "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher.",
               "shortcut": "Use the potion glitch to raise Pikachu's friendship quickly. Simply use a potion (or other HP-restoring items) on Pikachu, even when it's at full health, repeatedly to increase its friendship level."
             }
@@ -157,7 +161,7 @@
             {
               "location_id": "route_24",
               "method": "Walking",
-              "level_range": [7],
+              "level_range": [7, 7],
               "appearance_rate": "20%"
             },
             {
@@ -180,13 +184,13 @@
             {
               "location_id": "route_25",
               "method": "Walking",
-              "level_range": [8],
+              "level_range": [8, 8],
               "appearance_rate": "1%"
             },
             {
               "location_id": "viridian_forest",
               "method": "Walking",
-              "level_range": [3],
+              "level_range": [3, 3],
               "appearance_rate": "5%"
             }
           ]
