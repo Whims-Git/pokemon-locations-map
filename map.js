@@ -246,9 +246,6 @@ filterControl.onAdd = function () {
   typeEnable.checked = false;
   methodEnable.checked = false;
 
-  // Render the initial pokemon list
-  setTimeout(() => { if (typeof renderPokemonList === 'function') renderPokemonList(); }, 20);
-
   return div;
 };
 filterControl.addTo(map);
@@ -270,6 +267,8 @@ fetch('./pokemon_data_gen/gen1_kanto.json')
     console.log('Loaded pokemon:', pokemonData);
     // Show Red game markers by default
     updateMarkers('Red');
+    // Render pokemon list now that data is loaded
+    renderPokemonList();
   })
   .catch(err => console.error('Error loading data:', err));
 
