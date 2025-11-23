@@ -35,6 +35,7 @@
           "locations": [
             {
               "location_id": "pallet_town",
+              "method": "Gift",
               "level_range": [5, 5],
               "appearance_rate": "100%",
               "notes": "Received from Professor Oak as a starter Pokémon."
@@ -51,8 +52,6 @@
       "games": {
         "Red": {
           "obtainable": true,
-          "evolution": "Evolution stone (Thunder stone)",
-          "base_pokemon": "Pikachu",
           "locations": [
             {
               "location_id": "cerulean_cave_1F",
@@ -70,8 +69,6 @@
         },
         "Blue": {
           "obtainable": true,
-          "evolution": "Evolution stone (Thunder stone)",
-          "base_pokemon": "Pikachu",
           "locations": [
             {
               "location_id": "power_plant",
@@ -95,8 +92,13 @@
         },
         "Yellow": {
           "obtainable": false,
-          "method": "Trade",
-          "notes": "Cannot evolve Pikachu in this version."
+          "locations": [
+            {
+              "location_id": "Trade from Red or Blue",
+              "method": "Trade",
+              "notes": "Cannot evolve Pikachu in this version."
+            }
+          ]
         }
       }
     },
@@ -113,6 +115,7 @@
           "locations": [
             {
               "location_id": "pallet_town",
+              "method": "Gift",
               "level_range": [5, 5],
               "appearance_rate": "100%",
               "notes": "Received from Professor Oak as a starter Pokémon."
@@ -126,6 +129,7 @@
           "locations": [
             {
               "location_id": "pallet_town",
+              "method": "Gift",
               "level_range": [5, 5],
               "appearance_rate": "100%",
               "notes": "Received from Professor Oak as a starter Pokémon."
@@ -138,6 +142,7 @@
           "locations": [
             {
               "location_id": "cerulean_city",
+              "method": "Gift",
               "level_range": [10, 10],
               "appearance_rate": "100%",
               "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher.",
@@ -201,8 +206,13 @@
         },
         "Yellow": {
           "obtainable": false,
-          "method": "Trade",
-          "notes": "Cannot obtain Weedle in this version."
+          "locations": [
+            {
+              "location_id": "Trade from Red or Blue",
+              "method": "Trade",
+              "notes": "Cannot obtain Weedle in this version."
+            }
+          ]
         }
       }
     }

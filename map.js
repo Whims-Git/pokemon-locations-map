@@ -104,44 +104,139 @@ function createPokemonIcon(pokemonId, types = []) {
   return icon;
 }
 
-// Add game filter control
-const gameControl = L.control({ position: 'topright' });
-gameControl.onAdd = function (map) {
-  const div = L.DomUtil.create('div', 'game-control');
+// FILTER PANEL: game + additional filters
+// We'll create a single control with options for Game, Obtainable, Starter, Gift,
+// Type filter (enable + multi-select) and Method filter (enable + dropdown).
+const filters = {
+  game: 'Red',
+  obtainable: false,
+  starter: false,
+  gift: false,
+  typeFilterEnabled: false,
+  types: new Set(),
+  methodFilterEnabled: false,
+  method: 'Any'
+};
+
+const filterControl = L.control({ position: 'topright' });
+filterControl.onAdd = function () {
+  const div = L.DomUtil.create('div', 'filter-control');
   div.style.background = 'white';
   div.style.padding = '10px';
   div.style.borderRadius = '5px';
   div.style.fontFamily = 'Arial, sans-serif';
   div.style.boxShadow = '0 0 15px rgba(0,0,0,0.2)';
-  
-  const label = L.DomUtil.create('label', '', div);
-  label.style.display = 'block';
-  label.style.marginBottom = '5px';
-  label.style.fontWeight = 'bold';
-  label.innerHTML = 'Game Version:';
-  
-  const select = L.DomUtil.create('select', '', div);
-  select.style.padding = '5px';
-  select.style.width = '100%';
-  select.style.borderRadius = '3px';
-  select.style.border = '1px solid #ccc';
-  select.style.cursor = 'pointer';
-  
-  ['Red', 'Blue', 'Yellow'].forEach(game => {
-    const option = L.DomUtil.create('option', '', select);
-    option.value = game;
-    option.innerHTML = game;
-    if (game === 'Red') option.selected = true;
+  div.style.maxWidth = '260px';
+
+  // Build HTML for the control. We keep markup simple so it's easy to read.
+  div.innerHTML = `
+    <div style="font-weight:bold;margin-bottom:6px">Map Filters</div>
+    <div style="margin-bottom:6px">
+      <label style="font-weight:600">Game:</label>
+      <select id="filter_game" style="width:100%;margin-top:4px;padding:4px">
+        <option value="Red">Red</option>
+        <option value="Blue">Blue</option>
+        <option value="Yellow">Yellow</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:6px">
+      <label><input type="checkbox" id="filter_obtainable" /> Obtainable</label>
+      <label><input type="checkbox" id="filter_starter" /> Starter</label>
+      <label><input type="checkbox" id="filter_gift" /> Gift</label>
+    </div>
+    <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
+      <label><input type="checkbox" id="filter_type_enable" /> Filter by Type</label>
+      <div id="type_box" style="display:none;margin-top:6px;max-height:120px;overflow:auto;border:1px solid #f0f0f0;padding:6px">
+      </div>
+    </div>
+    <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
+      <label><input type="checkbox" id="filter_method_enable" /> Filter by Method</label>
+      <select id="filter_method" style="width:100%;margin-top:6px;padding:4px;display:none">
+        <option value="Any">Any</option>
+        <option value="Walking">Walking</option>
+        <option value="Fishing">Fishing</option>
+        <option value="Surfing">Surfing</option>
+        <option value="Evolution">Evolution</option>
+        <option value="Trade">Trade</option>
+      </select>
+    </div>
+  `;
+
+  // Add type checkboxes dynamically from typeColors keys
+  const typeBox = div.querySelector('#type_box');
+  Object.keys(typeColors).forEach(type => {
+    const id = `type_${type}`;
+    const row = document.createElement('div');
+    row.style.marginBottom = '4px';
+    row.innerHTML = `<label style="font-size:13px"><input type=\"checkbox\" id=\"${id}\" /> ${type}</label>`;
+    typeBox.appendChild(row);
   });
-  
-  L.DomEvent.on(select, 'change', function () {
-    currentGame = select.value;
-    updateMarkers(currentGame);
+
+  // Wire up events
+  const gameSelect = div.querySelector('#filter_game');
+  gameSelect.value = filters.game;
+  gameSelect.addEventListener('change', () => {
+    filters.game = gameSelect.value;
+    // Always apply game selection when changed
+    updateMarkers(filters.game);
   });
-  
+
+  const obtainableChk = div.querySelector('#filter_obtainable');
+  obtainableChk.addEventListener('change', () => {
+    filters.obtainable = obtainableChk.checked;
+    updateMarkers(filters.game);
+  });
+  const starterChk = div.querySelector('#filter_starter');
+  starterChk.addEventListener('change', () => {
+    filters.starter = starterChk.checked;
+    updateMarkers(filters.game);
+  });
+  const giftChk = div.querySelector('#filter_gift');
+  giftChk.addEventListener('change', () => {
+    filters.gift = giftChk.checked;
+    updateMarkers(filters.game);
+  });
+
+  const typeEnable = div.querySelector('#filter_type_enable');
+  const methodEnable = div.querySelector('#filter_method_enable');
+  const methodSelect = div.querySelector('#filter_method');
+
+  typeEnable.addEventListener('change', () => {
+    filters.typeFilterEnabled = typeEnable.checked;
+    typeBox.style.display = typeEnable.checked ? 'block' : 'none';
+    updateMarkers(filters.game);
+  });
+
+  // type checkboxes
+  Object.keys(typeColors).forEach(type => {
+    const el = div.querySelector(`#type_${type}`);
+    el.addEventListener('change', () => {
+      if (el.checked) filters.types.add(type);
+      else filters.types.delete(type);
+      updateMarkers(filters.game);
+    });
+  });
+
+  methodEnable.addEventListener('change', () => {
+    filters.methodFilterEnabled = methodEnable.checked;
+    methodSelect.style.display = methodEnable.checked ? 'block' : 'none';
+    updateMarkers(filters.game);
+  });
+  methodSelect.addEventListener('change', () => {
+    filters.method = methodSelect.value;
+    updateMarkers(filters.game);
+  });
+
+  // Default: only game is selected (others inactive)
+  obtainableChk.checked = false;
+  starterChk.checked = false;
+  giftChk.checked = false;
+  typeEnable.checked = false;
+  methodEnable.checked = false;
+
   return div;
 };
-gameControl.addTo(map);
+filterControl.addTo(map);
 
 // Load locations and pokemon data, then display markers
 fetch('./pokemon_data_gen/gen1_kanto.json')
@@ -180,7 +275,35 @@ function updateMarkers(game) {
     const gameData = poke.games && poke.games[game];
     if (!gameData || !gameData.locations) return;
 
+    // Apply game-level filters (obtainable/starter/gift) if they are enabled
+    if (filters.obtainable && !gameData.obtainable) return;
+    if (filters.starter && !gameData.starter) return;
+    if (filters.gift && !gameData.gift) return;
+
     gameData.locations.forEach(locEntry => {
+      // Apply method filter if enabled
+      if (filters.methodFilterEnabled && filters.method !== 'Any') {
+        const methodText = (locEntry.method || '').toLowerCase();
+        const sel = filters.method;
+        const keywords = {
+          'Walking': ['grass', 'walk'],
+          'Fishing': ['fish'],
+          'Surfing': ['surf'],
+          'Evolution': ['evolution'],
+          'Trade': ['trade']
+        };
+        const kws = keywords[sel] || [sel.toLowerCase()];
+        const matchesMethod = kws.some(k => methodText.includes(k));
+        if (!matchesMethod) return; // skip this location entry
+      }
+
+      // Apply type filter if enabled
+      if (filters.typeFilterEnabled && filters.types.size > 0) {
+        const pokeTypes = Array.isArray(poke.types) ? poke.types : [];
+        const hasType = pokeTypes.some(t => filters.types.has(t));
+        if (!hasType) return; // skip this pokemon
+      }
+
       // Expect locEntry.location_id to reference locationsData
       const locationId = locEntry.location_id;
       if (!locationMap[locationId]) locationMap[locationId] = [];
