@@ -209,19 +209,22 @@ function updateMarkers(game) {
         levelText = Array.isArray(locEntry.level_range) ? `${locEntry.level_range[0]}-${locEntry.level_range[1]}` : `${locEntry.level_range}`;
       }
       const rateText = locEntry.appearance_rate || locEntry.appearance || '';
-      const checkboxId = `chk_${game}_${poke.id}_${locationId}`;
+      
+      // Use a simpler checkbox ID that only depends on the pokemon ID and game
+      // This way, checking Pikachu in ANY location will affect ALL Pikachu instances
+      const checkboxId = `chk_${game}_${poke.id}`;
       const stored = localStorage.getItem(checkboxId);
       const checkedAttr = stored === 'true' ? 'checked' : '';
 
       return `
-        <div class="popup-row" data-poke-id="${poke.id}" data-location-id="${locationId}" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05)">
+        <div class="popup-row" data-poke-id="${poke.id}" data-game="${game}" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05)">
           <img src="${spritePath}" alt="${poke.name}" width="32" height="32" onerror="this.style.opacity=.6;this.src='./assets/images/placeholder.png'"/>
           <div style="flex:1;min-width:0">
             <div style="font-weight:600">${poke.name}</div>
             <div style="font-size:12px;color:#333">Lv: ${levelText} &nbsp; • &nbsp; ${rateText}</div>
           </div>
           <div>
-            <input type="checkbox" id="${checkboxId}" ${checkedAttr} />
+            <input type="checkbox" id="${checkboxId}" class="pokemon-checkbox" ${checkedAttr} />
           </div>
         </div>
       `;
@@ -271,22 +274,32 @@ function updateMarkers(game) {
       const popupEl = e.popup.getElement();
       if (!popupEl) return;
 
-      const inputs = popupEl.querySelectorAll('input[type="checkbox"]');
+      // Get all checkboxes in this popup
+      const inputs = popupEl.querySelectorAll('input.pokemon-checkbox');
       inputs.forEach(input => {
         const id = input.id;
-
+        // id format: "chk_Red_pikachu"
+        
+        // Load the stored value from localStorage and set the checkbox
         const stored = localStorage.getItem(id);
         if (stored !== null) input.checked = stored === 'true';
 
+        // Add a change event listener to this checkbox
         input.addEventListener('change', (evt) => {
           const isChecked = evt.target.checked;
+          
+          // Save the checkbox state to localStorage using the checkbox ID
           localStorage.setItem(id, isChecked ? 'true' : 'false');
 
+          // Get the closest row element to fade it out
           const row = evt.target.closest('.popup-row');
           if (row) {
             row.style.opacity = isChecked ? '0.5' : '1.0';
           }
 
+          // IMPORTANT: Update ALL checkboxes with the same ID across ALL popups
+          // This is the key to making the global checkbox work
+          updateAllCheckboxesWithId(id, isChecked);
         });
       });
 
@@ -294,8 +307,9 @@ function updateMarkers(game) {
       const rowsEls = popupEl.querySelectorAll('.popup-row');
       rowsEls.forEach(row => {
         const pokeId = row.getAttribute('data-poke-id');
-        const locId = row.getAttribute('data-location-id');
-        const cbId = `chk_${game}_${pokeId}_${locId}`;
+        const gameAttr = row.getAttribute('data-game');
+        // Reconstruct the checkbox ID
+        const cbId = `chk_${gameAttr}_${pokeId}`;
         const val = localStorage.getItem(cbId);
         if (val === 'true') row.style.opacity = '0.5';
       });
@@ -303,4 +317,28 @@ function updateMarkers(game) {
   });
 
   console.log(`Total location markers added: ${allMarkers.length}`);
+}
+
+// Update all checkboxes with the same ID everywhere on the page
+// This ensures that checking a Pokemon in one location checks it in all locations
+function updateAllCheckboxesWithId(checkboxId, isChecked) {
+  // Step 1: Find all checkboxes on the page with this ID
+  // querySelectorAll finds all HTML elements that match a CSS selector
+  // In this case, we're looking for any input element with id="checkboxId"
+  const allCheckboxes = document.querySelectorAll(`#${CSS.escape(checkboxId)}`);
+  
+  console.log(`Found ${allCheckboxes.length} checkboxes with ID ${checkboxId}`);
+  
+  // Step 2: Loop through each checkbox and update it
+  // forEach runs a function for each item in the list
+  allCheckboxes.forEach(checkbox => {
+    // Set the checked property to match the current state
+    checkbox.checked = isChecked;
+    
+    // Also update the row's opacity to match
+    const row = checkbox.closest('.popup-row');
+    if (row) {
+      row.style.opacity = isChecked ? '0.5' : '1.0';
+    }
+  });
 }
