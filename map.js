@@ -160,6 +160,10 @@ filterControl.onAdd = function () {
         <option value="Trade">Trade</option>
       </select>
     </div>
+    <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
+      <div style="font-weight:600;margin-bottom:4px">Pokémon List</div>
+      <div id="pokemon_list" style="max-height:220px;overflow:auto;border:1px solid #f6f6f6;padding:6px;background:#fff"></div>
+    </div>
   `;
 
   // Add type checkboxes dynamically from typeColors keys
@@ -179,22 +183,26 @@ filterControl.onAdd = function () {
     filters.game = gameSelect.value;
     // Always apply game selection when changed
     updateMarkers(filters.game);
+    renderPokemonList();
   });
 
   const obtainableChk = div.querySelector('#filter_obtainable');
   obtainableChk.addEventListener('change', () => {
     filters.obtainable = obtainableChk.checked;
     updateMarkers(filters.game);
+    renderPokemonList();
   });
   const starterChk = div.querySelector('#filter_starter');
   starterChk.addEventListener('change', () => {
     filters.starter = starterChk.checked;
     updateMarkers(filters.game);
+    renderPokemonList();
   });
   const giftChk = div.querySelector('#filter_gift');
   giftChk.addEventListener('change', () => {
     filters.gift = giftChk.checked;
     updateMarkers(filters.game);
+    renderPokemonList();
   });
 
   const typeEnable = div.querySelector('#filter_type_enable');
@@ -205,6 +213,7 @@ filterControl.onAdd = function () {
     filters.typeFilterEnabled = typeEnable.checked;
     typeBox.style.display = typeEnable.checked ? 'block' : 'none';
     updateMarkers(filters.game);
+    renderPokemonList();
   });
 
   // type checkboxes
@@ -214,6 +223,7 @@ filterControl.onAdd = function () {
       if (el.checked) filters.types.add(type);
       else filters.types.delete(type);
       updateMarkers(filters.game);
+      renderPokemonList();
     });
   });
 
@@ -221,10 +231,12 @@ filterControl.onAdd = function () {
     filters.methodFilterEnabled = methodEnable.checked;
     methodSelect.style.display = methodEnable.checked ? 'block' : 'none';
     updateMarkers(filters.game);
+    renderPokemonList();
   });
   methodSelect.addEventListener('change', () => {
     filters.method = methodSelect.value;
     updateMarkers(filters.game);
+    renderPokemonList();
   });
 
   // Default: only game is selected (others inactive)
@@ -233,6 +245,9 @@ filterControl.onAdd = function () {
   giftChk.checked = false;
   typeEnable.checked = false;
   methodEnable.checked = false;
+
+  // Render the initial pokemon list
+  setTimeout(() => { if (typeof renderPokemonList === 'function') renderPokemonList(); }, 20);
 
   return div;
 };
@@ -463,5 +478,116 @@ function updateAllCheckboxesWithId(checkboxId, isChecked) {
     if (row) {
       row.style.opacity = isChecked ? '0.5' : '1.0';
     }
+  });
+}
+
+// --- Pokémon list rendering for the filter panel ---
+function pokemonMatchesFilters(poke) {
+  const game = filters.game;
+  const gameData = poke.games && poke.games[game];
+  if (!gameData) return false;
+
+  if (filters.obtainable && !gameData.obtainable) return false;
+  if (filters.starter && !gameData.starter) return false;
+  if (filters.gift && !gameData.gift) return false;
+
+  if (filters.typeFilterEnabled && filters.types.size > 0) {
+    const pokeTypes = Array.isArray(poke.types) ? poke.types : [];
+    const hasType = pokeTypes.some(t => filters.types.has(t));
+    if (!hasType) return false;
+  }
+
+  if (filters.methodFilterEnabled && filters.method !== 'Any') {
+    // If any location entry for this game matches the method filter, allow it
+    const kwsMap = {
+      'Walking': ['grass', 'walk'],
+      'Fishing': ['fish'],
+      'Surfing': ['surf'],
+      'Evolution': ['evolution'],
+      'Trade': ['trade']
+    };
+    const kws = kwsMap[filters.method] || [filters.method.toLowerCase()];
+    const matches = (gameData.locations || []).some(locEntry => {
+      const methodText = (locEntry.method || '').toLowerCase();
+      return kws.some(k => methodText.includes(k));
+    });
+    if (!matches) return false;
+  }
+
+  return true;
+}
+
+function renderPokemonList() {
+  const container = document.getElementById('pokemon_list');
+  if (!container) return;
+  container.innerHTML = '';
+
+  // Sort pokemon by regional_dex (fallback to id if missing)
+  const sorted = (pokemonData || []).slice().sort((a, b) => {
+    const da = (a.regional_dex || 9999);
+    const db = (b.regional_dex || 9999);
+    return da - db;
+  });
+
+  sorted.forEach(poke => {
+    if (!pokemonMatchesFilters(poke)) return;
+
+    const gameData = poke.games && poke.games[filters.game];
+    const obtainable = gameData && !!gameData.obtainable;
+
+    const row = document.createElement('div');
+    row.className = 'filter-list-row';
+    row.style.display = 'flex';
+    row.style.alignItems = 'center';
+    row.style.justifyContent = 'space-between';
+    row.style.padding = '6px 4px';
+    row.style.borderBottom = '1px solid rgba(0,0,0,0.04)';
+    row.style.fontSize = '13px';
+
+    const left = document.createElement('div');
+    left.style.display = 'flex';
+    left.style.alignItems = 'center';
+    left.style.gap = '8px';
+    left.style.minWidth = '0';
+
+    const img = document.createElement('img');
+    img.src = `./assets/sprites/gen_1_sprites/${poke.id}.png`;
+    img.width = 28; img.height = 28;
+    img.onerror = function() { this.style.opacity = .6; this.src = './assets/images/placeholder.png'; };
+
+    const info = document.createElement('div');
+    info.style.overflow = 'hidden';
+    info.style.textOverflow = 'ellipsis';
+    info.style.whiteSpace = 'nowrap';
+    info.style.minWidth = '0';
+    info.innerHTML = `<strong style=\"font-weight:600\">${poke.regional_dex ? ('#'+poke.regional_dex) : ''} ${poke.name}</strong><div style=\"font-size:11px;color:#333\">${obtainable ? 'Obtainable' : 'Not Obtainable'}</div>`;
+
+    left.appendChild(img);
+    left.appendChild(info);
+
+    const cbWrap = document.createElement('div');
+    const cbId = `chk_${filters.game}_${poke.id}`;
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.id = cbId;
+    cb.className = 'pokemon-checkbox';
+    const stored = localStorage.getItem(cbId);
+    cb.checked = stored === 'true';
+
+    cb.addEventListener('change', (e) => {
+      const v = e.target.checked;
+      localStorage.setItem(cbId, v ? 'true' : 'false');
+      updateAllCheckboxesWithId(cbId, v);
+    });
+
+    cbWrap.appendChild(cb);
+
+    row.appendChild(left);
+    row.appendChild(cbWrap);
+
+    // Set opacity based on checkbox
+    if (cb.checked) row.style.opacity = '0.5';
+
+    container.appendChild(row);
   });
 }
