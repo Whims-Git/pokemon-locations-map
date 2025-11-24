@@ -1,4 +1,9 @@
 {
+  "not_obtainable_by_game": {
+    "Red": [],
+    "Blue": [],
+    "Yellow": ["weedle"]
+  },
   "pokemon": [
     {
       "id": "pikachu",

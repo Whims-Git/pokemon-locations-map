@@ -47,15 +47,17 @@
         {
           "pokemon_id": "weedle",
           "games": {
-            "Red": { "min_level": 3, "max_level": 5, "rate": "45%", "method": "Walking" },
-            "Blue": { "min_level": 3, "max_level": 3, "rate": "5%", "method": "Walking" }
+            "Red": { "obtainable": true, "min_level": 3, "max_level": 5, "rate": "45%", "method": "Walking" },
+            "Blue": { "obtainable": true, "min_level": 3, "max_level": 3, "rate": "5%", "method": "Walking" },
+            "Yellow": { "obtainable": false}
           }
         },
         {
           "pokemon_id": "pikachu",
           "games": {
-            "Red": { "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" },
-            "Blue": { "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" }
+            "Red": { "obtainable": true, "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" },
+            "Blue": { "obtainable": true, "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" },
+            "Yellow": { "obtainable": false}
           }
         }
       ]

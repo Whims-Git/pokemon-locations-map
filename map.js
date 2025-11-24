@@ -49,6 +49,7 @@ let locationsData = {};
 let currentGame = 'Red';
 let pokemonIcons = {}; // Cache for pokemon icons
 let pokemonById = {}; // lookup map filled after pokemon data load
+let notObtainableByGame = {}; // optional map: { "Yellow": ["weedle", ...] }
 
 // Color map for different pokemon types
 const typeColors = {
@@ -265,6 +266,8 @@ fetch('./pokemon_data_gen/gen1_kanto.json')
   .then(res => res.json())
   .then(data => {
     pokemonData = data.pokemon || [];
+    // Load optional unobtainable lists if provided in the pokemon JSON
+    notObtainableByGame = data.not_obtainable_by_game || data.notObtainableByGame || data.not_obtainable || {};
     // Build lookup map by id for quick access
     pokemonById = (pokemonData || []).reduce((acc, p) => { acc[p.id] = p; return acc; }, {});
     console.log('Loaded pokemon:', pokemonData);
@@ -310,7 +313,7 @@ function updateMarkers(game) {
       const merged = Object.assign({}, entry, perGame);
 
       // Apply global filters
-      if (filters.obtainable && !merged.obtainable) return;
+        if (filters.obtainable && !isPokemonObtainableInGame(pid, game)) return;
       if (filters.starter && !merged.starter) return;
       if (filters.gift && !(merged.source === 'gift' || merged.gift)) return;
 
@@ -475,8 +478,9 @@ function pokemonMatchesFilters(poke) {
 
   // If any entry passes the active filters, the pokemon matches
   return entries.some(entry => {
-    // Obtainable/starter/gift
-    if (filters.obtainable && !entry.obtainable) return false;
+    // Obtainable: use global unobtainable list + presence of entries
+    if (filters.obtainable && !isPokemonObtainableInGame(poke.id, game)) return false;
+    // Starter/Gift (entry-level)
     if (filters.starter && !entry.starter) return false;
     if (filters.gift && !entry.isGift) return false;
 
@@ -599,4 +603,19 @@ function renderPokemonList() {
 
     container.appendChild(row);
   });
+}
+
+// Determine if a pokemon is obtainable in a given game.
+// Rules:
+// - If `notObtainableByGame[game]` lists the pokemon id, return false.
+// - Otherwise, return true if there are any entries for the pokemon in that game.
+function isPokemonObtainableInGame(pokeId, game) {
+  const notList = (notObtainableByGame && notObtainableByGame[game]) || [];
+  try {
+    if (Array.isArray(notList) && notList.some(id => String(id) === String(pokeId))) return false;
+  } catch (err) {
+    // ignore and continue
+  }
+  const entries = getEntriesForPokemonAndGame(pokeId, game);
+  return (entries && entries.length > 0);
 }
