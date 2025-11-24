@@ -533,6 +533,7 @@ function renderPokemonList() {
   sorted.forEach(poke => {
     if (!pokemonMatchesFilters(poke)) return;
 
+    const entries = getEntriesForPokemonAndGame(poke.id, filters.game);
     const obtainable = isPokemonObtainableInGame(poke.id, filters.game);
 
     const row = document.createElement('div');
