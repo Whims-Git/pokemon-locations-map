@@ -244,118 +244,155 @@ gameControl.onAdd = function (map) {
 };
 gameControl.addTo(map);
 
-// Helper function to check if a Pokémon matches current filters
+// --- Pokémon list rendering for the filter panel ---
 function pokemonMatchesFilters(poke) {
-  // Type filter
+  const game = filters.game;
+  const gameData = poke.games && poke.games[game];
+  if (!gameData) return false;
+
+  if (filters.obtainable && !gameData.obtainable) return false;
+  if (filters.starter && !gameData.starter) return false;
+  if (filters.gift && !gameData.gift) return false;
+
   if (filters.typeFilterEnabled && filters.types.size > 0) {
-    const matchesType = poke.types.some(t => filters.types.has(t));
-    if (!matchesType) return false;
+    const pokeTypes = Array.isArray(poke.types) ? poke.types : [];
+    const hasType = pokeTypes.some(t => filters.types.has(t));
+    if (!hasType) return false;
   }
-  
-  // Obtainable filter - check if available in current game
-  if (filters.obtainable) {
-    let isAvailable = false;
-    Object.values(locationsData).forEach(loc => {
-      if (!isAvailable && loc.encounters) {
-        const enc = loc.encounters.find(e => e.pokemon_id === poke.id);
-        if (enc && enc.games && enc.games[filters.game]) {
-          isAvailable = true;
-        }
-      }
-    });
-    if (!isAvailable && (!loc.gifts || !loc.gifts.some(g => g.pokemon_id === poke.id && g.games[filters.game]))) {
-      return false;
-    }
-  }
-  
-  // Starter filter
-  if (filters.starter) {
-    // Mark Bulbasaur, Charmander, Squirtle as starters
-    const starters = ['bulbasaur', 'charmander', 'squirtle'];
-    if (!starters.includes(poke.id)) return false;
-  }
-  
-  // Gift filter - check if available as gift
-  if (filters.gift) {
-    let isGift = false;
-    Object.values(locationsData).forEach(loc => {
-      if (!isGift && loc.gifts) {
-        const gift = loc.gifts.find(g => g.pokemon_id === poke.id && g.games[filters.game]);
-        if (gift) isGift = true;
-      }
-    });
-    if (!isGift) return false;
-  }
-  
-  // Method filter
+
   if (filters.methodFilterEnabled && filters.method !== 'Any') {
-    let hasMethod = false;
-    Object.values(locationsData).forEach(loc => {
-      if (!hasMethod && loc.encounters) {
-        const enc = loc.encounters.find(e => e.pokemon_id === poke.id);
-        if (enc && enc.games && enc.games[filters.game]) {
-          if (enc.games[filters.game].method === filters.method) {
-            hasMethod = true;
-          }
-        }
-      }
+    // If any location entry for this game matches the method filter, allow it
+    const kwsMap = {
+      'Walking': ['grass', 'walk'],
+      'Fishing': ['fish'],
+      'Surfing': ['surf'],
+      'Evolution': ['evolution'],
+      'Trade': ['trade']
+    };
+    const kws = kwsMap[filters.method] || [filters.method.toLowerCase()];
+    const matches = (gameData.locations || []).some(locEntry => {
+      const methodText = (locEntry.method || '').toLowerCase();
+      return kws.some(k => methodText.includes(k));
     });
-    if (!hasMethod) return false;
+    if (!matches) return false;
   }
-  
+
   return true;
 }
 
-// Render Pokémon list in filter panel
 function renderPokemonList() {
-  const container = document.querySelector('#pokemon_list');
+  const container = document.getElementById('pokemon_list');
   if (!container) return;
   container.innerHTML = '';
-  
-  // Filter Pokémon
-  const filtered = Object.values(pokemonData).filter(pokemonMatchesFilters);
-  
-  // Sort by name
-  filtered.sort((a, b) => a.name.localeCompare(b.name));
-  
-  // Build list
-  filtered.forEach(poke => {
+
+  // Sort pokemon by regional_dex (fallback to id if missing)
+  const sorted = (pokemonData || []).slice().sort((a, b) => {
+    const da = (a.regional_dex || 9999);
+    const db = (b.regional_dex || 9999);
+    return da - db;
+  });
+
+  sorted.forEach(poke => {
+    if (!pokemonMatchesFilters(poke)) return;
+
+    const gameData = poke.games && poke.games[filters.game];
+    const obtainable = gameData && !!gameData.obtainable;
+
     const row = document.createElement('div');
-    row.style.paddingBottom = '4px';
-    row.style.borderBottom = '1px solid #f0f0f0';
-    row.style.fontSize = '12px';
-    
-    const checkboxId = `chk_${filters.game}_${poke.id}`;
-    const isObtained = localStorage.getItem(checkboxId) === 'true';
-    
-    row.innerHTML = `
-      <input type="checkbox" id="${checkboxId}" ${isObtained ? 'checked' : ''} />
-      <label for="${checkboxId}" style="cursor:pointer">${poke.name} (#${poke.regional_dex})</label>
-    `;
-    
-    const checkbox = row.querySelector(`#${checkboxId}`);
-    checkbox.addEventListener('change', () => {
-      localStorage.setItem(checkboxId, checkbox.checked);
-      updateAllCheckboxesWithId(checkboxId, checkbox.checked);
+    row.className = 'filter-list-row';
+    row.style.display = 'flex';
+    row.style.alignItems = 'center';
+    row.style.justifyContent = 'space-between';
+    row.style.padding = '6px 4px';
+    row.style.borderBottom = '1px solid rgba(0,0,0,0.04)';
+    row.style.fontSize = '13px';
+
+    const left = document.createElement('div');
+    left.style.display = 'flex';
+    left.style.alignItems = 'center';
+    left.style.gap = '8px';
+    left.style.minWidth = '0';
+
+    const img = document.createElement('img');
+    img.src = `./assets/sprites/gen_1_sprites/${poke.id}.png`;
+    img.width = 28; img.height = 28;
+    img.onerror = function() { this.style.opacity = .6; this.src = './assets/images/placeholder.png'; };
+
+    const info = document.createElement('div');
+    info.style.overflow = 'hidden';
+    info.style.textOverflow = 'ellipsis';
+    info.style.whiteSpace = 'nowrap';
+    info.style.minWidth = '0';
+
+    // Prepare a short locations preview for the selected game
+    const locEntries = (gameData && gameData.locations) || [];
+    const locNames = locEntries.map(le => (locationsData[le.location_id] && locationsData[le.location_id].name) || le.location_id);
+    const locPreview = locNames.length === 0 ? '—' : (locNames.slice(0, 3).join(', ') + (locNames.length > 3 ? '...' : ''));
+
+    info.innerHTML = `<strong style=\"font-weight:600\">${poke.regional_dex ? ('#'+poke.regional_dex) : ''} ${poke.name}</strong>` +
+                     `<div style=\"font-size:11px;color:#333\">${obtainable ? 'Obtainable' : 'Not Obtainable'}</div>` +
+                     `<div style=\"font-size:11px;color:#666;margin-top:2px;white-space:normal;overflow:hidden;text-overflow:ellipsis\">Locations: ${locPreview}</div>`;
+
+    left.appendChild(img);
+    left.appendChild(info);
+
+    // Make the left area clickable to jump to the first listed location
+    left.style.cursor = 'pointer';
+    left.title = locNames.length ? `Jump to: ${locNames[0]}` : '';
+    left.addEventListener('click', () => {
+      if (locEntries.length > 0) {
+        const firstLoc = locationsData[locEntries[0].location_id];
+        if (firstLoc && firstLoc.coordinates && firstLoc.coordinates.length >= 2) {
+          map.setView([firstLoc.coordinates[0], firstLoc.coordinates[1]], 0);
+        }
+      }
     });
-    
+
+    const cbWrap = document.createElement('div');
+    const cbId = `chk_${filters.game}_${poke.id}`;
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.id = cbId;
+    cb.className = 'pokemon-checkbox';
+    const stored = localStorage.getItem(cbId);
+    cb.checked = stored === 'true';
+
+    cb.addEventListener('change', (e) => {
+      const v = e.target.checked;
+      localStorage.setItem(cbId, v ? 'true' : 'false');
+      updateAllCheckboxesWithId(cbId, v);
+    });
+
+    cbWrap.appendChild(cb);
+
+    row.appendChild(left);
+    row.appendChild(cbWrap);
+
+    // Set opacity based on checkbox
+    if (cb.checked) row.style.opacity = '0.5';
+
     container.appendChild(row);
   });
-  
-  if (filtered.length === 0) {
-    container.innerHTML = '<div style="font-style:italic;color:#999">No Pokémon match filters</div>';
-  }
 }
 
-// Update all checkboxes with the same ID across all popups
+// Update all checkboxes with the same ID everywhere on the page
+// This ensures that checking a Pokemon in one location checks it in all locations
 function updateAllCheckboxesWithId(checkboxId, isChecked) {
-  document.querySelectorAll(`#${checkboxId}`).forEach(el => {
-    el.checked = isChecked;
-    // Trigger opacity change on all
-    const parent = el.closest('tr') || el.closest('[data-pokemon-id]');
-    if (parent) {
-      parent.style.opacity = isChecked ? '0.5' : '1';
-    }
+  // Find all checkboxes on the page with this ID
+  const allCheckboxes = document.querySelectorAll(`#${CSS.escape(checkboxId)}`);
+
+  console.log(`Found ${allCheckboxes.length} checkboxes with ID ${checkboxId}`);
+
+  // Update each checkbox state and adjust the UI for both popup rows and the
+  // filter list rows. List rows use the class `filter-list-row` while popup
+  // entries use `popup-row`.
+  allCheckboxes.forEach(checkbox => {
+    checkbox.checked = isChecked;
+
+    // Try popup row first, then filter list row
+    let row = checkbox.closest('.popup-row');
+    if (!row) row = checkbox.closest('.filter-list-row');
+    if (row) row.style.opacity = isChecked ? '0.5' : '1.0';
   });
 }
 
@@ -372,16 +409,12 @@ fetch('./pokemon_data_gen/gen1_kanto.json')
   })
   .then(res => res.json())
   .then(data => {
-    // Build a quick lookup map by pokemon id
-    pokemonData = data.pokemon.reduce((acc, p) => {
-      acc[p.id] = p;
-      return acc;
-    }, {});
-    console.log('Loaded pokemon metadata:', pokemonData);
-    // Render initial Pokémon list
-    renderPokemonList();
+    pokemonData = data.pokemon;
+    console.log('Loaded pokemon:', pokemonData);
     // Show Red game markers by default
     updateMarkers('Red');
+    // Render pokemon list now that data is loaded
+    renderPokemonList();
   })
   .catch(err => console.error('Error loading data:', err));
 
@@ -393,57 +426,92 @@ function updateMarkers(game) {
   });
   allMarkers = [];
 
-  Object.values(locationsData).forEach(location => {
-    const encounters = location.encounters || [];
-    
-    const allRows = (location.encounters || []).concat(location.gifts || []);
-    // Then iterate allRows the same way
+  console.log(`Updating markers for game: ${game}`);
 
-    // Build popup rows for this game version only
-    const rows = allRows
-      .map(enc => {
-        const gameData = enc.games && enc.games[game];
-        if (!gameData) return null; // Pokemon not in this game version at this location
-        
-        const poke = pokemonData[enc.pokemon_id];
-        if (!poke) {
-          console.warn(`Pokemon ${enc.pokemon_id} not found in metadata`);
-          return null;
-        }
+  // Build a map of location_id => array of { poke, locEntry }
+  const locationMap = {}; // { locationId: [{poke, locEntry}, ...] }
 
-        // Apply active filters
-        if (!pokemonMatchesFilters(poke)) return null;
+  pokemonData.forEach(poke => {
+    const gameData = poke.games && poke.games[game];
+    if (!gameData || !gameData.locations) return;
 
-        // Additional filter for method (if enabled)
-        if (filters.methodFilterEnabled && filters.method !== 'Any') {
-          if (gameData.method !== filters.method) return null;
-        }
+    // Apply game-level filters (obtainable/starter/gift) if they are enabled
+    if (filters.obtainable && !gameData.obtainable) return;
+    if (filters.starter && !gameData.starter) return;
+    if (filters.gift && !gameData.gift) return;
 
-        const sprite = `./assets/sprites/gen_1_sprites/${enc.pokemon_id}.png`;
-        const levelText = gameData.min_level !== undefined && gameData.max_level !== undefined
-          ? `${gameData.min_level}-${gameData.max_level}`
-          : (gameData.level || '');
-        const rateText = gameData.rate || '';
-        const checkboxId = `chk_${game}_${enc.pokemon_id}`;
-        const checked = localStorage.getItem(checkboxId) === 'true' ? 'checked' : '';
+    gameData.locations.forEach(locEntry => {
+      // Apply method filter if enabled
+      if (filters.methodFilterEnabled && filters.method !== 'Any') {
+        const methodText = (locEntry.method || '').toLowerCase();
+        const sel = filters.method;
+        const keywords = {
+          'Walking': ['grass', 'walk'],
+          'Fishing': ['fish'],
+          'Surfing': ['surf'],
+          'Evolution': ['evolution'],
+          'Trade': ['trade']
+        };
+        const kws = keywords[sel] || [sel.toLowerCase()];
+        const matchesMethod = kws.some(k => methodText.includes(k));
+        if (!matchesMethod) return; // skip this location entry
+      }
 
-        return `
-          <div class="popup-row" data-poke-id="${enc.pokemon_id}" data-location-id="${location.id}" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);opacity:${checked ? '0.5' : '1'}">
-            <img src="${sprite}" alt="${poke.name}" width="32" height="32" onerror="this.style.opacity=.6;this.src='./assets/images/placeholder.png'"/>
-            <div style="flex:1;min-width:0">
-              <div style="font-weight:600">${poke.name}</div>
-              <div style="font-size:12px;color:#333">Lv: ${levelText} &nbsp; • &nbsp; ${rateText}</div>
-            </div>
-            <div>
-              <input type="checkbox" id="${checkboxId}" ${checked} />
-            </div>
+      // Apply type filter if enabled
+      if (filters.typeFilterEnabled && filters.types.size > 0) {
+        const pokeTypes = Array.isArray(poke.types) ? poke.types : [];
+        const hasType = pokeTypes.some(t => filters.types.has(t));
+        if (!hasType) return; // skip this pokemon
+      }
+
+      // Expect locEntry.location_id to reference locationsData
+      const locationId = locEntry.location_id;
+      if (!locationMap[locationId]) locationMap[locationId] = [];
+      locationMap[locationId].push({ poke, locEntry });
+    });
+  });
+
+  // For each location that has at least one pokemon, create a single marker with popup listing
+  Object.keys(locationMap).forEach(locationId => {
+    const location = locationsData[locationId];
+    if (!location || !location.coordinates || location.coordinates.length < 2) {
+      console.log(`Skipping location ${locationId} - no coords`);
+      return;
+    }
+
+    const lat = location.coordinates[0];
+    const lng = location.coordinates[1];
+
+    // Build popup HTML with a list of pokemon rows
+    // Each row: icon, name, level(s), rate, checkbox
+    const rows = locationMap[locationId].map(({ poke, locEntry }) => {
+      const spritePath = `./assets/sprites/gen_1_sprites/${poke.id}.png`;
+      // Determine level text
+      let levelText = '';
+      if (locEntry.level_range) {
+        levelText = Array.isArray(locEntry.level_range) ? `${locEntry.level_range[0]}-${locEntry.level_range[1]}` : `${locEntry.level_range}`;
+      }
+      const rateText = locEntry.appearance_rate || locEntry.appearance || '';
+      
+      // Use a simpler checkbox ID that only depends on the pokemon ID and game
+      // This way, checking Pikachu in ANY location will affect ALL Pikachu instances
+      const checkboxId = `chk_${game}_${poke.id}`;
+      const stored = localStorage.getItem(checkboxId);
+      const checkedAttr = stored === 'true' ? 'checked' : '';
+
+      return `
+        <div class="popup-row" data-poke-id="${poke.id}" data-game="${game}" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05)">
+          <img src="${spritePath}" alt="${poke.name}" width="32" height="32" onerror="this.style.opacity=.6;this.src='./assets/images/placeholder.png'"/>
+          <div style="flex:1;min-width:0">
+            <div style="font-weight:600">${poke.name}</div>
+            <div style="font-size:12px;color:#333">Lv: ${levelText} &nbsp; • &nbsp; ${rateText}</div>
           </div>
-        `;
-      })
-      .filter(row => row !== null) // Remove null entries (Pokemon not in this game or filtered out)
-      .join('');
-
-    if (rows.length === 0) return; // Skip location if no encounters for this game
+          <div>
+            <input type="checkbox" id="${checkboxId}" class="pokemon-checkbox" ${checkedAttr} />
+          </div>
+        </div>
+      `;
+    }).join('');
 
     const popupHtml = `
       <div style="min-width:240px">
@@ -452,17 +520,17 @@ function updateMarkers(game) {
       </div>
     `;
 
-    // Create marker + circle as before...
-    const marker = L.marker([location.coordinates[0], location.coordinates[1]], {
+    const marker = L.marker([lat, lng], {
       title: location.name,
       riseOnHover: true
     });
 
     marker.bindPopup(popupHtml, { maxWidth: 400 });
 
+    // Create visibility circle for this location (kept under markers via pane)
     let circle = null;
     try {
-      circle = L.circleMarker([location.coordinates[0], location.coordinates[1]], {
+      circle = L.circleMarker([lat, lng], {
         pane: 'pokemonCirclePane',
         radius: 16,
         color: '#000',
@@ -472,40 +540,61 @@ function updateMarkers(game) {
         interactive: false
       });
     } catch (err) {
-      console.warn('Failed to create circle for', location.id, err);
+      console.warn('Failed to create circle for', locationId, err);
+      circle = null;
     }
 
+    // Putting both the circle and the marker into a single group for easy removal
     const layers = [];
     if (circle) layers.push(circle);
     layers.push(marker);
     const group = L.layerGroup(layers).addTo(map);
     allMarkers.push(group);
 
-    // Attach checkbox handlers (same as before)...
+    // Attach event handler to bind checkbox behavior once popup is opened
     marker.on('popupopen', (e) => {
+
       const popupEl = e.popup.getElement();
       if (!popupEl) return;
 
-      const inputs = popupEl.querySelectorAll('input[type="checkbox"]');
+      // Get all checkboxes in this popup
+      const inputs = popupEl.querySelectorAll('input.pokemon-checkbox');
       inputs.forEach(input => {
         const id = input.id;
+        // id format: "chk_Red_pikachu"
+        
+        // Load the stored value from localStorage and set the checkbox
         const stored = localStorage.getItem(id);
         if (stored !== null) input.checked = stored === 'true';
 
+        // Add a change event listener to this checkbox
         input.addEventListener('change', (evt) => {
-          localStorage.setItem(id, evt.target.checked ? 'true' : 'false');
+          const isChecked = evt.target.checked;
+          
+          // Save the checkbox state to localStorage using the checkbox ID
+          localStorage.setItem(id, isChecked ? 'true' : 'false');
+
+          // Get the closest row element to fade it out
           const row = evt.target.closest('.popup-row');
-          if (row) row.style.opacity = evt.target.checked ? '0.5' : '1.0';
-          // Sync all checkboxes with this ID
-          updateAllCheckboxesWithId(id, evt.target.checked);
+          if (row) {
+            row.style.opacity = isChecked ? '0.5' : '1.0';
+          }
+
+          // IMPORTANT: Update ALL checkboxes with the same ID across ALL popups
+          // This is the key to making the global checkbox work
+          updateAllCheckboxesWithId(id, isChecked);
         });
       });
 
+      // Also, set initial row opacity based on stored checkbox state
       const rowsEls = popupEl.querySelectorAll('.popup-row');
       rowsEls.forEach(row => {
         const pokeId = row.getAttribute('data-poke-id');
-        const cbId = `chk_${game}_${pokeId}`;
-        if (localStorage.getItem(cbId) === 'true') row.style.opacity = '0.5';
+        const gameAttr = row.getAttribute('data-game');
+        // Reconstruct the checkbox ID
+        const cbId = `chk_${gameAttr}_${pokeId}`;
+        const val = localStorage.getItem(cbId);
+        if (val === 'true') row.style.opacity = '0.5';
       });
     });
   });
