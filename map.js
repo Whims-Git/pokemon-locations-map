@@ -351,16 +351,24 @@ function updateMarkers(game) {
     // Build popup HTML
     const rowsHtml = rowsData.map(({ poke, entry }) => {
       const spritePath = `./assets/sprites/gen_1_sprites/${poke.id}.png`;
+      // Level text: support min_level/max_level or level_range
       let levelText = '';
       if (entry.level_range) {
         levelText = Array.isArray(entry.level_range) ? `${entry.level_range[0]}-${entry.level_range[1]}` : `${entry.level_range}`;
+      } else if (entry.min_level !== undefined || entry.max_level !== undefined) {
+        if (entry.min_level !== undefined && entry.max_level !== undefined) levelText = `${entry.min_level}-${entry.max_level}`;
+        else if (entry.min_level !== undefined) levelText = `${entry.min_level}`;
+        else levelText = `${entry.max_level}`;
       }
-      const rateText = entry.appearance_rate || entry.appearance || '';
+
+      // Rate text: support multiple field names
+      const rateText = entry.appearance_rate || entry.appearance || entry.rate || entry.appearance || '';
+      const methodText = entry.method || (entry.source === 'gift' ? 'Gift' : '') || '';
       const checkboxId = `chk_${game}_${poke.id}`;
       const stored = localStorage.getItem(checkboxId);
       const checkedAttr = stored === 'true' ? 'checked' : '';
 
-      return `\n        <div class="popup-row" data-poke-id="${poke.id}" data-game="${game}" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05)">\n          <img src="${spritePath}" alt="${poke.name}" width="32" height="32" onerror="this.style.opacity=.6;this.src='./assets/images/placeholder.png'"/>\n          <div style="flex:1;min-width:0">\n            <div style="font-weight:600">${poke.name}</div>\n            <div style="font-size:12px;color:#333">Lv: ${levelText} &nbsp; • &nbsp; ${rateText}</div>\n          </div>\n          <div>\n            <input type="checkbox" id="${checkboxId}" class="pokemon-checkbox" ${checkedAttr} />\n          </div>\n        </div>\n      `;
+      return `\n        <div class="popup-row" data-poke-id="${poke.id}" data-game="${game}" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05)">\n          <img src="${spritePath}" alt="${poke.name}" width="32" height="32" onerror="this.style.opacity=.6;this.src='./assets/images/placeholder.png'"/>\n          <div style="flex:1;min-width:0">\n            <div style="font-weight:600">${poke.name}</div>\n            <div style="font-size:12px;color:#333">Lv: ${levelText || '—'} &nbsp; • &nbsp; ${rateText || '—'}${methodText ? ' • ' + methodText : ''}</div>\n          </div>\n          <div>\n            <input type="checkbox" id="${checkboxId}" class="pokemon-checkbox" ${checkedAttr} />\n          </div>\n        </div>\n      `;
     }).join('');
 
     const popupHtml = `\n      <div style="min-width:240px">\n        <div style="font-weight:bold;margin-bottom:6px">${location.name}</div>\n        ${rowsHtml}\n      </div>\n    `;
@@ -525,8 +533,7 @@ function renderPokemonList() {
   sorted.forEach(poke => {
     if (!pokemonMatchesFilters(poke)) return;
 
-    const entries = getEntriesForPokemonAndGame(poke.id, filters.game);
-    const obtainable = (entries && entries.length > 0) ? entries.some(e => !!e.obtainable) : false;
+    const obtainable = isPokemonObtainableInGame(poke.id, filters.game);
 
     const row = document.createElement('div');
     row.className = 'filter-list-row';
