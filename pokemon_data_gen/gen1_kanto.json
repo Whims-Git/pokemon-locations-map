@@ -5,7 +5,23 @@
       "name": "Pallet Town",
       "region": "Kanto",
       "coordinates": [2343, 1424],
-      "type": "town"
+      "type": "town",
+      "encounters": [],
+      "gifts": [
+        {
+          "pokemon_id": "pikachu",
+          "games": {
+            "Yellow": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Gift", "notes": "Received from Professor Oak as a starter." }
+          }
+        },
+        {
+          "pokemon_id": "bulbasaur",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Gift", "notes": "Received from Professor Oak as a starter." },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Gift", "notes": "Received from Professor Oak as a starter." }
+          }
+        }
+      ]
     },
     {
       "id": "route_1",
@@ -26,14 +42,38 @@
       "name": "Viridian Forest",
       "region": "Kanto",
       "coordinates": [4516, 1832],
-      "type": "forest"
+      "type": "forest",
+      "encounters": [
+        {
+          "pokemon_id": "weedle",
+          "games": {
+            "Red": { "min_level": 3, "max_level": 5, "rate": "45%", "method": "Walking" },
+            "Blue": { "min_level": 3, "max_level": 3, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pikachu",
+          "games": {
+            "Red": { "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" },
+            "Blue": { "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
       "id": "route_2",
       "name": "Route 2",
       "region": "Kanto",
       "coordinates": [4282, 1416],
-      "type": "route"
+      "type": "route",
+      "encounters": [
+        {
+          "pokemon_id": "weedle",
+          "games": {
+            "Red": { "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
       "id": "pewter_city",
@@ -68,14 +108,31 @@
       "name": "Cerulean City",
       "region": "Kanto",
       "coordinates": [5868, 3909],
-      "type": "city"
+      "type": "city",
+      "gifts": [
+        {
+          "pokemon_id": "bulbasaur",
+          "games": {
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "100%", "method": "Gift", "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher.", "shortcut": "Use the potion glitch to raise Pikachu's friendship quickly. Simply use a potion (or other HP-restoring items) on Pikachu, even when it's at full health, repeatedly to increase its friendship level." }
+          }
+        }
+      ]
     },
     {
       "id": "cerulean_cave_1F",
       "name": "Cerulean Cave 1F",
       "region": "Kanto",
       "coordinates": [6707, 3304],
-      "type": "city"
+      "type": "city",
+      "encounters": [
+        {
+          "pokemon_id": "raichu",
+          "games": {
+            "Red": { "min_level": 53, "max_level": 53, "rate": "4%", "method": "Walking" },
+            "Blue": { "min_level": 53, "max_level": 53, "rate": "4%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
       "id": "cerulean_cave_2F",
@@ -89,21 +146,47 @@
       "name": "Cerulean Cave B1F",
       "region": "Kanto",
       "coordinates": [6343, 3363],
-      "type": "city"
+      "type": "city",
+      "encounters": [
+        {
+          "pokemon_id": "raichu",
+          "games": {
+            "Red": { "min_level": 64, "max_level": 64, "rate": "10%", "method": "Walking" },
+            "Blue": { "min_level": 64, "max_level": 64, "rate": "10%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
       "id": "route_24",
       "name": "Route 24",
       "region": "Kanto",
       "coordinates": [6497, 3911],
-      "type": "route"
+      "type": "route",
+      "encounters": [
+        {
+          "pokemon_id": "weedle",
+          "games": {
+            "Red": { "min_level": 7, "max_level": 7, "rate": "20%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
       "id": "route_25",
       "name": "Route 25",
       "region": "Kanto",
       "coordinates": [6760, 4313],
-      "type": "route"
+      "type": "route",
+      "encounters": [
+        {
+          "pokemon_id": "weedle",
+          "games": {
+            "Red": { "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" },
+            "Blue": { "min_level": 8, "max_level": 8, "rate": "1%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
       "id": "route_5",
@@ -152,7 +235,15 @@
       "name": "Power Plant",
       "region": "Kanto",
       "coordinates": [5019, 4703],
-      "type": "building"
+      "type": "building",
+      "encounters": [
+        {
+          "pokemon_id": "raichu",
+          "games": {
+            "Blue": { "min_level": 33, "max_level": 36, "rate": "5%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
       "id": "rock_tunnel",

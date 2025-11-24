@@ -4,217 +4,25 @@
       "id": "pikachu",
       "name": "Pikachu",
       "regional_dex": 25,
-      "types": ["Electric"],
-      "games": {
-        "Red": {
-          "obtainable": true,
-          "locations": [
-            {
-              "location_id": "viridian_forest",
-              "method": "Walking",
-              "level_range": [3, 5],
-              "appearance_rate": "5%"
-            }
-          ]
-        },
-        "Blue": {
-          "obtainable": true,
-          "locations": [
-            {
-              "location_id": "viridian_forest",
-              "method": "Walking",
-              "level_range": [3, 5],
-              "appearance_rate": "5%"
-            }
-          ]
-        },
-        "Yellow": {
-          "obtainable": true,
-          "starter": true,
-          "gift": true,
-          "locations": [
-            {
-              "location_id": "pallet_town",
-              "method": "Gift",
-              "level_range": [5, 5],
-              "appearance_rate": "100%",
-              "notes": "Received from Professor Oak as a starter Pokémon."
-            }
-          ]
-        }
-      }
+      "types": ["Electric"]
     },
     {
       "id": "raichu",
       "name": "Raichu",
       "regional_dex": 26,
-      "types": ["Electric"],
-      "games": {
-        "Red": {
-          "obtainable": true,
-          "locations": [
-            {
-              "location_id": "cerulean_cave_1F",
-              "method": "Walking",
-              "level_range": [53, 53],
-              "appearance_rate": "4%"
-            },
-            {
-              "location_id": "cerulean_cave_B1F",
-              "method": "Walking",
-              "level_range": [64, 64],
-              "appearance_rate": "10%"
-            }
-          ]
-        },
-        "Blue": {
-          "obtainable": true,
-          "locations": [
-            {
-              "location_id": "power_plant",
-              "method": "Walking",
-              "level_range": [33, 36],
-              "appearance_rate": "5%"
-            },
-            {
-              "location_id": "cerulean_cave_1F",
-              "method": "Walking",
-              "level_range": [53, 53],
-              "appearance_rate": "4%"
-            },
-            {
-              "location_id": "cerulean_cave_B1F",
-              "method": "Walking",
-              "level_range": [64, 64],
-              "appearance_rate": "10%"
-            }
-          ]
-        },
-        "Yellow": {
-          "obtainable": false,
-          "locations": [
-            {
-              "location_id": "Trade from Red or Blue",
-              "method": "Trade",
-              "notes": "Cannot evolve Pikachu in this version."
-            }
-          ]
-        }
-      }
+      "types": ["Electric"]
     },
     {
       "id": "bulbasaur",
       "name": "Bulbasaur",
       "regional_dex": 1,
-      "types": ["Grass", "Poison"],
-      "games": {
-        "Red": {
-          "obtainable": true,
-          "starter": true,
-          "gift": true,
-          "locations": [
-            {
-              "location_id": "pallet_town",
-              "method": "Gift",
-              "level_range": [5, 5],
-              "appearance_rate": "100%",
-              "notes": "Received from Professor Oak as a starter Pokémon."
-            }
-          ]
-        },
-        "Blue": {
-          "obtainable": true,
-          "starter": true,
-          "gift": true,
-          "locations": [
-            {
-              "location_id": "pallet_town",
-              "method": "Gift",
-              "level_range": [5, 5],
-              "appearance_rate": "100%",
-              "notes": "Received from Professor Oak as a starter Pokémon."
-            }
-          ]
-        },
-        "Yellow": {
-          "obtainable": true,
-          "gift": true,
-          "locations": [
-            {
-              "location_id": "cerulean_city",
-              "method": "Gift",
-              "level_range": [10, 10],
-              "appearance_rate": "100%",
-              "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher.",
-              "shortcut": "Use the potion glitch to raise Pikachu's friendship quickly. Simply use a potion (or other HP-restoring items) on Pikachu, even when it's at full health, repeatedly to increase its friendship level."
-            }
-          ]
-        }
-      }
+      "types": ["Grass", "Poison"]
     },
     {
       "id": "weedle",
       "name": "Weedle",
       "regional_dex": 13,
-      "types": ["Bug", "Poison"],
-      "games": {
-        "Red": {
-          "obtainable": true,
-          "locations": [
-            {
-              "location_id": "route_2",
-              "method": "Walking",
-              "level_range": [3, 5],
-              "appearance_rate": "5%"
-            },
-            {
-              "location_id": "route_24",
-              "method": "Walking",
-              "level_range": [7, 7],
-              "appearance_rate": "20%"
-            },
-            {
-              "location_id": "route_25",
-              "method": "Walking",
-              "level_range": [3, 5],
-              "appearance_rate": "5%"
-            },
-            {
-              "location_id": "viridian_forest",
-              "method": "Walking",
-              "level_range": [3, 5],
-              "appearance_rate": "45%"
-            }
-          ]
-        },
-        "Blue": {
-          "obtainable": true,
-          "locations": [
-            {
-              "location_id": "route_25",
-              "method": "Walking",
-              "level_range": [8, 8],
-              "appearance_rate": "1%"
-            },
-            {
-              "location_id": "viridian_forest",
-              "method": "Walking",
-              "level_range": [3, 3],
-              "appearance_rate": "5%"
-            }
-          ]
-        },
-        "Yellow": {
-          "obtainable": false,
-          "locations": [
-            {
-              "location_id": "Trade from Red or Blue",
-              "method": "Trade",
-              "notes": "Cannot obtain Weedle in this version."
-            }
-          ]
-        }
-      }
+      "types": ["Bug", "Poison"]
     }
   ]
 }
