@@ -117,7 +117,8 @@ const filters = {
   typeFilterEnabled: false,
   types: new Set(),
   methodFilterEnabled: false,
-  method: 'Any'
+  method: 'Any',
+  rod: 'Old'
 };
 
 const filterControl = L.control({ position: 'topright' });
@@ -157,6 +158,14 @@ filterControl.onAdd = function () {
         <option value="Any">Any</option>
         <option value="Walking">Walking</option>
         <option value="Fishing">Fishing</option>
+        <div id="rod_options" style="display:none;margin-top:6px">
+          <label for="filter_rod">Rod:</label>
+          <select id="filter_rod" style="width:100%;margin-top:4px;padding:4px">
+            <option value="Old">Old Rod</option>
+            <option value="Good">Good Rod</option>
+            <option value="Super">Super Rod</option>
+          </select>
+        </div>
         <option value="Surfing">Surfing</option>
         <option value="Evolution">Evolution</option>
         <option value="Trade">Trade</option>
@@ -340,6 +349,18 @@ function updateMarkers(game) {
         if (!matchesMethod) return;
       }
 
+      // Add filter for rod choice (old rod, good rod, super rod) if fishing method was selected in method filter
+      if (filters.methodFilterEnabled && filters.method === 'Fishing' && filters.rod) {
+        const rodKeywords = {
+          'Old': ['old rod'],
+          'Good': ['good rod'],
+          'Super': ['super rod']
+        };
+        const rodKws = rodKeywords[filters.rod] || [];
+        const matchesRod = rodKws.some(k => (merged.method || entry.method || '').toLowerCase().includes(k));
+        if (!matchesRod) return;
+      }
+
       const poke = pokemonById[pid];
       if (!poke) return;
 
@@ -512,6 +533,18 @@ function pokemonMatchesFilters(poke) {
       const kws = kwsMap[filters.method] || [filters.method.toLowerCase()];
       const matchesMethod = kws.some(k => methodText.includes(k));
       if (!matchesMethod) return false;
+    }
+    
+    // Rod Filter
+    if (filters.methodFilterEnabled && filters.method === 'Fishing' && filters.rod) {
+      const rodKeywords = {
+        'Old': ['old rod'],
+        'Good': ['good rod'],
+        'Super': ['super rod']
+      };
+      const rodKws = rodKeywords[filters.rod] || [];
+      const matchesRod = rodKws.some(k => methodText.includes(k));
+      if (!matchesRod) return false;
     }
 
     return true;

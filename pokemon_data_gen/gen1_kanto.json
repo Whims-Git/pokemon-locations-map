@@ -6,7 +6,46 @@
       "region": "Kanto",
       "coordinates": [2343, 1424],
       "type": "town",
-      "encounters": [],
+      "encounters": [
+        {
+          "pokemon_id": "Magikarp",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Yellow": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" }
+          }
+        },
+        {
+          "pokemon_id": "Poliwag",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "Goldeen",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "Tentacool",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" },
+            "Yellow": { "min_level": 10, "max_level": 20, "rate": "40%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "Staryu",
+          "games": {
+            "Yellow": { "min_level": 5, "max_level": 10, "rate": "60%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        }
+      ],
       "gifts": [
         {
           "pokemon_id": "pikachu",
@@ -16,6 +55,20 @@
         },
         {
           "pokemon_id": "bulbasaur",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Gift", "notes": "Received from Professor Oak as a starter." },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Gift", "notes": "Received from Professor Oak as a starter." }
+          }
+        },
+        {
+          "pokemon_id": "Charmander",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Gift", "notes": "Received from Professor Oak as a starter." },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Gift", "notes": "Received from Professor Oak as a starter." }
+          }
+        },
+        {
+          "pokemon_id": "Squirtle",
           "games": {
             "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Gift", "notes": "Received from Professor Oak as a starter." },
             "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Gift", "notes": "Received from Professor Oak as a starter." }
