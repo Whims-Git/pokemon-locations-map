@@ -24,6 +24,13 @@
           }
         },
         {
+          "pokemon_id": "Poliwag",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
           "pokemon_id": "Goldeen",
           "games": {
             "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },

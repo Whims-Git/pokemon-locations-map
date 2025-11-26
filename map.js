@@ -158,17 +158,17 @@ filterControl.onAdd = function () {
         <option value="Any">Any</option>
         <option value="Walking">Walking</option>
         <option value="Fishing">Fishing</option>
-        <div id="rod_options" style="display:none;margin-top:6px">
-          <label for="filter_rod">Rod:</label>
-          <select id="filter_rod" style="width:100%;margin-top:4px;padding:4px">
-            <option value="Old">Old Rod</option>
-            <option value="Good">Good Rod</option>
-            <option value="Super">Super Rod</option>
-          </select>
-        </div>
         <option value="Surfing">Surfing</option>
         <option value="Evolution">Evolution</option>
         <option value="Trade">Trade</option>
+      </select>
+    </div>
+    <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
+      <label for="filter_rod">Rod:</label>
+      <select id="filter_rod" style="width:100%;margin-top:4px;padding:4px">
+        <option value="Old">Old Rod</option>
+        <option value="Good">Good Rod</option>
+        <option value="Super">Super Rod</option>
       </select>
     </div>
     <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
@@ -212,6 +212,12 @@ filterControl.onAdd = function () {
   const giftChk = div.querySelector('#filter_gift');
   giftChk.addEventListener('change', () => {
     filters.gift = giftChk.checked;
+    updateMarkers(filters.game);
+    renderPokemonList();
+  });
+  const rodSelect = div.querySelector('#filter_rod');
+  rodSelect.addEventListener('change', () => {
+    filters.rod = rodSelect.value;
     updateMarkers(filters.game);
     renderPokemonList();
   });
@@ -520,9 +526,12 @@ function pokemonMatchesFilters(poke) {
       if (!hasType) return false;
     }
 
+    // Compute method and rod text once (safe for rod filtering)
+    const methodText = ((entry.method || entry.method || '')).toLowerCase();
+    const rodText = ((entry.rod || entry.rod || '')).toLowerCase();
+
     // Method filter
     if (filters.methodFilterEnabled && filters.method !== 'Any') {
-      const methodText = (entry.method || '').toLowerCase();
       const kwsMap = {
         'Walking': ['grass', 'walk'],
         'Fishing': ['fish'],
@@ -534,16 +543,16 @@ function pokemonMatchesFilters(poke) {
       const matchesMethod = kws.some(k => methodText.includes(k));
       if (!matchesMethod) return false;
     }
-    
-    // Rod Filter
+
+    // Rod Filter (only when fishing selected)
     if (filters.methodFilterEnabled && filters.method === 'Fishing' && filters.rod) {
       const rodKeywords = {
-        'Old': ['old rod'],
-        'Good': ['good rod'],
-        'Super': ['super rod']
+        'Old': ['old rod', 'old'],
+        'Good': ['good rod', 'good'],
+        'Super': ['super rod', 'super']
       };
       const rodKws = rodKeywords[filters.rod] || [];
-      const matchesRod = rodKws.some(k => methodText.includes(k));
+      const matchesRod = rodKws.length === 0 ? true : (rodKws.some(k => rodText.includes(k)) || rodKws.some(k => methodText.includes(k)));
       if (!matchesRod) return false;
     }
 
@@ -595,10 +604,25 @@ function renderPokemonList() {
     info.style.whiteSpace = 'nowrap';
     info.style.minWidth = '0';
 
-    // Prepare a short locations preview for the selected game
+    // Prepare a short locations+method preview for the selected game
     const locEntries = entries || [];
-    const locNames = locEntries.map(le => (locationsData[le.location_id] && locationsData[le.location_id].name) || le.location_id);
-    const locPreview = locNames.length === 0 ? '—' : (locNames.slice(0, 3).join(', ') + (locNames.length > 3 ? '...' : ''));
+    const locSummaries = locEntries.map(le => {
+      const locName = (locationsData[le.location_id] && locationsData[le.location_id].name) || le.location_id;
+      const method = (le.method || (le.source === 'gift' ? 'Gift' : '')) || '';
+      const rod = le.rod || '';
+      let levelText = '';
+      if (le.level_range) levelText = Array.isArray(le.level_range) ? `${le.level_range[0]}-${le.level_range[1]}` : `${le.level_range}`;
+      else if (le.min_level !== undefined || le.max_level !== undefined) {
+        if (le.min_level !== undefined && le.max_level !== undefined) levelText = `${le.min_level}-${le.max_level}`;
+        else if (le.min_level !== undefined) levelText = `${le.min_level}`;
+        else levelText = `${le.max_level}`;
+      }
+      const parts = [];
+      if (method) parts.push(method + (rod ? ` (${rod})` : ''));
+      if (levelText) parts.push(`Lv ${levelText}`);
+      return parts.length ? `${locName} — ${parts.join(' • ')}` : locName;
+    });
+    const locPreview = locSummaries.length === 0 ? '—' : (locSummaries.slice(0, 3).join('; ') + (locSummaries.length > 3 ? '...' : ''));
 
     info.innerHTML = `<strong style=\"font-weight:600\">${poke.regional_dex ? ('#'+poke.regional_dex) : ''} ${poke.name}</strong>` +
                      `<div style=\"font-size:11px;color:#333\">${obtainable ? 'Obtainable' : 'Not Obtainable'}</div>` +
