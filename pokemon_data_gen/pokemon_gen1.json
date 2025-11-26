@@ -24,10 +24,898 @@
       "types": ["Grass", "Poison"]
     },
     {
+      "id": "ivysaur",
+      "name": "Ivysaur",
+      "regional_dex": 2,
+      "types": ["Grass", "Poison"]
+    },
+    {
+      "id": "venusaur",
+      "name": "Venusaur",
+      "regional_dex": 3,
+      "types": ["Grass", "Poison"]
+    },
+    {
       "id": "weedle",
       "name": "Weedle",
       "regional_dex": 13,
       "types": ["Bug", "Poison"]
+    },
+    {
+      "id": "kakuna",
+      "name": "Kakuna",
+      "regional_dex": 14,
+      "types": ["Bug", "Poison"]
+    },
+    {
+      "id": "beedrill",
+      "name": "Beedrill",
+      "regional_dex": 15,
+      "types": ["Bug", "Poison"]
+    },
+    {
+      "id": "poliwag",
+      "name": "Poliwag",
+      "regional_dex": 60,
+      "types": ["Water"]
+    },
+    {
+      "id": "poliwhirl",
+      "name": "Poliwhirl",
+      "regional_dex": 61,
+      "types": ["Water"]
+    },
+    {
+      "id": "poliwrath",
+      "name": "Poliwrath",
+      "regional_dex": 62,
+      "types": ["Water", "Fighting"]
+    },
+    {
+      "id": "goldeen",
+      "name": "Goldeen",
+      "regional_dex": 118,
+      "types": ["Water"]
+    },
+    {
+      "id": "seaking",
+      "name": "Seaking",
+      "regional_dex": 119,
+      "types": ["Water"]
+    },
+    {
+      "id": "magikarp",
+      "name": "Magikarp",
+      "regional_dex": 129,
+      "types": ["Water"]
+    },
+    {
+      "id": "gyarados",
+      "name": "Gyarados",
+      "regional_dex": 130,
+      "types": ["Water", "Flying"]
+    },
+    {
+      "id": "mewtwo",
+      "name": "Mewtwo",
+      "regional_dex": 150,
+      "types": ["Psychic"]
+    },
+    {
+      "id": "mew",
+      "name": "Mew",
+      "regional_dex": 151,
+      "types": ["Psychic"]
+    },
+    {
+      "id": "ditto",
+      "name": "Ditto",
+      "regional_dex": 132,
+      "types": ["Normal"]
+    },
+    {
+      "id": "snorlax",
+      "name": "Snorlax",
+      "regional_dex": 143,
+      "types": ["Normal"]
+    },
+    {
+      "id": "jigglypuff",
+      "name": "Jigglypuff",
+      "regional_dex": 39,
+      "types": ["Normal"]
+    },
+    {
+      "id": "wigglytuff",
+      "name": "Wigglytuff",
+      "regional_dex": 40,
+      "types": ["Normal"]
+    },
+    {
+      "id": "zubat",
+      "name": "Zubat",
+      "regional_dex": 41,
+      "types": ["Poison", "Flying"]
+    },
+    {
+      "id": "golbat",
+      "name": "Golbat",
+      "regional_dex": 42,
+      "types": ["Poison", "Flying"]
+    },
+    {
+      "id": "oddish",
+      "name": "Oddish",
+      "regional_dex": 43,
+      "types": ["Grass", "Poison"]
+    },
+    {
+      "id": "gloom",
+      "name": "Gloom",
+      "regional_dex": 44,
+      "types": ["Grass", "Poison"]
+    },
+    {
+      "id": "vileplume",
+      "name": "Vileplume",
+      "regional_dex": 45,
+      "types": ["Grass", "Poison"]
+    },
+    {
+      "id": "psyduck",
+      "name": "Psyduck",
+      "regional_dex": 54,
+      "types": ["Water"]
+    },
+    {
+      "id": "golduck",
+      "name": "Golduck",
+      "regional_dex": 55,
+      "types": ["Water"]
+    },
+    {
+      "id": "machop",
+      "name": "Machop",
+      "regional_dex": 66,
+      "types": ["Fighting"]
+    },
+    {
+      "id": "machoke",
+      "name": "Machoke",
+      "regional_dex": 67,
+      "types": ["Fighting"]
+    },
+    {
+      "id": "machamp",
+      "name": "Machamp",
+      "regional_dex": 68,
+      "types": ["Fighting"]
+    },
+    {
+      "id": "gastly",
+      "name": "Gastly",
+      "regional_dex": 92,
+      "types": ["Ghost", "Poison"]
+    },
+    {
+      "id": "haunter",
+      "name": "Haunter",
+      "regional_dex": 93,
+      "types": ["Ghost", "Poison"]
+    },
+    {
+      "id": "gengar",
+      "name": "Gengar",
+      "regional_dex": 94,
+      "types": ["Ghost", "Poison"]
+    },
+    {
+      "id": "onix",
+      "name": "Onix",
+      "regional_dex": 95,
+      "types": ["Rock", "Ground"]
+    },
+    {
+      "id": "drowzee",
+      "name": "Drowzee",
+      "regional_dex": 96,
+      "types": ["Psychic"]
+    },
+    {
+      "id": "hypno",
+      "name": "Hypno",
+      "regional_dex": 97,
+      "types": ["Psychic"]
+    },
+    {
+      "id": "caterpie",
+      "name": "Caterpie",
+      "regional_dex": 10,
+      "types": ["Bug"]
+    },
+    {
+      "id": "metapod",
+      "name": "Metapod",
+      "regional_dex": 11,
+      "types": ["Bug"]
+    },
+    {
+      "id": "butterfree",
+      "name": "Butterfree",
+      "regional_dex": 12,
+      "types": ["Bug", "Flying"]
+    },
+    {
+      "id": "pidgey",
+      "name": "Pidgey",
+      "regional_dex": 16,
+      "types": ["Normal", "Flying"]
+    },
+    {
+      "id": "pidgeotto",
+      "name": "Pidgeotto",
+      "regional_dex": 17,
+      "types": ["Normal", "Flying"]
+    },
+    {
+      "id": "pidgeot",
+      "name": "Pidgeot",
+      "regional_dex": 18,
+      "types": ["Normal", "Flying"]
+    },
+    {
+      "id": "rattata",
+      "name": "Rattata",
+      "regional_dex": 19,
+      "types": ["Normal"]
+    },
+    {
+      "id": "raticate",
+      "name": "Raticate",
+      "regional_dex": 20,
+      "types": ["Normal"]
+    },
+    {
+      "id": "spearow",
+      "name": "Spearow",
+      "regional_dex": 21,
+      "types": ["Normal", "Flying"]
+    },
+    {
+      "id": "fearow",
+      "name": "Fearow",
+      "regional_dex": 22,
+      "types": ["Normal", "Flying"]
+    },
+    {
+      "id": "ekans",
+      "name": "Ekans",
+      "regional_dex": 23,
+      "types": ["Poison"]
+    },
+    {
+      "id": "arbok",
+      "name": "Arbok",
+      "regional_dex": 24,
+      "types": ["Poison"]
+    },
+    {
+      "id": "sandshrew",
+      "name": "Sandshrew",
+      "regional_dex": 27,
+      "types": ["Ground"]
+    },
+    {
+      "id": "sandslash",
+      "name": "Sandslash",
+      "regional_dex": 28,
+      "types": ["Ground"]
+    },
+    {
+      "id": "nidoran_♀",
+      "name": "Nidoran♀",
+      "regional_dex": 29,
+      "types": ["Poison"]
+    },
+    {
+      "id": "nidorina",
+      "name": "Nidorina",
+      "regional_dex": 30,
+      "types": ["Poison"]
+    },
+    {
+      "id": "nidoqueen",
+      "name": "Nidoqueen",
+      "regional_dex": 31,
+      "types": ["Poison", "Ground"]
+    },
+    {
+      "id": "nidoran_♂",
+      "name": "Nidoran♂",
+      "regional_dex": 32,
+      "types": ["Poison"]
+    },
+    {
+      "id": "nidorino",
+      "name": "Nidorino",
+      "regional_dex": 33,
+      "types": ["Poison"]
+    },
+    {
+      "id": "nidoking",
+      "name": "Nidoking",
+      "regional_dex": 34,
+      "types": ["Poison", "Ground"]
+    },
+    {
+      "id": "clefairy",
+      "name": "Clefairy",
+      "regional_dex": 35,
+      "types": ["Normal"]
+    },
+    {
+      "id": "clefable",
+      "name": "Clefable",
+      "regional_dex": 36,
+      "types": ["Normal"]
+    },
+    {
+      "id": "vulpix",
+      "name": "Vulpix",
+      "regional_dex": 37,
+      "types": ["Fire"]
+    },
+    {
+      "id": "ninetales",
+      "name": "Ninetales",
+      "regional_dex": 38,
+      "types": ["Fire"]
+    },
+    {
+      "id": "zubat",
+      "name": "Zubat",
+      "regional_dex": 39,
+      "types": ["Poison", "Flying"]
+    },
+    {
+      "id": "golbat",
+      "name": "Golbat",
+      "regional_dex": 40,
+      "types": ["Poison", "Flying"]
+    },
+    {
+      "id": "paras",
+      "name": "Paras",
+      "regional_dex": 46,
+      "types": ["Bug", "Grass"]
+    },
+    {
+      "id": "parasect",
+      "name": "Parasect",
+      "regional_dex": 47,
+      "types": ["Bug", "Grass"]
+    },
+    {
+      "id": "venonat",
+      "name": "Venonat",
+      "regional_dex": 48,
+      "types": ["Bug", "Poison"]
+    },
+    {
+      "id": "venomoth",
+      "name": "Venomoth",
+      "regional_dex": 49,
+      "types": ["Bug", "Poison"]
+    },
+    {
+      "id": "diglett",
+      "name": "Diglett",
+      "regional_dex": 50,
+      "types": ["Ground"]
+    },
+    {
+      "id": "dugtrio",
+      "name": "Dugtrio",
+      "regional_dex": 51,
+      "types": ["Ground"]
+    },
+    {
+      "id": "meowth",
+      "name": "Meowth",
+      "regional_dex": 52,
+      "types": ["Normal"]
+    },
+    {
+      "id": "persian",
+      "name": "Persian",
+      "regional_dex": 53,
+      "types": ["Normal"]
+    },
+    {
+      "id": "mankey",
+      "name": "Mankey",
+      "regional_dex": 56,
+      "types": ["Fighting"]
+    },
+    {
+      "id": "primeape",
+      "name": "Primeape",
+      "regional_dex": 57,
+      "types": ["Fighting"]
+    },
+    {
+      "id": "growlithe",
+      "name": "Growlithe",
+      "regional_dex": 58,
+      "types": ["Fire"]
+    },
+    {
+      "id": "arcanine",
+      "name": "Arcanine",
+      "regional_dex": 59,
+      "types": ["Fire"]
+    },
+    {
+      "id": "abra",
+      "name": "Abra",
+      "regional_dex": 63,
+      "types": ["Psychic"]
+    },
+    {
+      "id": "kadabra",
+      "name": "Kadabra",
+      "regional_dex": 64,
+      "types": ["Psychic"]
+    },
+    {
+      "id": "alakazam",
+      "name": "Alakazam",
+      "regional_dex": 65,
+      "types": ["Psychic"]
+    },
+    {
+      "id": "bellsprout",
+      "name": "Bellsprout",
+      "regional_dex": 69,
+      "types": ["Grass", "Poison"]
+    },
+    {
+      "id": "weepinbell",
+      "name": "Weepinbell",
+      "regional_dex": 70,
+      "types": ["Grass", "Poison"]
+    },
+    {
+      "id": "victreebel",
+      "name": "Victreebel",
+      "regional_dex": 71,
+      "types": ["Grass", "Poison"]
+    },
+    {
+      "id": "tentacool",
+      "name": "Tentacool",
+      "regional_dex": 72,
+      "types": ["Water", "Poison"]
+    },
+    {
+      "id": "tentacruel",
+      "name": "Tentacruel",
+      "regional_dex": 73,
+      "types": ["Water", "Poison"]
+    },
+    {
+      "id": "geodude",
+      "name": "Geodude",
+      "regional_dex": 74,
+      "types": ["Rock", "Ground"]
+    },
+    {
+      "id": "graveler",
+      "name": "Graveler",
+      "regional_dex": 75,
+      "types": ["Rock", "Ground"]
+    },
+    {
+      "id": "golem",
+      "name": "Golem",
+      "regional_dex": 76,
+      "types": ["Rock", "Ground"]
+    },
+    {
+      "id": "ponyta",
+      "name": "Ponyta",
+      "regional_dex": 77,
+      "types": ["Fire"]
+    },
+    {
+      "id": "rapidash",
+      "name": "Rapidash",
+      "regional_dex": 78,
+      "types": ["Fire"]
+    },
+    {
+      "id": "slowpoke",
+      "name": "Slowpoke",
+      "regional_dex": 79,
+      "types": ["Water", "Psychic"]
+    },
+    {
+      "id": "slowbro",
+      "name": "Slowbro",
+      "regional_dex": 80,
+      "types": ["Water", "Psychic"]
+    },
+    {
+      "id": "magnemite",
+      "name": "Magnemite",
+      "regional_dex": 81,
+      "types": ["Electric"]
+    },
+    {
+      "id": "magneton",
+      "name": "Magneton",
+      "regional_dex": 82,
+      "types": ["Electric"]
+    },
+    {
+      "id": "farfetchd",
+      "name": "Farfetch'd",
+      "regional_dex": 83,
+      "types": ["Normal", "Flying"]
+    },
+    {
+      "id": "doduo",
+      "name": "Doduo",
+      "regional_dex": 84,
+      "types": ["Normal", "Flying"]
+    },
+    {
+      "id": "dodrio",
+      "name": "Dodrio",
+      "regional_dex": 85,
+      "types": ["Normal", "Flying"]
+    },
+    {
+      "id": "seel",
+      "name": "Seel",
+      "regional_dex": 86,
+      "types": ["Water"]
+    },
+    {
+      "id": "dewgong",
+      "name": "Dewgong",
+      "regional_dex": 87,
+      "types": ["Water", "Ice"]
+    },
+    {
+      "id": "grimer",
+      "name": "Grimer",
+      "regional_dex": 88,
+      "types": ["Poison"]
+    },
+    {
+      "id": "muk",
+      "name": "Muk",
+      "regional_dex": 89,
+      "types": ["Poison"]
+    },
+    {
+      "id": "shellder",
+      "name": "Shellder",
+      "regional_dex": 90,
+      "types": ["Water"]
+    },
+    {
+      "id": "cloyster",
+      "name": "Cloyster",
+      "regional_dex": 91,
+      "types": ["Water", "Ice"]
+    },
+    {
+      "id": "onix",
+      "name": "Onix",
+      "regional_dex": 95,
+      "types": ["Rock", "Ground"]
+    },
+    {
+      "id": "krabby",
+      "name": "Krabby",
+      "regional_dex": 98,
+      "types": ["Water"]
+    },
+    {
+      "id": "kingler",
+      "name": "Kingler",
+      "regional_dex": 99,
+      "types": ["Water"]
+    },
+    {
+      "id": "voltorb",
+      "name": "Voltorb",
+      "regional_dex": 100,
+      "types": ["Electric"]
+    },
+    {
+      "id": "electrode",
+      "name": "Electrode",
+      "regional_dex": 101,
+      "types": ["Electric"]
+    },
+    {
+      "id": "exeggcute",
+      "name": "Exeggcute",
+      "regional_dex": 102,
+      "types": ["Grass", "Psychic"]
+    },
+    {
+      "id": "exeggutor",
+      "name": "Exeggutor",
+      "regional_dex": 103,
+      "types": ["Grass", "Psychic"]
+    },
+    {
+      "id": "cubone",
+      "name": "Cubone",
+      "regional_dex": 104,
+      "types": ["Ground"]
+    },
+    {
+      "id": "marowak",
+      "name": "Marowak",
+      "regional_dex": 105,
+      "types": ["Ground"]
+    },
+    {
+      "id": "hitmonlee",
+      "name": "Hitmonlee",
+      "regional_dex": 106,
+      "types": ["Fighting"]
+    },
+    {
+      "id": "hitmonchan",
+      "name": "Hitmonchan",
+      "regional_dex": 107,
+      "types": ["Fighting"]
+    },
+    {
+      "id": "lickitung",
+      "name": "Lickitung",
+      "regional_dex": 108,
+      "types": ["Normal"]
+    },
+    {
+      "id": "koffing",
+      "name": "Koffing",
+      "regional_dex": 109,
+      "types": ["Poison"]
+    },
+    {
+      "id": "weezing",
+      "name": "Weezing",
+      "regional_dex": 110,
+      "types": ["Poison"]
+    },
+    {
+      "id": "rhyhorn",
+      "name": "Rhyhorn",
+      "regional_dex": 111,
+      "types": ["Ground", "Rock"]
+    },
+    {
+      "id": "rhydon",
+      "name": "Rhydon",
+      "regional_dex": 112,
+      "types": ["Ground", "Rock"]
+    },
+    {
+      "id": "chansey",
+      "name": "Chansey",
+      "regional_dex": 113,
+      "types": ["Normal"]
+    },
+    {
+      "id": "tangela",
+      "name": "Tangela",
+      "regional_dex": 114,
+      "types": ["Grass"]
+    },
+    {
+      "id": "kangaskhan",
+      "name": "Kangaskhan",
+      "regional_dex": 115,
+      "types": ["Normal"]
+    },
+    {
+      "id": "horsea",
+      "name": "Horsea",
+      "regional_dex": 116,
+      "types": ["Water"]
+    },
+    {
+      "id": "seadra",
+      "name": "Seadra",
+      "regional_dex": 117,
+      "types": ["Water"]
+    },
+    {
+      "id": "mr.mime",
+      "name": "Mr. Mime",
+      "regional_dex": 122,
+      "types": ["Psychic"]
+    },
+    {
+      "id": "scyther",
+      "name": "Scyther",
+      "regional_dex": 123,
+      "types": ["Bug", "Flying"]
+    },
+    {
+      "id": "jynx",
+      "name": "Jynx",
+      "regional_dex": 124,
+      "types": ["Ice", "Psychic"]
+    },
+    {
+      "id": "electabuzz",
+      "name": "Electabuzz",
+      "regional_dex": 125,
+      "types": ["Electric"]
+    },
+    {
+      "id": "magmar",
+      "name": "Magmar",
+      "regional_dex": 126,
+      "types": ["Fire"]
+    },
+    {
+      "id": "pinsir",
+      "name": "Pinsir",
+      "regional_dex": 127,
+      "types": ["Bug"]
+    },
+    {
+      "id": "tauros",
+      "name": "Tauros",
+      "regional_dex": 128,
+      "types": ["Normal"]
+    },
+    {
+      "id": "lapras",
+      "name": "Lapras",
+      "regional_dex": 131,
+      "types": ["Water", "Ice"]
+    },
+    {
+      "id": "eevee",
+      "name": "Eevee",
+      "regional_dex": 133,
+      "types": ["Normal"]
+    },
+    {
+      "id": "vaporeon",
+      "name": "Vaporeon",
+      "regional_dex": 134,
+      "types": ["Water"]
+    },
+    {
+      "id": "jolteon",
+      "name": "Jolteon",
+      "regional_dex": 135,
+      "types": ["Electric"]
+    },
+    {
+      "id": "flareon",
+      "name": "Flareon",
+      "regional_dex": 136,
+      "types": ["Fire"]
+    },
+    {
+      "id": "porygon",
+      "name": "Porygon",
+      "regional_dex": 137,
+      "types": ["Normal"]
+    },
+    {
+      "id": "omanyte",
+      "name": "Omanyte",
+      "regional_dex": 138,
+      "types": ["Rock", "Water"]
+    },
+    {
+      "id": "omastar",
+      "name": "Omastar",
+      "regional_dex": 139,
+      "types": ["Rock", "Water"]
+    },
+    {
+      "id": "kabuto",
+      "name": "Kabuto",
+      "regional_dex": 140,
+      "types": ["Rock", "Water"]
+    },
+    {
+      "id": "kabutops",
+      "name": "Kabutops",
+      "regional_dex": 141,
+      "types": ["Rock", "Water"]
+    },
+    {
+      "id": "aerodactyl",
+      "name": "Aerodactyl",
+      "regional_dex": 142,
+      "types": ["Rock", "Flying"]
+    },
+    {
+      "id": "articuno",
+      "name": "Articuno",
+      "regional_dex": 144,
+      "types": ["Ice", "Flying"]
+    },
+    {
+      "id": "zapdos",
+      "name": "Zapdos",
+      "regional_dex": 145,
+      "types": ["Electric", "Flying"]
+    },
+    {
+      "id": "moltres",
+      "name": "Moltres",
+      "regional_dex": 146,
+      "types": ["Fire", "Flying"]
+    },
+    {
+      "id": "dratini",
+      "name": "Dratini",
+      "regional_dex": 147,
+      "types": ["Dragon"]
+    },
+    {
+      "id": "dragonair",
+      "name": "Dragonair",
+      "regional_dex": 148,
+      "types": ["Dragon"]
+    },
+    {
+      "id": "dragonite",
+      "name": "Dragonite",
+      "regional_dex": 149,
+      "types": ["Dragon", "Flying"]
+    },
+    {
+      "id": "squirtle",
+      "name": "Squirtle",
+      "regional_dex": 7,
+      "types": ["Water"]
+    },
+    {
+      "id": "wartortle",
+      "name": "Wartortle",
+      "regional_dex": 8,
+      "types": ["Water"]
+    },
+    {
+      "id": "blastoise",
+      "name": "Blastoise",
+      "regional_dex": 9,
+      "types": ["Water"]
+    },
+    {
+      "id": "charmander",
+      "name": "Charmander",
+      "regional_dex": 4,
+      "types": ["Fire"]
+    },
+    {
+      "id": "charmeleon",
+      "name": "Charmeleon",
+      "regional_dex": 5,
+      "types": ["Fire"]
+    },
+    {
+      "id": "charizard",
+      "name": "Charizard",
+      "regional_dex": 6,
+      "types": ["Fire", "Flying"]
     }
   ]
 }
