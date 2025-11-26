@@ -163,7 +163,7 @@ filterControl.onAdd = function () {
         <option value="Trade">Trade</option>
       </select>
     </div>
-    <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
+    <div id="rod_container" style="border-top:1px solid #eee;padding-top:6px;margin-top:6px;display:none">
       <label for="filter_rod">Rod:</label>
       <select id="filter_rod" style="width:100%;margin-top:4px;padding:4px">
         <option value="Old">Old Rod</option>
@@ -216,6 +216,7 @@ filterControl.onAdd = function () {
     renderPokemonList();
   });
   const rodSelect = div.querySelector('#filter_rod');
+  const rodContainer = div.querySelector('#rod_container');
   rodSelect.addEventListener('change', () => {
     filters.rod = rodSelect.value;
     updateMarkers(filters.game);
@@ -247,11 +248,15 @@ filterControl.onAdd = function () {
   methodEnable.addEventListener('change', () => {
     filters.methodFilterEnabled = methodEnable.checked;
     methodSelect.style.display = methodEnable.checked ? 'block' : 'none';
+    // Show rod selector only when method filter is enabled and Fishing is selected
+    if (rodContainer) rodContainer.style.display = (methodEnable.checked && methodSelect.value === 'Fishing') ? 'block' : 'none';
     updateMarkers(filters.game);
     renderPokemonList();
   });
   methodSelect.addEventListener('change', () => {
     filters.method = methodSelect.value;
+    // Show rod selector only when method filter is enabled and Fishing is selected
+    if (rodContainer) rodContainer.style.display = (methodEnable.checked && methodSelect.value === 'Fishing') ? 'block' : 'none';
     updateMarkers(filters.game);
     renderPokemonList();
   });
@@ -262,6 +267,8 @@ filterControl.onAdd = function () {
   giftChk.checked = false;
   typeEnable.checked = false;
   methodEnable.checked = false;
+  // Ensure rod container hidden by default (safety)
+  if (rodContainer) rodContainer.style.display = 'none';
 
   return div;
 };
@@ -633,6 +640,7 @@ function renderPokemonList() {
 
     // Make the left area clickable to jump to the first listed location
     left.style.cursor = 'pointer';
+    const locNames = locEntries.map(le => (locationsData[le.location_id] && locationsData[le.location_id].name) || le.location_id);
     left.title = locNames.length ? `Jump to: ${locNames[0]}` : '';
     left.addEventListener('click', () => {
       if (locEntries.length > 0) {
