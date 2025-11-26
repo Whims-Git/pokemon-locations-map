@@ -372,18 +372,6 @@
       "types": ["Fire"]
     },
     {
-      "id": "zubat",
-      "name": "Zubat",
-      "regional_dex": 39,
-      "types": ["Poison", "Flying"]
-    },
-    {
-      "id": "golbat",
-      "name": "Golbat",
-      "regional_dex": 40,
-      "types": ["Poison", "Flying"]
-    },
-    {
       "id": "paras",
       "name": "Paras",
       "regional_dex": 46,
@@ -610,12 +598,6 @@
       "name": "Cloyster",
       "regional_dex": 91,
       "types": ["Water", "Ice"]
-    },
-    {
-      "id": "onix",
-      "name": "Onix",
-      "regional_dex": 95,
-      "types": ["Rock", "Ground"]
     },
     {
       "id": "krabby",
