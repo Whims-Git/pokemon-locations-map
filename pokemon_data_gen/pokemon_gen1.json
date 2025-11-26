@@ -84,6 +84,18 @@
       "types": ["Water"]
     },
     {
+      "id": "staryu",
+      "name": "Staryu",
+      "regional_dex": 120,
+      "types": ["Water"]
+    },
+    {
+      "id": "starmie",
+      "name": "Starmie",
+      "regional_dex": 121,
+      "types": ["Water", "Psychic"]
+    },
+    {
       "id": "magikarp",
       "name": "Magikarp",
       "regional_dex": 129,
