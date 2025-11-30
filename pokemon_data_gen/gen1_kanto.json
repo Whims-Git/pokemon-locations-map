@@ -223,8 +223,43 @@
         {
           "pokemon_id": "weedle",
           "games": {
-            "Red": { "min_level": 3, "max_level": 5, "rate": "45%", "method": "Walking" },
+            "Red": { "min_level": 3, "max_level": 5, "rate": "50%", "method": "Walking" },
             "Blue": { "min_level": 3, "max_level": 3, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "caterpie",
+          "games": {
+            "Red": { "min_level": 3, "max_level": 3, "rate": "5%", "method": "Walking" },
+            "Blue": { "min_level": 3, "max_level": 5, "rate": "50%", "method": "Walking" },
+            "Yellow": { "min_level": 3, "max_level": 6, "rate": "55%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "kakuna",
+          "games": {
+            "Red": { "min_level": 4, "max_level": 6, "rate": "35%", "method": "Walking" },
+            "Blue": { "min_level": 4, "max_level": 4, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "metapod",
+          "games": {
+            "Red": { "min_level": 4, "max_level": 4, "rate": "5%", "method": "Walking" },
+            "Blue": { "min_level": 4, "max_level": 6, "rate": "35%", "method": "Walking" },
+            "Yellow": { "min_level": 4, "max_level": 6, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pidgey",
+          "games": {
+            "Yellow": { "min_level": 4, "max_level": 8, "rate": "24%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pidgeotto",
+          "games": {
+            "Yellow": { "min_level": 9, "max_level": 9, "rate": "1%", "method": "Walking" }
           }
         },
         {
