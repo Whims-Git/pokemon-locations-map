@@ -362,15 +362,11 @@ function updateMarkers(game) {
         if (!matchesMethod) return;
       }
 
-      // Add filter for rod choice (old rod, good rod, super rod) if fishing method was selected in method filter
+      // Add filter for rod choice (Old/Good/Super) when fishing is selected
       if (filters.methodFilterEnabled && filters.method === 'Fishing' && filters.rod) {
-        const rodKeywords = {
-          'Old': ['old rod'],
-          'Good': ['good rod'],
-          'Super': ['super rod']
-        };
-        const rodKws = rodKeywords[filters.rod] || [];
-        const matchesRod = rodKws.some(k => (merged.method || entry.method || '').toLowerCase().includes(k));
+        const rodText = (merged.rod || entry.rod || '').toLowerCase();
+        const desired = filters.rod.toLowerCase();
+        const matchesRod = rodText.includes(desired);
         if (!matchesRod) return;
       }
 
@@ -611,45 +607,34 @@ function renderPokemonList() {
     info.style.whiteSpace = 'nowrap';
     info.style.minWidth = '0';
 
-    // Prepare a short locations+method preview for the selected game
+    // Build a location selector instead of text preview
     const locEntries = entries || [];
-    const locSummaries = locEntries.map(le => {
-      const locName = (locationsData[le.location_id] && locationsData[le.location_id].name) || le.location_id;
-      const method = (le.method || (le.source === 'gift' ? 'Gift' : '')) || '';
-      const rod = le.rod || '';
-      let levelText = '';
-      if (le.level_range) levelText = Array.isArray(le.level_range) ? `${le.level_range[0]}-${le.level_range[1]}` : `${le.level_range}`;
-      else if (le.min_level !== undefined || le.max_level !== undefined) {
-        if (le.min_level !== undefined && le.max_level !== undefined) levelText = `${le.min_level}-${le.max_level}`;
-        else if (le.min_level !== undefined) levelText = `${le.min_level}`;
-        else levelText = `${le.max_level}`;
-      }
-      const parts = [];
-      if (method) parts.push(method + (rod ? ` (${rod})` : ''));
-      if (levelText) parts.push(`Lv ${levelText}`);
-      return parts.length ? `${locName} — ${parts.join(' • ')}` : locName;
-    });
-    const locPreview = locSummaries.length === 0 ? '—' : (locSummaries.slice(0, 3).join('; ') + (locSummaries.length > 3 ? '...' : ''));
+    const locNames = locEntries.map(le => (locationsData[le.location_id] && locationsData[le.location_id].name) || le.location_id);
 
     info.innerHTML = `<strong style=\"font-weight:600\">${poke.regional_dex ? ('#'+poke.regional_dex) : ''} ${poke.name}</strong>` +
-                     `<div style=\"font-size:11px;color:#333\">${obtainable ? 'Obtainable' : 'Not Obtainable'}</div>` +
-                     `<div style=\"font-size:11px;color:#666;margin-top:2px;white-space:normal;overflow:hidden;text-overflow:ellipsis\">Locations: ${locPreview}</div>`;
+             `<div style=\"font-size:11px;color:#333\">${obtainable ? 'Obtainable' : 'Not Obtainable'}</div>` +
+             `<div style=\"margin-top:4px\">` +
+             `<select class=\"loc-select\" style=\"max-width:160px\">` +
+             `${locNames.length ? locNames.map((n, i) => `<option value=\"${i}\">${n}</option>`).join('') : `<option value=\"-1\">No locations</option>`}` +
+             `</select>` +
+             `</div>`;
 
     left.appendChild(img);
     left.appendChild(info);
 
-    // Make the left area clickable to jump to the first listed location
-    left.style.cursor = 'pointer';
-    const locNames = locEntries.map(le => (locationsData[le.location_id] && locationsData[le.location_id].name) || le.location_id);
-    left.title = locNames.length ? `Jump to: ${locNames[0]}` : '';
-    left.addEventListener('click', () => {
-      if (locEntries.length > 0) {
-        const firstLoc = locationsData[locEntries[0].location_id];
-        if (firstLoc && firstLoc.coordinates && firstLoc.coordinates.length >= 2) {
-          map.setView([firstLoc.coordinates[0], firstLoc.coordinates[1]], 0);
+    // Wire location selector to jump to chosen location
+    const locSelect = info.querySelector('select.loc-select');
+    if (locSelect) {
+      locSelect.addEventListener('change', (e) => {
+        const idx = parseInt(e.target.value, 10);
+        if (!isNaN(idx) && locEntries[idx]) {
+          const firstLoc = locationsData[locEntries[idx].location_id];
+          if (firstLoc && firstLoc.coordinates && firstLoc.coordinates.length >= 2) {
+            map.setView([firstLoc.coordinates[0], firstLoc.coordinates[1]], 0);
+          }
         }
-      }
-    });
+      });
+    }
 
     const cbWrap = document.createElement('div');
     const cbId = `chk_${filters.game}_${poke.id}`;
