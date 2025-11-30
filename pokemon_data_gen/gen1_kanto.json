@@ -281,6 +281,8 @@
         {
           "pokemon_id": "aerodactyl",
           "games": {
+            "Red": { "min_level": 30, "max_level": 30, "rate": "100%", "method": "Gift", "notes": "Received as an Old Amber and must be revived on Cinnabar Island." },
+            "Blue": { "min_level": 30, "max_level": 30, "rate": "100%", "method": "Gift", "notes": "Received as an Old Amber and must be revived on Cinnabar Island." },
             "Yellow": { "min_level": 30, "max_level": 30, "rate": "100%", "method": "Gift", "notes": "Received as an Old Amber and must be revived on Cinnabar Island." }
           }
         }
