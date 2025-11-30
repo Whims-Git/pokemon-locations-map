@@ -133,7 +133,7 @@ filterControl.onAdd = function () {
   div.style.borderRadius = '5px';
   div.style.fontFamily = 'Arial, sans-serif';
   div.style.boxShadow = '0 0 15px rgba(0,0,0,0.2)';
-  div.style.maxWidth = '260px';
+  div.style.maxWidth = '300px';
 
   // Build HTML for the control. We keep markup simple so it's easy to read.
   div.innerHTML = `
