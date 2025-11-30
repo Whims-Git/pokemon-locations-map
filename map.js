@@ -133,7 +133,7 @@ filterControl.onAdd = function () {
   div.style.borderRadius = '5px';
   div.style.fontFamily = 'Arial, sans-serif';
   div.style.boxShadow = '0 0 15px rgba(0,0,0,0.2)';
-  div.style.maxWidth = '380px';
+  div.style.maxWidth = '400px';
 
   // Build HTML for the control. We keep markup simple so it's easy to read.
   div.innerHTML = `
@@ -530,8 +530,16 @@ function pokemonMatchesFilters(poke) {
   const game = filters.game;
   // Get all entries for this pokemon in the selected game
   const entries = getEntriesForPokemonAndGame(poke.id, game);
-  // If no location entries, still allow match when filtering by Evolution/Trade
+  
+  // Check if ANY filter is active
+  const hasActiveFilters = filters.obtainable || filters.starter || filters.gift || 
+                          filters.typeFilterEnabled || filters.methodFilterEnabled;
+  
+  // If no location entries and no filters are active, show the Pokémon anyway (as not obtainable)
   if (!entries || entries.length === 0) {
+    if (!hasActiveFilters) return true; // Show all Pokémon when no filters active
+    
+    // If filters are active, still allow match when filtering by Evolution/Trade
     if (filters.methodFilterEnabled && filters.method === 'Evolution') {
       const list = (evolutionOnly && evolutionOnly[game]) || [];
       return Array.isArray(list) ? list.includes(poke.id) : false;
@@ -656,7 +664,7 @@ function renderPokemonList() {
              `<div style=\"font-size:11px;color:#333\">${obtainable ? 'Obtainable' : 'Not Obtainable'}</div>` +
              `<div style=\"margin-top:4px\">` +
              `<select class=\"loc-select\" style=\"max-width:160px\">` +
-             `${locNames.length ? locNames.map((n, i) => `<option value=\"${i}\">${n}</option>`).join('') : `<option value=\"-1\">No locations</option>`}` +
+             `${locNames.length ? locNames.map((n, i) => `<option value=\"${i}\">${n}</option>`).join('') : `<option value=\"-1\">Unknown</option>`}` +
              `</select>` +
              `</div>`;
 
