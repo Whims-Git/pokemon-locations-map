@@ -88,14 +88,130 @@
       "name": "Route 1",
       "region": "Kanto",
       "coordinates": [2860, 1452],
-      "type": "route"
+      "type": "route",
+      "encounters": [
+        {
+          "pokemon_id": "pidgey",
+          "games": {
+            "Red": { "min_level": 2, "max_level": 5, "rate": "55%", "method": "Walking" },
+            "Blue": { "min_level": 2, "max_level": 5, "rate": "55%", "method": "Walking" },
+            "Yellow": { "min_level": 2, "max_level": 7, "rate": "70%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "rattata",
+          "games": {
+            "Red": { "min_level": 2, "max_level": 4, "rate": "45%", "method": "Walking" },
+            "Blue": { "min_level": 2, "max_level": 4, "rate": "45%", "method": "Walking" },
+            "Yellow": { "min_level": 2, "max_level": 4, "rate": "30%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
       "id": "viridian_city",
       "name": "Viridian City",
       "region": "Kanto",
       "coordinates": [3472, 1435],
-      "type": "city"
+      "type": "city",
+      "encounters": [
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Yellow": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" }
+          }
+        },
+        {
+          "pokemon_id": "poliwag",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "poliwag",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" },
+            "Yellow": { "min_level": 5, "max_level": 15, "rate": "100%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "tentacool",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "route_2",
+      "name": "Route 2",
+      "region": "Kanto",
+      "coordinates": [4282, 1416],
+      "type": "route",
+      "encounters": [
+        {
+          "pokemon_id": "weedle",
+          "games": {
+            "Red": { "min_level": 3, "max_level": 5, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "caterpie",
+          "games": {
+            "Red": { "min_level": 3, "max_level": 5, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pidgey",
+          "games": {
+            "Red": { "min_level": 3, "max_level": 5, "rate": "40%", "method": "Walking" },
+            "Blue": { "min_level": 3, "max_level": 5, "rate": "40%", "method": "Walking" },
+            "Yellow": { "min_level": 3, "max_level": 7, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "rattata",
+          "games": {
+            "Red": { "min_level": 2, "max_level": 5, "rate": "45%", "method": "Walking" },
+            "Blue": { "min_level": 2, "max_level": 5, "rate": "45%", "method": "Walking" },
+            "Yellow": { "min_level": 3, "max_level": 4, "rate": "40%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "nidoran_♀",
+          "games": {
+            "Yellow": { "min_level": 4, "max_level": 6, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "nidoran_♂",
+          "games": {
+            "Yellow": { "min_level": 4, "max_level": 6, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "mr.mime",
+          "games": {
+            "Red": { "min_level": "??", "max_level": "??", "rate": "100%", "method": "Trade", "notes": "Trader requests an Abra." },
+            "Blue": { "min_level": "??", "max_level": "??", "rate": "100%", "method": "Trade", "notes": "Trader requests a Jigglypuff." },
+            "Yellow": { "min_level": "??", "max_level": "??", "rate": "100%", "method": "Trade", "notes": "Trader requests a Clefairy." }
+          }
+        }
+      ]
     },
     {
       "id": "viridian_forest",
@@ -116,21 +232,6 @@
           "games": {
             "Red": { "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" },
             "Blue": { "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" }
-          }
-        }
-      ]
-    },
-    {
-      "id": "route_2",
-      "name": "Route 2",
-      "region": "Kanto",
-      "coordinates": [4282, 1416],
-      "type": "route",
-      "encounters": [
-        {
-          "pokemon_id": "weedle",
-          "games": {
-            "Red": { "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" }
           }
         }
       ]
