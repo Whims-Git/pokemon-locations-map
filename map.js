@@ -50,6 +50,8 @@ let currentGame = 'Red';
 let pokemonIcons = {}; // Cache for pokemon icons
 let pokemonById = {}; // lookup map filled after pokemon data load
 let notObtainableByGame = {}; // optional map: { "Yellow": ["weedle", ...] }
+let evolutionOnly = {}; // map of game -> species ids only obtainable via evolution
+let tradeOnly = []; // species ids only obtainable via trade
 
 // Color map for different pokemon types
 const typeColors = {
@@ -290,6 +292,16 @@ fetch('./pokemon_data_gen/gen1_kanto.json')
     pokemonData = data.pokemon || [];
     // Load optional unobtainable lists if provided in the pokemon JSON
     notObtainableByGame = data.not_obtainable_by_game || data.notObtainableByGame || data.not_obtainable || {};
+    // evolution_only may be an array (legacy) or an object keyed by game
+    const evo = data.evolution_only || [];
+    if (Array.isArray(evo)) {
+      evolutionOnly = { Red: evo, Blue: evo, Yellow: evo };
+    } else if (typeof evo === 'object' && evo) {
+      evolutionOnly = evo;
+    } else {
+      evolutionOnly = { Red: [], Blue: [], Yellow: [] };
+    }
+    tradeOnly = data.trade_only || [];
     // Build lookup map by id for quick access
     pokemonById = (pokemonData || []).reduce((acc, p) => { acc[p.id] = p; return acc; }, {});
     console.log('Loaded pokemon:', pokemonData);
@@ -514,14 +526,27 @@ function pokemonMatchesFilters(poke) {
   const game = filters.game;
   // Get all entries for this pokemon in the selected game
   const entries = getEntriesForPokemonAndGame(poke.id, game);
-  if (!entries || entries.length === 0) return false;
+  // If no location entries, still allow match when filtering by Evolution/Trade
+  if (!entries || entries.length === 0) {
+    if (filters.methodFilterEnabled && filters.method === 'Evolution') {
+      const list = (evolutionOnly && evolutionOnly[game]) || [];
+      return Array.isArray(list) ? list.includes(poke.id) : false;
+    }
+    if (filters.methodFilterEnabled && filters.method === 'Trade') {
+      return tradeOnly.includes(poke.id);
+    }
+    return false;
+  }
 
   // If any entry passes the active filters, the pokemon matches
   return entries.some(entry => {
     // Obtainable: use global unobtainable list + presence of entries
     if (filters.obtainable && !isPokemonObtainableInGame(poke.id, game)) return false;
-    // Starter/Gift (entry-level)
-    if (filters.starter && !entry.starter) return false;
+    // Starter: use pokemon-level flag or entry-level flag
+    if (filters.starter) {
+      const isStarter = !!poke.starter || !!entry.starter;
+      if (!isStarter) return false;
+    }
     if (filters.gift && !entry.isGift) return false;
 
     // Type filter
@@ -544,9 +569,17 @@ function pokemonMatchesFilters(poke) {
         'Evolution': ['evolution'],
         'Trade': ['trade']
       };
-      const kws = kwsMap[filters.method] || [filters.method.toLowerCase()];
-      const matchesMethod = kws.some(k => methodText.includes(k));
-      if (!matchesMethod) return false;
+      // For Evolution/Trade methods, use global lists instead of method text
+      if (filters.method === 'Evolution') {
+        const list = (evolutionOnly && evolutionOnly[game]) || [];
+        if (!(Array.isArray(list) && list.includes(poke.id))) return false;
+      } else if (filters.method === 'Trade') {
+        if (!tradeOnly.includes(poke.id)) return false;
+      } else {
+        const kws = kwsMap[filters.method] || [filters.method.toLowerCase()];
+        const matchesMethod = kws.some(k => methodText.includes(k));
+        if (!matchesMethod) return false;
+      }
     }
 
     // Rod Filter (only when fishing selected)

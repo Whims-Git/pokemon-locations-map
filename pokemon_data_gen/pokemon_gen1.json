@@ -4,12 +4,35 @@
     "Blue": [],
     "Yellow": ["weedle", "kakuna", "beedrill", "raichu"]
   },
+  "evolution_only": {
+    "Red": [
+      "ivysaur", "venusaur",
+      "charmeleon", "charizard",
+      "wartortle", "blastoise",
+      "gyarados"
+    ],
+    "Blue": [
+      "ivysaur", "venusaur",
+      "charmeleon", "charizard",
+      "wartortle", "blastoise",
+      "gyarados"
+    ],
+    "Yellow": [
+      "ivysaur", "venusaur",
+      "charmeleon", "charizard",
+      "wartortle", "blastoise"
+    ]
+  },
+  "trade_only": [
+    "machamp", "gengar", "golem", "alakazam"
+  ],
   "pokemon": [
     {
       "id": "pikachu",
       "name": "Pikachu",
       "regional_dex": 25,
-      "types": ["Electric"]
+      "types": ["Electric"],
+      "starter": true
     },
     {
       "id": "raichu",
@@ -21,7 +44,8 @@
       "id": "bulbasaur",
       "name": "Bulbasaur",
       "regional_dex": 1,
-      "types": ["Grass", "Poison"]
+      "types": ["Grass", "Poison"],
+      "starter": true
     },
     {
       "id": "ivysaur",
@@ -879,7 +903,8 @@
       "id": "squirtle",
       "name": "Squirtle",
       "regional_dex": 7,
-      "types": ["Water"]
+      "types": ["Water"],
+      "starter": true
     },
     {
       "id": "wartortle",
@@ -897,7 +922,8 @@
       "id": "charmander",
       "name": "Charmander",
       "regional_dex": 4,
-      "types": ["Fire"]
+      "types": ["Fire"],
+      "starter": true
     },
     {
       "id": "charmeleon",
