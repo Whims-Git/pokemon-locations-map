@@ -172,7 +172,7 @@
         {
           "pokemon_id": "caterpie",
           "games": {
-            "Red": { "min_level": 3, "max_level": 5, "rate": "15%", "method": "Walking" }
+            "Blue": { "min_level": 3, "max_level": 5, "rate": "15%", "method": "Walking" }
           }
         },
         {
