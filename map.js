@@ -133,7 +133,7 @@ filterControl.onAdd = function () {
   div.style.borderRadius = '5px';
   div.style.fontFamily = 'Arial, sans-serif';
   div.style.boxShadow = '0 0 15px rgba(0,0,0,0.2)';
-  div.style.maxWidth = '300px';
+  div.style.maxWidth = '380px';
 
   // Build HTML for the control. We keep markup simple so it's easy to read.
   div.innerHTML = `
@@ -177,7 +177,7 @@ filterControl.onAdd = function () {
     </div>
     <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
       <div style="font-weight:600;margin-bottom:4px">Pokémon List</div>
-      <div id="pokemon_list" style="max-height:220px;overflow:auto;border:1px solid #f6f6f6;padding:6px;background:#fff"></div>
+      <div id="pokemon_list" style="max-height:400px;overflow:auto;border:1px solid #f6f6f6;padding:6px;background:#fff"></div>
     </div>
   `;
 
