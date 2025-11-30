@@ -23,6 +23,17 @@
       "wartortle", "blastoise"
     ]
   },
+  "starters_by_game": {
+    "Red": ["bulbasaur", "charmander", "squirtle"],
+    "Blue": ["bulbasaur", "charmander", "squirtle"],
+    "Yellow": ["pikachu"]
+  },
+  "choice_groups": {
+    "starter_red_blue": { "games": ["Red", "Blue"], "options": ["bulbasaur", "charmander", "squirtle"] },
+    "starter_yellow": { "games": ["Yellow"], "options": ["pikachu"] },
+    "fossil_choice": { "games": ["Red", "Blue", "Yellow"], "options": ["omanyte", "kabuto"] },
+    "dojo_choice": { "games": ["Red", "Blue", "Yellow"], "options": ["hitmonlee", "hitmonchan"] }
+  },
   "trade_only": [
     "machamp", "gengar", "golem", "alakazam"
   ],

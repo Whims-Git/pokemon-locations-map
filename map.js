@@ -52,6 +52,8 @@ let pokemonById = {}; // lookup map filled after pokemon data load
 let notObtainableByGame = {}; // optional map: { "Yellow": ["weedle", ...] }
 let evolutionOnly = {}; // map of game -> species ids only obtainable via evolution
 let tradeOnly = []; // species ids only obtainable via trade
+let startersByGame = {}; // map of game -> starter species ids
+let choiceGroups = {}; // map of choice group id -> { games:[], options:[] }
 
 // Color map for different pokemon types
 const typeColors = {
@@ -302,6 +304,8 @@ fetch('./pokemon_data_gen/gen1_kanto.json')
       evolutionOnly = { Red: [], Blue: [], Yellow: [] };
     }
     tradeOnly = data.trade_only || [];
+    startersByGame = data.starters_by_game || {};
+    choiceGroups = data.choice_groups || {};
     // Build lookup map by id for quick access
     pokemonById = (pokemonData || []).reduce((acc, p) => { acc[p.id] = p; return acc; }, {});
     console.log('Loaded pokemon:', pokemonData);
@@ -544,8 +548,7 @@ function pokemonMatchesFilters(poke) {
     if (filters.obtainable && !isPokemonObtainableInGame(poke.id, game)) return false;
     // Starter: use pokemon-level flag or entry-level flag
     if (filters.starter) {
-      const isStarter = !!poke.starter || !!entry.starter;
-      if (!isStarter) return false;
+      if (!isStarterInGame(poke.id, game)) return false;
     }
     if (filters.gift && !entry.isGift) return false;
 
@@ -646,7 +649,10 @@ function renderPokemonList() {
     const locEntries = entries || [];
     const locNames = locEntries.map(le => (locationsData[le.location_id] && locationsData[le.location_id].name) || le.location_id);
 
-    info.innerHTML = `<strong style=\"font-weight:600\">${poke.regional_dex ? ('#'+poke.regional_dex) : ''} ${poke.name}</strong>` +
+    const nameExtras = [];
+    if (isStarterInGame(poke.id, filters.game)) nameExtras.push('Starter');
+    if (isChoiceGroupMember(poke.id, filters.game)) nameExtras.push('Choice');
+    info.innerHTML = `<strong style=\"font-weight:600\">${poke.regional_dex ? ('#'+poke.regional_dex) : ''} ${poke.name}${nameExtras.length? ' ('+nameExtras.join(', ')+')':''}</strong>` +
              `<div style=\"font-size:11px;color:#333\">${obtainable ? 'Obtainable' : 'Not Obtainable'}</div>` +
              `<div style=\"margin-top:4px\">` +
              `<select class=\"loc-select\" style=\"max-width:160px\">` +
@@ -711,4 +717,20 @@ function isPokemonObtainableInGame(pokeId, game) {
   }
   const entries = getEntriesForPokemonAndGame(pokeId, game);
   return (entries && entries.length > 0);
+}
+
+// Helper: per-game starter check
+function isStarterInGame(pokeId, game) {
+  const list = (startersByGame && startersByGame[game]) || [];
+  return Array.isArray(list) && list.includes(pokeId);
+}
+
+// Helper: choice group membership (mutually exclusive acquisition sets)
+function isChoiceGroupMember(pokeId, game) {
+  if (!choiceGroups || typeof choiceGroups !== 'object') return false;
+  return Object.values(choiceGroups).some(group => {
+    if (!group || !Array.isArray(group.options) || !Array.isArray(group.games)) return false;
+    if (!group.games.includes(game)) return false;
+    return group.options.includes(pokeId);
+  });
 }
