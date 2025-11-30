@@ -59,7 +59,7 @@
     "dojo_choice": { "games": ["Red", "Blue", "Yellow"], "options": ["hitmonlee", "hitmonchan"] }
   },
   "trade_only": [
-    "machamp", "gengar", "golem", "alakazam", "mr.mime"
+    "machamp", "gengar", "golem", "alakazam", "mr.mime", "jynx"
   ],
   "pokemon": [
     {
