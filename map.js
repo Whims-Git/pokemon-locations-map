@@ -494,6 +494,8 @@ function getEntriesForPokemonAndGame(pokeId, game) {
       if (String(id) !== String(pokeId)) return;
 
       // Determine per-game data if present
+      // If the entry has per-game data and does not include the selected game, skip it
+      if (entry.games && !entry.games[game]) return;
       const perGame = (entry.games && entry.games[game]) || {};
 
       // Merge fields from entry and perGame falling back to entry
