@@ -39,7 +39,7 @@ map.on('mousemove', function(e) {
 
 // Create a pane for Pokémon visibility circles so they sit under markers
 map.createPane('pokemonCirclePane');
-map.getPane('pokemonCirclePane').style.zIndex = 400;
+map.getPane('pokemonCirclePane').style.zIndex = 200;
 map.getPane('pokemonCirclePane').style.pointerEvents = 'none';
 
 // Global state for markers and data
