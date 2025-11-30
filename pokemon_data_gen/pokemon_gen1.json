@@ -1,26 +1,50 @@
 {
   "not_obtainable_by_game": {
-    "Red": [],
-    "Blue": [],
-    "Yellow": ["weedle", "kakuna", "beedrill", "raichu"]
+    "Red": ["sandshrew", "sandslash", "vulpix", "ninetales", "meowth", "persian", "bellsprout", "weepinbell", "victreebel", "magmar", "pinsir"],
+    "Blue": ["ekans", "arbok", "growlithe", "arcanine", "scyther", "electabuzz", "mankey", "primeape", "Oddish", "gloom", "vileplume"],
+    "Yellow": ["weedle", "kakuna", "beedrill", "raichu", "ekans", "arbok", "meowth", "persian", "koffing", "weezing", "jynx", "electabuzz", "magmar"]
   },
   "evolution_only": {
     "Red": [
       "ivysaur", "venusaur",
       "charmeleon", "charizard",
       "wartortle", "blastoise",
-      "gyarados"
+      "gyarados", "pidgeot", "butterfree", 
+      "beedrill", "nidoqueen", "nidoking",
+      "clefable", "vileplume", "primeape",
+      "arcanine", "poliwrath", "alakazam", 
+      "machamp", "tentacruel", "golem",
+      "rapidash", "cloyster", "gengar",
+      "exeggutor", "starmie", "vaporeon",
+      "jolteon", "flareon", "omastar", 
+      "kabutops", "dragonair", "dragonite"
     ],
     "Blue": [
       "ivysaur", "venusaur",
       "charmeleon", "charizard",
       "wartortle", "blastoise",
-      "gyarados"
+      "gyarados", "pidgeot", "butterfree", 
+      "beedrill", "nidoqueen", "nidoking",
+      "clefable", "ninetales", "persian", 
+      "poliwrath", "alakazam", "machamp",
+      "victreebel", "tentacruel", "golem",
+      "rapidash", "cloyster", "gengar",
+      "exeggutor", "starmie", "vaporeon",
+      "jolteon", "flareon", "omastar", 
+      "kabutops", "dragonair", "dragonite"
     ],
     "Yellow": [
       "ivysaur", "venusaur",
       "charmeleon", "charizard",
-      "wartortle", "blastoise"
+      "wartortle", "blastoise", "pidgeot", 
+      "butterfree", "nidoqueen", "nidoking",
+      "clefable", "ninetales", "wigglytuff", 
+      "vileplume", "arcanine", "poliwrath", 
+      "alakazam", "machamp", "victreebel", "golem",
+      "rapidash", "cloyster", "gengar", "hypno",
+      "electrode", "exeggutor", "starmie", "vaporeon",
+      "jolteon", "flareon", "omastar", "kabutops", 
+      "dragonite"
     ]
   },
   "starters_by_game": {
