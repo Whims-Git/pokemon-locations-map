@@ -468,7 +468,7 @@
       ],
       "gifts": [
         {
-          "pokemon_id": "Omanyte",
+          "pokemon_id": "omanyte",
           "games": {
             "Red": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as a Helix Fossil and must be revived on Cinnabar Island." },
             "Blue": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as a Helix Fossil and must be revived on Cinnabar Island." },
@@ -476,7 +476,7 @@
           }
         },
         {
-          "pokemon_id": "Kabuto",
+          "pokemon_id": "kabuto",
           "games": {
             "Red": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as a Dome Fossil and must be revived on Cinnabar Island." },
             "Blue": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as a Dome Fossil and must be revived on Cinnabar Island." },

@@ -61,6 +61,9 @@
   "trade_only": [
     "machamp", "gengar", "golem", "alakazam", "mr.mime", "jynx"
   ],
+  "event_only": [
+    "mew"
+  ],
   "pokemon": [
     {
       "id": "pikachu",
