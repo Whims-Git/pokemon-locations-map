@@ -331,10 +331,12 @@ function updateMarkers(game) {
     const lat = location.coordinates[0];
     const lng = location.coordinates[1];
 
-    // Collect all raw entries from this location
+    // Collect all raw entries from this location with their source category
     const rawEntries = [];
     if (Array.isArray(location.encounters)) location.encounters.forEach(e => rawEntries.push(Object.assign({}, e, { source: 'encounter' })));
     if (Array.isArray(location.gifts)) location.gifts.forEach(e => rawEntries.push(Object.assign({}, e, { source: 'gift' })));
+    if (Array.isArray(location.trades)) location.trades.forEach(e => rawEntries.push(Object.assign({}, e, { source: 'trade' })));
+    if (Array.isArray(location.static)) location.static.forEach(e => rawEntries.push(Object.assign({}, e, { source: 'static' })));
 
     // Filter and map entries into rows that will be displayed for this location
     const rowsData = [];
@@ -394,30 +396,116 @@ function updateMarkers(game) {
 
     if (rowsData.length === 0) return;
 
-    // Build popup HTML
-    const rowsHtml = rowsData.map(({ poke, entry }) => {
-      const spritePath = `./assets/sprites/gen_1_sprites/${poke.id}.png`;
-      // Level text: support min_level/max_level or level_range
-      let levelText = '';
-      if (entry.level_range) {
-        levelText = Array.isArray(entry.level_range) ? `${entry.level_range[0]}-${entry.level_range[1]}` : `${entry.level_range}`;
-      } else if (entry.min_level !== undefined || entry.max_level !== undefined) {
-        if (entry.min_level !== undefined && entry.max_level !== undefined) levelText = `${entry.min_level}-${entry.max_level}`;
-        else if (entry.min_level !== undefined) levelText = `${entry.min_level}`;
-        else levelText = `${entry.max_level}`;
+    // Group Pokémon by acquisition method/category
+    const categories = {
+      'Walking': [],
+      'Surfing': [],
+      'Fishing': [],
+      'Gift': [],
+      'Trade': [],
+      'Static': [],
+      'Other': []
+    };
+
+    rowsData.forEach(({ poke, entry }) => {
+      const methodText = ((entry.method || '')).toLowerCase();
+      const source = entry.source || '';
+      
+      // Categorize based on method text and source
+      if (source === 'gift') {
+        categories['Gift'].push({ poke, entry });
+      } else if (source === 'trade') {
+        categories['Trade'].push({ poke, entry });
+      } else if (source === 'static') {
+        categories['Static'].push({ poke, entry });
+      } else if (methodText.includes('fish')) {
+        categories['Fishing'].push({ poke, entry });
+      } else if (methodText.includes('surf')) {
+        categories['Surfing'].push({ poke, entry });
+      } else if (methodText.includes('grass') || methodText.includes('walk') || methodText.includes('cave') || methodText.includes('floor')) {
+        categories['Walking'].push({ poke, entry });
+      } else {
+        categories['Other'].push({ poke, entry });
       }
+    });
 
-      // Rate text: support multiple field names
-      const rateText = entry.appearance_rate || entry.appearance || entry.rate || entry.appearance || '';
-      const methodText = entry.method || (entry.source === 'gift' ? 'Gift' : '') || '';
-      const checkboxId = `chk_${game}_${poke.id}`;
-      const stored = localStorage.getItem(checkboxId);
-      const checkedAttr = stored === 'true' ? 'checked' : '';
+    // Build collapsible sections for each non-empty category
+    const categoryLabels = {
+      'Walking': 'Walking/Cave',
+      'Surfing': 'Surfing',
+      'Fishing': 'Fishing',
+      'Gift': 'Gift',
+      'Trade': 'In-Game Trade',
+      'Static': 'Static Encounter',
+      'Other': 'Other'
+    };
 
-      return `\n        <div class="popup-row" data-poke-id="${poke.id}" data-game="${game}" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05)">\n          <img src="${spritePath}" alt="${poke.name}" width="32" height="32" onerror="this.style.opacity=.6;this.src='./assets/images/placeholder.png'"/>\n          <div style="flex:1;min-width:0">\n            <div style="font-weight:600">${poke.name}</div>\n            <div style="font-size:12px;color:#333">Lv: ${levelText || '—'} &nbsp; • &nbsp; ${rateText || '—'}${methodText ? ' • ' + methodText : ''}</div>\n          </div>\n          <div>\n            <input type="checkbox" id="${checkboxId}" class="pokemon-checkbox" ${checkedAttr} />\n          </div>\n        </div>\n      `;
-    }).join('');
+    let sectionsHtml = '';
+    Object.keys(categories).forEach((catKey, idx) => {
+      const items = categories[catKey];
+      if (items.length === 0) return; // Skip empty categories
 
-    const popupHtml = `\n      <div style="min-width:240px">\n        <div style="font-weight:bold;margin-bottom:6px">${location.name}</div>\n        ${rowsHtml}\n      </div>\n    `;
+      const catLabel = categoryLabels[catKey] || catKey;
+      const catId = `cat_${location.id}_${catKey}_${idx}`;
+      
+      // Build rows for this category
+      const categoryRows = items.map(({ poke, entry }) => {
+        const spritePath = `./assets/sprites/gen_1_sprites/${poke.id}.png`;
+        let levelText = '';
+        if (entry.level_range) {
+          levelText = Array.isArray(entry.level_range) ? `${entry.level_range[0]}-${entry.level_range[1]}` : `${entry.level_range}`;
+        } else if (entry.min_level !== undefined || entry.max_level !== undefined) {
+          if (entry.min_level !== undefined && entry.max_level !== undefined) levelText = `${entry.min_level}-${entry.max_level}`;
+          else if (entry.min_level !== undefined) levelText = `${entry.min_level}`;
+          else levelText = `${entry.max_level}`;
+        }
+
+        const rateText = entry.appearance_rate || entry.appearance || entry.rate || '';
+        const rodText = entry.rod || '';
+        const checkboxId = `chk_${game}_${poke.id}`;
+        const stored = localStorage.getItem(checkboxId);
+        const checkedAttr = stored === 'true' ? 'checked' : '';
+
+        const detailParts = [];
+        if (levelText) detailParts.push(`Lv: ${levelText}`);
+        if (rateText) detailParts.push(rateText);
+        if (rodText) detailParts.push(rodText);
+        const detailStr = detailParts.join(' • ');
+
+        return `
+          <div class="popup-row" data-poke-id="${poke.id}" data-game="${game}" style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05)">
+            <img src="${spritePath}" alt="${poke.name}" width="32" height="32" onerror="this.style.opacity=.6;this.src='./assets/images/placeholder.png'"/>
+            <div style="flex:1;min-width:0">
+              <div style="font-weight:600">${poke.name}</div>
+              <div style="font-size:12px;color:#333">${detailStr || '—'}</div>
+            </div>
+            <div>
+              <input type="checkbox" id="${checkboxId}" class="pokemon-checkbox" ${checkedAttr} />
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Create collapsible section
+      sectionsHtml += `
+        <div style="margin-bottom:4px">
+          <div class="category-header" data-target="${catId}" style="cursor:pointer;padding:6px;background:#f0f0f0;border-radius:3px;font-weight:600;user-select:none;display:flex;justify-content:space-between;align-items:center">
+            <span>${catLabel} (${items.length})</span>
+            <span class="toggle-icon" style="font-size:12px">▼</span>
+          </div>
+          <div id="${catId}" class="category-content" style="display:none;padding-left:4px">
+            ${categoryRows}
+          </div>
+        </div>
+      `;
+    });
+
+    const popupHtml = `
+      <div style="min-width:260px;max-width:320px">
+        <div style="font-weight:bold;margin-bottom:8px;font-size:14px">${location.name}</div>
+        ${sectionsHtml}
+      </div>
+    `;
 
     const marker = L.marker([lat, lng], { title: location.name, riseOnHover: true });
     marker.bindPopup(popupHtml, { maxWidth: 400 });
@@ -448,6 +536,22 @@ function updateMarkers(game) {
     marker.on('popupopen', (e) => {
       const popupEl = e.popup.getElement();
       if (!popupEl) return;
+      
+      // Wire up collapsible category headers
+      const headers = popupEl.querySelectorAll('.category-header');
+      headers.forEach(header => {
+        header.addEventListener('click', () => {
+          const targetId = header.getAttribute('data-target');
+          const content = popupEl.querySelector(`#${targetId}`);
+          const icon = header.querySelector('.toggle-icon');
+          if (content) {
+            const isHidden = content.style.display === 'none';
+            content.style.display = isHidden ? 'block' : 'none';
+            if (icon) icon.textContent = isHidden ? '▲' : '▼';
+          }
+        });
+      });
+
       const inputs = popupEl.querySelectorAll('input.pokemon-checkbox');
       inputs.forEach(input => {
         const id = input.id;
