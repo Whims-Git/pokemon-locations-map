@@ -52,6 +52,7 @@ let pokemonById = {}; // lookup map filled after pokemon data load
 let notObtainableByGame = {}; // optional map: { "Yellow": ["weedle", ...] }
 let evolutionOnly = {}; // map of game -> species ids only obtainable via evolution
 let tradeOnly = []; // species ids only obtainable via trade
+let eventOnly = []; // species ids only obtainable via special events (e.g., Mew)
 let startersByGame = {}; // map of game -> starter species ids
 let choiceGroups = {}; // map of choice group id -> { games:[], options:[] }
 
@@ -304,6 +305,7 @@ fetch('./pokemon_data_gen/gen1_kanto.json')
       evolutionOnly = { Red: [], Blue: [], Yellow: [] };
     }
     tradeOnly = data.trade_only || [];
+    eventOnly = data.event_only || [];
     startersByGame = data.starters_by_game || {};
     choiceGroups = data.choice_groups || {};
     // Build lookup map by id for quick access
@@ -601,13 +603,13 @@ function updateAllCheckboxesWithId(checkboxId, isChecked) {
 }
 
 // --- Pokémon list rendering for the filter panel ---
-// Helper: gather all entries (encounters + gifts) for a given pokemon id and game
+// Helper: gather all entries (encounters + gifts + trades + static) for a given pokemon id and game
 function getEntriesForPokemonAndGame(pokeId, game) {
   const results = [];
   Object.values(locationsData || {}).forEach(loc => {
     const baseInfo = { location_id: loc.id, location_name: loc.name };
 
-    const pushEntry = (entry, isGift = false) => {
+    const pushEntry = (entry, sourceType = 'encounter') => {
       // Try several possible keys for pokemon id
       const id = entry.pokemon_id || entry.poke_id || entry.pokemon || entry.id || entry.poke;
       if (!id) return;
@@ -620,12 +622,16 @@ function getEntriesForPokemonAndGame(pokeId, game) {
 
       // Merge fields from entry and perGame falling back to entry
       const merged = Object.assign({}, entry, perGame, baseInfo);
-      merged.isGift = isGift || !!perGame.gift || !!entry.gift || false;
+      merged.isGift = sourceType === 'gift' || !!perGame.gift || !!entry.gift || false;
+      merged.isTrade = sourceType === 'trade';
+      merged.isStatic = sourceType === 'static';
       results.push(merged);
     };
 
-    if (Array.isArray(loc.encounters)) loc.encounters.forEach(e => pushEntry(e, false));
-    if (Array.isArray(loc.gifts)) loc.gifts.forEach(e => pushEntry(e, true));
+    if (Array.isArray(loc.encounters)) loc.encounters.forEach(e => pushEntry(e, 'encounter'));
+    if (Array.isArray(loc.gifts)) loc.gifts.forEach(e => pushEntry(e, 'gift'));
+    if (Array.isArray(loc.trades)) loc.trades.forEach(e => pushEntry(e, 'trade'));
+    if (Array.isArray(loc.static)) loc.static.forEach(e => pushEntry(e, 'static'));
   });
   return results;
 }
@@ -730,6 +736,8 @@ function renderPokemonList() {
 
     const entries = getEntriesForPokemonAndGame(poke.id, filters.game);
     const obtainable = isPokemonObtainableInGame(poke.id, filters.game);
+    const isEvolutionOnly = isEvolutionOnlyInGame(poke.id, filters.game);
+    const isEventOnly = isEventOnlyPokemon(poke.id);
 
     const row = document.createElement('div');
     row.className = 'filter-list-row';
@@ -764,8 +772,19 @@ function renderPokemonList() {
     const nameExtras = [];
     if (isStarterInGame(poke.id, filters.game)) nameExtras.push('Starter');
     if (isChoiceGroupMember(poke.id, filters.game)) nameExtras.push('Choice');
+    
+    // Determine obtainability status text (four states: Event Only, Not Obtainable, Not Catchable, Obtainable)
+    let obtainabilityText = 'Obtainable';
+    if (isEventOnly) {
+      obtainabilityText = 'Event Only';
+    } else if (!obtainable) {
+      obtainabilityText = 'Not Obtainable';
+    } else if (isEvolutionOnly) {
+      obtainabilityText = 'Not Catchable';
+    }
+    
     info.innerHTML = `<strong style=\"font-weight:600\">${poke.regional_dex ? ('#'+poke.regional_dex) : ''} ${poke.name}${nameExtras.length? ' ('+nameExtras.join(', ')+')':''}</strong>` +
-             `<div style=\"font-size:11px;color:#333\">${obtainable ? 'Obtainable' : 'Not Obtainable'}</div>` +
+             `<div style=\"font-size:11px;color:#333\">${obtainabilityText}</div>` +
              `<div style=\"margin-top:4px\">` +
              `<select class=\"loc-select\" style=\"max-width:160px\">` +
              `${locNames.length ? locNames.map((n, i) => `<option value=\"${i}\">${n}</option>`).join('') : `<option value=\"-1\">Unknown</option>`}` +
@@ -818,8 +837,8 @@ function renderPokemonList() {
 
 // Determine if a pokemon is obtainable in a given game.
 // Rules:
-// - If `notObtainableByGame[game]` lists the pokemon id, return false.
-// - Otherwise, return true if there are any entries for the pokemon in that game.
+// - If `notObtainableByGame[game]` lists the pokemon id, return false (requires outside trading/events).
+// - Otherwise, return true if there are any entries (encounters/gifts/trades/static) for the pokemon in that game.
 function isPokemonObtainableInGame(pokeId, game) {
   const notList = (notObtainableByGame && notObtainableByGame[game]) || [];
   try {
@@ -829,6 +848,17 @@ function isPokemonObtainableInGame(pokeId, game) {
   }
   const entries = getEntriesForPokemonAndGame(pokeId, game);
   return (entries && entries.length > 0);
+}
+
+// Helper: check if pokemon is evolution-only in a game (obtainable but not catchable)
+function isEvolutionOnlyInGame(pokeId, game) {
+  const list = (evolutionOnly && evolutionOnly[game]) || [];
+  return Array.isArray(list) && list.includes(pokeId);
+}
+
+// Helper: check if pokemon is event-only (requires special outside events, not in-game trading)
+function isEventOnlyPokemon(pokeId) {
+  return Array.isArray(eventOnly) && eventOnly.includes(pokeId);
 }
 
 // Helper: per-game starter check
