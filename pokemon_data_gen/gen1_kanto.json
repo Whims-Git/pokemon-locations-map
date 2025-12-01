@@ -2145,47 +2145,831 @@
         {
           "pokemon_id": "zapdos",
           "games": {
-            "Red": { "min_level": 50, "max_level": 50, "rate": "--%", "method": "Static", "notes": "Found at the end of the Power Plant." },
-            "Blue": { "min_level": 50, "max_level": 50, "rate": "--%", "method": "Static", "notes": "Found at the end of the Power Plant." },
-            "Yellow": { "min_level": 50, "max_level": 50, "rate": "--%", "method": "Static", "notes": "Found at the end of the Power Plant." }
+            "Red": { "min_level": 50, "max_level": 50, "rate": "--%", "method": "Static" },
+            "Blue": { "min_level": 50, "max_level": 50, "rate": "--%", "method": "Static" },
+            "Yellow": { "min_level": 50, "max_level": 50, "rate": "--%", "method": "Static" }
           }
         }
       ]
     },
     {
-      "id": "rock_tunnel",
-      "name": "Rock Tunnel",
+      "id": "rock_tunnel_1F",
+      "name": "Rock Tunnel 1F",
       "region": "Kanto",
-      "coordinates": [],
-      "type": "cave"
+      "coordinates": [5432, 5518],
+      "type": "cave",
+      "encounters": [
+        {
+          "pokemon_id": "zubat",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 18, "rate": "55%", "method": "Walking" },
+            "Blue": { "min_level": 15, "max_level": 18, "rate": "55%", "method": "Walking" },
+            "Yellow": { "min_level": 15, "max_level": 21, "rate": "50%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "geodude",
+          "games": {
+            "Red": { "min_level": 16, "max_level": 17, "rate": "25%", "method": "Walking" },
+            "Blue": { "min_level": 16, "max_level": 17, "rate": "25%", "method": "Walking" },
+            "Yellow": { "min_level": 16, "max_level": 20, "rate": "40%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "machop",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 17, "rate": "15%", "method": "Walking" },
+            "Blue": { "min_level": 15, "max_level": 17, "rate": "15%", "method": "Walking" },
+            "Yellow": { "min_level": 17, "max_level": 21, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "onix",
+          "games": {
+            "Red": { "min_level": 13, "max_level": 15, "rate": "5%", "method": "Walking" },
+            "Blue": { "min_level": 13, "max_level": 15, "rate": "5%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
-      "id": "lavender_town",
-      "name": "Lavender Town",
+      "id": "rock_tunnel_B1F",
+      "name": "Rock Tunnel B1F",
       "region": "Kanto",
-      "coordinates": [],
-      "type": "town"
+      "coordinates": [5428, 6072],
+      "type": "cave",
+      "encounters": [
+        {
+          "pokemon_id": "zubat",
+          "games": {
+            "Red": { "min_level": 16, "max_level": 18, "rate": "50%", "method": "Walking" },
+            "Blue": { "min_level": 16, "max_level": 18, "rate": "50%", "method": "Walking" },
+            "Yellow": { "min_level": 20, "max_level": 22, "rate": "40%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "geodude",
+          "games": {
+            "Red": { "min_level": 16, "max_level": 18, "rate": "26%", "method": "Walking" },
+            "Blue": { "min_level": 16, "max_level": 18, "rate": "26%", "method": "Walking" },
+            "Yellow": { "min_level": 17, "max_level": 21, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "machop",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 17, "rate": "15%", "method": "Walking" },
+            "Blue": { "min_level": 15, "max_level": 17, "rate": "15%", "method": "Walking" },
+            "Yellow": { "min_level": 18, "max_level": 20, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "onix",
+          "games": {
+            "Red": { "min_level": 13, "max_level": 17, "rate": "9%", "method": "Walking" },
+            "Blue": { "min_level": 13, "max_level": 17, "rate": "9%", "method": "Walking" },
+            "Yellow": { "min_level": 14, "max_level": 22, "rate": "10%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
-      "id": "route_7",
-      "name": "Route 7",
+      "id": "pokémon_tower_3F",
+      "name": "Pokémon Tower 3F",
       "region": "Kanto",
-      "coordinates": [],
-      "type": "route"
+      "coordinates": [3409, 5422],
+      "type": "building",
+      "encounters": [
+        {
+          "pokemon_id": "gastly",
+          "games": {
+            "Red": { "min_level": 18, "max_level": 24, "rate": "90%", "method": "Walking" },
+            "Blue": { "min_level": 18, "max_level": 24, "rate": "90%", "method": "Walking" },
+            "Yellow": { "min_level": 18, "max_level": 25, "rate": "95%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "haunter",
+          "games": {
+            "Red": { "min_level": 25, "max_level": 25, "rate": "1%", "method": "Walking" },
+            "Blue": { "min_level": 25, "max_level": 25, "rate": "1%", "method": "Walking" },
+            "Yellow": { "min_level": 20, "max_level": 25, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "cubone",
+          "games": {
+            "Red": { "min_level": 20, "max_level": 22, "rate": "9%", "method": "Walking" },
+            "Blue": { "min_level": 20, "max_level": 22, "rate": "9%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
-      "id": "celadon_city",
-      "name": "Celadon City",
+      "id": "pokémon_tower_4F",
+      "name": "Pokémon Tower 4F",
       "region": "Kanto",
-      "coordinates": [],
-      "type": "city"
+      "coordinates": [3743, 5422],
+      "type": "building",
+      "encounters": [
+        {
+          "pokemon_id": "gastly",
+          "games": {
+            "Red": { "min_level": 18, "max_level": 24, "rate": "86%", "method": "Walking" },
+            "Blue": { "min_level": 18, "max_level": 24, "rate": "86%", "method": "Walking" },
+            "Yellow": { "min_level": 18, "max_level": 25, "rate": "95%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "haunter",
+          "games": {
+            "Red": { "min_level": 25, "max_level": 25, "rate": "5%", "method": "Walking" },
+            "Blue": { "min_level": 25, "max_level": 25, "rate": "5%", "method": "Walking" },
+            "Yellow": { "min_level": 20, "max_level": 25, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "cubone",
+          "games": {
+            "Red": { "min_level": 20, "max_level": 22, "rate": "9%", "method": "Walking" },
+            "Blue": { "min_level": 20, "max_level": 22, "rate": "9%", "method": "Walking" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pokémon_tower_5F",
+      "name": "Pokémon Tower 5F",
+      "region": "Kanto",
+      "coordinates": [4093, 5422],
+      "type": "building",
+      "encounters": [
+        {
+          "pokemon_id": "gastly",
+          "games": {
+            "Red": { "min_level": 18, "max_level": 24, "rate": "86%", "method": "Walking" },
+            "Blue": { "min_level": 18, "max_level": 24, "rate": "86%", "method": "Walking" },
+            "Yellow": { "min_level": 21, "max_level": 27, "rate": "90%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "haunter",
+          "games": {
+            "Red": { "min_level": 25, "max_level": 25, "rate": "5%", "method": "Walking" },
+            "Blue": { "min_level": 25, "max_level": 25, "rate": "5%", "method": "Walking" },
+            "Yellow": { "min_level": 20, "max_level": 25, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "cubone",
+          "games": {
+            "Red": { "min_level": 20, "max_level": 22, "rate": "9%", "method": "Walking" },
+            "Blue": { "min_level": 20, "max_level": 22, "rate": "9%", "method": "Walking" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pokémon_tower_6F",
+      "name": "Pokémon Tower 6F",
+      "region": "Kanto",
+      "coordinates": [4433, 5422],
+      "type": "building",
+      "encounters": [
+        {
+          "pokemon_id": "gastly",
+          "games": {
+            "Red": { "min_level": 19, "max_level": 24, "rate": "85%", "method": "Walking" },
+            "Blue": { "min_level": 19, "max_level": 24, "rate": "85%", "method": "Walking" },
+            "Yellow": { "min_level": 21, "max_level": 27, "rate": "90%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "haunter",
+          "games": {
+            "Red": { "min_level": 26, "max_level": 28, "rate": "6%", "method": "Walking" },
+            "Blue": { "min_level": 26, "max_level": 28, "rate": "6%", "method": "Walking" },
+            "Yellow": { "min_level": 22, "max_level": 27, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "cubone",
+          "games": {
+            "Red": { "min_level": 22, "max_level": 24, "rate": "9%", "method": "Walking" },
+            "Blue": { "min_level": 22, "max_level": 24, "rate": "9%", "method": "Walking" },
+            "Yellow": { "min_level": 22, "max_level": 22, "rate": "5%", "method": "Walking" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "pokémon_tower_7F",
+      "name": "Pokémon Tower 7F",
+      "region": "Kanto",
+      "coordinates": [4788, 5422],
+      "type": "building",
+      "encounters": [
+        {
+          "pokemon_id": "gastly",
+          "games": {
+            "Red": { "min_level": 20, "max_level": 24, "rate": "75%", "method": "Walking" },
+            "Blue": { "min_level": 20, "max_level": 24, "rate": "75%", "method": "Walking" },
+            "Yellow": { "min_level": 23, "max_level": 29, "rate": "90%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "haunter",
+          "games": {
+            "Red": { "min_level": 28, "max_level": 30, "rate": "15%", "method": "Walking" },
+            "Blue": { "min_level": 28, "max_level": 30, "rate": "15%", "method": "Walking" },
+            "Yellow": { "min_level": 24, "max_level": 29, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "cubone",
+          "games": {
+            "Red": { "min_level": 22, "max_level": 24, "rate": "10%", "method": "Walking" },
+            "Blue": { "min_level": 22, "max_level": 24, "rate": "10%", "method": "Walking" },
+            "Yellow": { "min_level": 24, "max_level": 24, "rate": "5%", "method": "Walking" }
+          }
+        }
+      ]
     },
     {
       "id": "route_8",
       "name": "Route 8",
       "region": "Kanto",
-      "coordinates": [],
-      "type": "route"
+      "coordinates": [4541, 4628],
+      "type": "route",
+      "encounters": [
+        {
+          "pokemon_id": "pidgey",
+          "games": {
+            "Red": { "min_level": 18, "max_level": 20, "rate": "30%", "method": "Walking" },
+            "Blue": { "min_level": 18, "max_level": 20, "rate": "30%", "method": "Walking" },
+            "Yellow": { "min_level": 20, "max_level": 22, "rate": "40%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pidgeotto",
+          "games": {
+            "Yellow": { "min_level": 24, "max_level": 24, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "rattata",
+          "games": {
+            "Yellow": { "min_level": 20, "max_level": 20, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "ekans",
+          "games": {
+            "Red": { "min_level": 17, "max_level": 19, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "sandshrew",
+          "games": {
+            "Blue": { "min_level": 17, "max_level": 19, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "vulpix",
+          "games": {
+            "Blue": { "min_level": 15, "max_level": 18, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "jigglypuff",
+          "games": {
+            "Yellow": { "min_level": 19, "max_level": 24, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "meowth",
+          "games": {
+            "Blue": { "min_level": 18, "max_level": 20, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "mankey",
+          "games": {
+            "Red": { "min_level": 18, "max_level": 20, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "growlithe",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 18, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "abra",
+          "games": {
+            "Yellow": { "min_level": 15, "max_level": 19, "rate": "20%", "method": "Walking" }
+          }
+        },{
+          "pokemon_id": "kadabra",
+          "games": {
+            "Yellow": { "min_level": 20, "max_level": 27, "rate": "5%", "method": "Walking" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "route_7",
+      "name": "Route 7",
+      "region": "Kanto",
+      "coordinates": [4634, 3504],
+      "type": "route",
+      "encounters": [
+        {
+          "pokemon_id": "pidgey",
+          "games": {
+            "Red": { "min_level": 19, "max_level": 22, "rate": "30%", "method": "Walking" },
+            "Blue": { "min_level": 19, "max_level": 22, "rate": "30%", "method": "Walking" },
+            "Yellow": { "min_level": 20, "max_level": 22, "rate": "40%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pidgeotto",
+          "games": {
+            "Yellow": { "min_level": 24, "max_level": 24, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "rattata",
+          "games": {
+            "Yellow": { "min_level": 20, "max_level": 20, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "vulpix",
+          "games": {
+            "Blue": { "min_level": 18, "max_level": 20, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "jigglypuff",
+          "games": {
+            "Yellow": { "min_level": 19, "max_level": 24, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "oddish",
+          "games": {
+            "Red": { "min_level": 19, "max_level": 22, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "meowth",
+          "games": {
+            "Blue": { "min_level": 17, "max_level": 20, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "mankey",
+          "games": {
+            "Red": { "min_level": 17, "max_level": 20, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "growlithe",
+          "games": {
+            "Red": { "min_level": 18, "max_level": 20, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "abra",
+          "games": {
+            "Yellow": { "min_level": 15, "max_level": 19, "rate": "25%", "method": "Walking" }
+          }
+        },{
+          "pokemon_id": "bellsprout",
+          "games": {
+            "Blue": { "min_level": 19, "max_level": 22, "rate": "30%", "method": "Walking" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "celadon_city",
+      "name": "Celadon City",
+      "region": "Kanto",
+      "coordinates": [4477, 2972],
+      "type": "city",
+      "encounters": [
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Yellow": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" }
+          }
+        },
+        {
+          "pokemon_id": "poliwag",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Yellow": { "min_level": 5, "max_level": 20, "rate": "100%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "poliwhirl",
+          "games": {
+            "Red": { "min_level": 23, "max_level": 23, "rate": "50%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 23, "max_level": 23, "rate": "50%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "slowpoke",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "celadon_game_corner",
+      "name": "Celadon Game Corner",
+      "region": "Kanto",
+      "coordinates": [4514, 3113],
+      "type": "city",
+      "gifts": [
+        {
+          "pokemon_id": "abra",
+          "games": {
+            "Red": { "min_level": 6, "max_level": 6, "rate": "--%", "method": "Gift", "notes": "Cost 180 coins." },
+            "Blue": { "min_level": 6, "max_level": 6, "rate": "--%", "method": "Gift", "notes": "Cost 120 coins." },
+            "Yellow": { "min_level": 15, "max_level": 15, "rate": "--%", "method": "Gift", "notes": "Cost 230 coins." }
+          }
+        },
+        {
+          "pokemon_id": "clefairy",
+          "games": {
+            "Red": { "min_level": 12, "max_level": 12, "rate": "--%", "method": "Gift", "notes": "Cost 500 coins." },
+            "Blue": { "min_level": 12, "max_level": 12, "rate": "--%", "method": "Gift", "notes": "Cost 750 coins." }
+          }
+        },
+        {
+          "pokemon_id": "vulpix",
+          "games": {
+            "Yellow": { "min_level": 18, "max_level": 18, "rate": "--%", "method": "Gift", "notes": "Cost 1000 coins." }
+          }
+        },
+        {
+          "pokemon_id": "nidorina",
+          "games": {
+            "Red": { "min_level": 17, "max_level": 17, "rate": "--%", "method": "Gift", "notes": "Cost 1200 coins." }
+          }
+        },
+        {
+          "pokemon_id": "nidorino",
+          "games": {
+            "Blue": { "min_level": 17, "max_level": 17, "rate": "--%", "method": "Gift", "notes": "Cost 1200 coins." }
+          }
+        },
+        {
+          "pokemon_id": "wigglytuff",
+          "games": {
+            "Yellow": { "min_level": 22, "max_level": 22, "rate": "--%", "method": "Gift", "notes": "Cost 2680 coins." }
+          }
+        },
+        {
+          "pokemon_id": "scyther",
+          "games": {
+            "Red": { "min_level": 20, "max_level": 20, "rate": "--%", "method": "Gift", "notes": "Cost 5500 coins." },
+            "Yellow": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Cost 6500 coins." }
+          }
+        },
+        {
+          "pokemon_id": "pinsir",
+          "games": {
+            "Blue": { "min_level": 20, "max_level": 20, "rate": "--%", "method": "Gift", "notes": "Cost 2500 coins." },
+            "Yellow": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Cost 6500 coins." }
+          }
+        },
+        {
+          "pokemon_id": "dratini",
+          "games": {
+            "Red": { "min_level": 24, "max_level": 24, "rate": "--%", "method": "Gift", "notes": "Cost 2800 coins." },
+            "Blue": { "min_level": 24, "max_level": 24, "rate": "--%", "method": "Gift", "notes": "Cost 4600 coins." }
+          }
+        },
+        {
+          "pokemon_id": "porygon",
+          "games": {
+            "Red": { "min_level": 18, "max_level": 18, "rate": "--%", "method": "Gift", "notes": "Cost 9999 coins." },
+            "Blue": { "min_level": 18, "max_level": 18, "rate": "--%", "method": "Gift", "notes": "Cost 6500 coins." },
+            "Yellow": { "min_level": 26, "max_level": 26, "rate": "--%", "method": "Gift", "notes": "Cost 9999 coins." }
+          }
+        }
+      ]
+    },
+    {
+      "id": "route_16",
+      "name": "Route 16",
+      "region": "Kanto",
+      "coordinates": [4638, 2548],
+      "type": "route",
+      "encounters": [
+        {
+          "pokemon_id": "rattata",
+          "games": {
+            "Red": { "min_level": 18, "max_level": 22, "rate": "30%", "method": "Walking" },
+            "Blue": { "min_level": 18, "max_level": 22, "rate": "30%", "method": "Walking" },
+            "Yellow": { "min_level": 23, "max_level": 24, "rate": "25%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "raticate",
+          "games": {
+            "Red": { "min_level": 23, "max_level": 25, "rate": "5%", "method": "Walking" },
+            "Blue": { "min_level": 23, "max_level": 25, "rate": "5%", "method": "Walking" },
+            "Yellow": { "min_level": 25, "max_level": 26, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "spearow",
+          "games": {
+            "Red": { "min_level": 20, "max_level": 22, "rate": "40%", "method": "Walking" },
+            "Blue": { "min_level": 20, "max_level": 22, "rate": "40%", "method": "Walking" },
+            "Yellow": { "min_level": 22, "max_level": 23, "rate": "25%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "fearow",
+          "games": {
+            "Yellow": { "min_level": 24, "max_level": 24, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "doduo",
+          "games": {
+            "Red": { "min_level": 18, "max_level": 22, "rate": "25%", "method": "Walking" },
+            "Blue": { "min_level": 18, "max_level": 22, "rate": "25%", "method": "Walking" },
+            "Yellow": { "min_level": 22, "max_level": 26, "rate": "40%", "method": "Walking" }
+          }
+        }
+      ],
+      "static": [
+        {
+          "pokemon_id": "snorlax",
+          "games": {
+            "Red": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Static", "notes": "Requires Poké Flute to awaken." },
+            "Blue": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Static", "notes": "Requires Poké Flute to awaken." },
+            "Yellow": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Static", "notes": "Requires Poké Flute to awaken." }
+          }
+        }
+      ]
+    },
+    {
+      "id": "route_17",
+      "name": "Route 17",
+      "region": "Kanto",
+      "coordinates": [4091, 2316],
+      "type": "route",
+      "encounters": [
+        {
+          "pokemon_id": "raticate",
+          "games": {
+            "Red": { "min_level": 25, "max_level": 29, "rate": "30%", "method": "Walking" },
+            "Blue": { "min_level": 25, "max_level": 29, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "spearow",
+          "games": {
+            "Red": { "min_level": 20, "max_level": 22, "rate": "40%", "method": "Walking" },
+            "Blue": { "min_level": 20, "max_level": 22, "rate": "40%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "fearow",
+          "games": {
+            "Red": { "min_level": 25, "max_level": 27, "rate": "5%", "method": "Walking" },
+            "Blue": { "min_level": 25, "max_level": 27, "rate": "5%", "method": "Walking" },
+            "Yellow": { "min_level": 27, "max_level": 29, "rate": "25%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "ponyta",
+          "games": {
+            "Yellow": { "min_level": 28, "max_level": 32, "rate": "24%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "doduo",
+          "games": {
+            "Red": { "min_level": 24, "max_level": 28, "rate": "25%", "method": "Walking" },
+            "Blue": { "min_level": 24, "max_level": 28, "rate": "25%", "method": "Walking" },
+            "Yellow": { "min_level": 26, "max_level": 28, "rate": "50%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "dodrio",
+          "games": {
+            "Yellow": { "min_level": 29, "max_level": 29, "rate": "1%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Yellow": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" }
+          }
+        },
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "poliwag",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "tentacool",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Yellow": { "min_level": 5, "max_level": 15, "rate": "70%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "shellder",
+          "games": {
+            "Yellow": { "min_level": 25, "max_level": 35, "rate": "30%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "krabby",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "route_18",
+      "name": "Route 18",
+      "region": "Kanto",
+      "coordinates": [1412, 2635],
+      "type": "route",
+      "encounters": [
+        {
+          "pokemon_id": "rattata",
+          "games": {
+            "Yellow": { "min_level": 23, "max_level": 24, "rate": "25%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "raticate",
+          "games": {
+            "Red": { "min_level": 25, "max_level": 29, "rate": "20%", "method": "Walking" },
+            "Blue": { "min_level": 25, "max_level": 29, "rate": "20%", "method": "Walking" },
+            "Yellow": { "min_level": 25, "max_level": 26, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "spearow",
+          "games": {
+            "Red": { "min_level": 20, "max_level": 22, "rate": "40%", "method": "Walking" },
+            "Blue": { "min_level": 20, "max_level": 22, "rate": "40%", "method": "Walking" },
+            "Yellow": { "min_level": 22, "max_level": 23, "rate": "25%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "fearow",
+          "games": {
+            "Red": { "min_level": 25, "max_level": 29, "rate": "15%", "method": "Walking" },
+            "Blue": { "min_level": 25, "max_level": 29, "rate": "15%", "method": "Walking" },
+            "Yellow": { "min_level": 24, "max_level": 24, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "doduo",
+          "games": {
+            "Red": { "min_level": 24, "max_level": 28, "rate": "25%", "method": "Walking" },
+            "Blue": { "min_level": 24, "max_level": 28, "rate": "25%", "method": "Walking" },
+            "Yellow": { "min_level": 22, "max_level": 26, "rate": "40%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Yellow": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" }
+          }
+        },
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "poliwag",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "tentacool",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Yellow": { "min_level": 5, "max_level": 15, "rate": "40%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "shellder",
+          "games": {
+            "Yellow": { "min_level": 20, "max_level": 40, "rate": "60%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "krabby",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        }
+      ],
+      "trades": [
+        {
+          "pokemon_id": "lickitung",
+          "games": {
+            "Red": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Slowbro." },
+            "Blue": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Slowbro." }
+          }
+        },
+        {
+          "pokemon_id": "parasect",
+          "games": {
+            "Yellow": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Tangela." }
+          }
+        }
+      ]
     },
     {
       "id": "route_12",
@@ -2228,13 +3012,6 @@
       "region": "Kanto",
       "coordinates": [],
       "type": "special"
-    },
-    {
-      "id": "route_18",
-      "name": "Route 18",
-      "region": "Kanto",
-      "coordinates": [],
-      "type": "route"
     },
     {
       "id": "route_19",
