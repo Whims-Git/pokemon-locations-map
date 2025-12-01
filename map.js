@@ -773,14 +773,15 @@ function renderPokemonList() {
     if (isStarterInGame(poke.id, filters.game)) nameExtras.push('Starter');
     if (isChoiceGroupMember(poke.id, filters.game)) nameExtras.push('Choice');
     
-    // Determine obtainability status text (four states: Event Only, Not Obtainable, Not Catchable, Obtainable)
+    // Determine obtainability status text (four states: Event Only, Not Catchable, Not Obtainable, Obtainable)
+    // Check evolution-only before obtainable since they can be obtainable but not catchable
     let obtainabilityText = 'Obtainable';
     if (isEventOnly) {
       obtainabilityText = 'Event Only';
-    } else if (!obtainable) {
-      obtainabilityText = 'Not Obtainable';
     } else if (isEvolutionOnly) {
       obtainabilityText = 'Not Catchable';
+    } else if (!obtainable) {
+      obtainabilityText = 'Not Obtainable';
     }
     
     info.innerHTML = `<strong style=\"font-weight:600\">${poke.regional_dex ? ('#'+poke.regional_dex) : ''} ${poke.name}${nameExtras.length? ' ('+nameExtras.join(', ')+')':''}</strong>` +
