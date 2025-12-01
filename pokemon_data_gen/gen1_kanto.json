@@ -202,7 +202,9 @@
           "games": {
             "Yellow": { "min_level": 4, "max_level": 6, "rate": "15%", "method": "Walking" }
           }
-        },
+        }
+      ],
+      "trades": [
         {
           "pokemon_id": "mr.mime",
           "games": {
@@ -281,9 +283,9 @@
         {
           "pokemon_id": "aerodactyl",
           "games": {
-            "Red": { "min_level": 30, "max_level": 30, "rate": "100%", "method": "Gift", "notes": "Received as an Old Amber and must be revived on Cinnabar Island." },
-            "Blue": { "min_level": 30, "max_level": 30, "rate": "100%", "method": "Gift", "notes": "Received as an Old Amber and must be revived on Cinnabar Island." },
-            "Yellow": { "min_level": 30, "max_level": 30, "rate": "100%", "method": "Gift", "notes": "Received as an Old Amber and must be revived on Cinnabar Island." }
+            "Red": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as an Old Amber and must be revived on Cinnabar Island." },
+            "Blue": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as an Old Amber and must be revived on Cinnabar Island." },
+            "Yellow": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as an Old Amber and must be revived on Cinnabar Island." }
           }
         }
       ]
@@ -463,6 +465,24 @@
             "Yellow": { "min_level": 9, "max_level": 13, "rate": "10%", "method": "Walking" }
           }
         }
+      ],
+      "gifts": [
+        {
+          "pokemon_id": "Omanyte",
+          "games": {
+            "Red": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as a Helix Fossil and must be revived on Cinnabar Island." },
+            "Blue": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as a Helix Fossil and must be revived on Cinnabar Island." },
+            "Yellow": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as a Helix Fossil and must be revived on Cinnabar Island." }
+          }
+        },
+        {
+          "pokemon_id": "Kabuto",
+          "games": {
+            "Red": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as a Dome Fossil and must be revived on Cinnabar Island." },
+            "Blue": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as a Dome Fossil and must be revived on Cinnabar Island." },
+            "Yellow": { "min_level": 30, "max_level": 30, "rate": "--%", "method": "Gift", "notes": "Received as a Dome Fossil and must be revived on Cinnabar Island." }
+          }
+        }
       ]
     },
     {
@@ -576,13 +596,6 @@
           "games": {
             "Yellow": { "min_level": 30, "max_level": 40, "rate": "30%", "method": "Fishing", "rod": "Super Rod" }
           }
-        },
-        {
-          "pokemon_id": "jynx",
-          "games": {
-            "Red": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Poliwhirl." },
-            "Blue": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Poliwhirl." }
-          }
         }
       ],
       "gifts": [
@@ -590,6 +603,15 @@
           "pokemon_id": "bulbasaur",
           "games": {
             "Yellow": { "min_level": 10, "max_level": 10, "rate": "--%", "method": "Gift", "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher.", "shortcut": "Use the potion glitch to raise Pikachu's friendship quickly. Simply use a potion (or other HP-restoring items) on Pikachu, even when it's at full health, repeatedly to increase its friendship level." }
+          }
+        }
+      ],
+      "trades": [
+        {
+          "pokemon_id": "jynx",
+          "games": {
+            "Red": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Poliwhirl." },
+            "Blue": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Poliwhirl." }
           }
         }
       ]
@@ -1070,7 +1092,9 @@
             "Red": { "min_level": 23, "max_level": 23, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
             "Blue": { "min_level": 23, "max_level": 23, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
           }
-        },
+        }
+      ],
+      "static": [
         {
           "pokemon_id": "mewtwo",
           "games": {
@@ -1093,6 +1117,125 @@
           "games": {
             "Red": { "min_level": 7, "max_level": 7, "rate": "20%", "method": "Walking" }
           }
+        },
+        {
+          "pokemon_id": "caterpie",
+          "games": {
+            "Blue": { "min_level": 7, "max_level": 7, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "kakuna",
+          "games": {
+            "Red": { "min_level": 8, "max_level": 8, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "metapod",
+          "games": {
+            "Blue": { "min_level": 8, "max_level": 8, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pidgey",
+          "games": {
+            "Red": { "min_level": 12, "max_level": 13, "rate": "20%", "method": "Walking" },
+            "Blue": { "min_level": 12, "max_level": 13, "rate": "20%", "method": "Walking" },
+            "Yellow": { "min_level": 13, "max_level": 17, "rate": "29%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pidgeotto",
+          "games": {
+            "Yellow": { "min_level": 17, "max_level": 17, "rate": "1%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "oddish",
+          "games": {
+            "Red": { "min_level": 12, "max_level": 14, "rate": "25%", "method": "Walking" },
+            "Yellow": { "min_level": 12, "max_level": 14, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "venonat",
+          "games": {
+            "Yellow": { "min_level": 13, "max_level": 16, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "abra",
+          "games": {
+            "Red": { "min_level": 8, "max_level": 12, "rate": "15%", "method": "Walking" },
+            "Blue": { "min_level": 8, "max_level": 12, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "bellsprout",
+          "games": {
+            "Blue": { "min_level": 12, "max_level": 14, "rate": "25%", "method": "Walking" },
+            "Yellow": { "min_level": 12, "max_level": 14, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Yellow": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" }
+          }
+        },
+        {
+          "pokemon_id": "poliwag",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" },
+            "Yellow": { "min_level": 20, "max_level": 30, "rate": "90%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "psyduck",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "krabby",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "seaking",
+          "games": {
+            "Yellow": { "min_level": 30, "max_level": 30, "rate": "10%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        }
+      ],
+      "gifts": [
+        {
+          "pokemon_id": "charmander",
+          "games": {
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "--%", "method": "Gift", "notes": "Received from a girl in Cerulean City if the partner Pikachu's friendship is 147 or higher. Use the potion glitch to raise Pikachu's friendship quickly. Simply use a potion (or other HP-restoring items) on Pikachu, even when it's at full health, repeatedly to increase its friendship level." }
+          }
         }
       ]
     },
@@ -1106,8 +1249,122 @@
         {
           "pokemon_id": "weedle",
           "games": {
-            "Red": { "min_level": 3, "max_level": 5, "rate": "5%", "method": "Walking" },
+            "Red": { "min_level": 8, "max_level": 8, "rate": "20%", "method": "Walking" },
             "Blue": { "min_level": 8, "max_level": 8, "rate": "1%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "caterpie",
+          "games": {
+            "Red": { "min_level": 8, "max_level": 8, "rate": "1%", "method": "Walking" },
+            "Blue": { "min_level": 8, "max_level": 8, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "kakuna",
+          "games": {
+            "Red": { "min_level": 9, "max_level": 9, "rate": "20%", "method": "Walking" },
+            "Blue": { "min_level": 7, "max_level": 7, "rate": "4%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "metapod",
+          "games": {
+            "Red": { "min_level": 7, "max_level": 7, "rate": "4%", "method": "Walking" },
+            "Blue": { "min_level": 9, "max_level": 9, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pidgey",
+          "games": {
+            "Red": { "min_level": 13, "max_level": 13, "rate": "15%", "method": "Walking" },
+            "Blue": { "min_level": 13, "max_level": 13, "rate": "15%", "method": "Walking" },
+            "Yellow": { "min_level": 13, "max_level": 17, "rate": "29%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pidgeotto",
+          "games": {
+            "Yellow": { "min_level": 17, "max_level": 17, "rate": "1%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "oddish",
+          "games": {
+            "Red": { "min_level": 12, "max_level": 14, "rate": "25%", "method": "Walking" },
+            "Yellow": { "min_level": 12, "max_level": 14, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "venonat",
+          "games": {
+            "Yellow": { "min_level": 13, "max_level": 16, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "abra",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 12, "rate": "15%", "method": "Walking" },
+            "Blue": { "min_level": 10, "max_level": 12, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "bellsprout",
+          "games": {
+            "Blue": { "min_level": 12, "max_level": 14, "rate": "25%", "method": "Walking" },
+            "Yellow": { "min_level": 12, "max_level": 14, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Yellow": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" }
+          }
+        },
+        {
+          "pokemon_id": "poliwag",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "psyduck",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "krabby",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "33%", "method": "Fishing", "rod": "Super Rod" },
+            "Yellow": { "min_level": 10, "max_level": 15, "rate": "70%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "kingler",
+          "games": {
+            "Yellow": { "min_level": 15, "max_level": 25, "rate": "30%", "method": "Fishing", "rod": "Super Rod" }
           }
         }
       ]
@@ -1116,8 +1373,88 @@
       "id": "route_5",
       "name": "Route 5",
       "region": "Kanto",
-      "coordinates": [],
-      "type": "route"
+      "coordinates": [5364, 3880],
+      "type": "route",
+      "encounters": [
+        {
+          "pokemon_id": "pidgey",
+          "games": {
+            "Red": { "min_level": 13, "max_level": 16, "rate": "40%", "method": "Walking" },
+            "Blue": { "min_level": 13, "max_level": 16, "rate": "40%", "method": "Walking" },
+            "Yellow": { "min_level": 15, "max_level": 17, "rate": "40%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pidgeotto",
+          "games": {
+            "Yellow": { "min_level": 17, "max_level": 17, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "rattata",
+          "games": {
+            "Yellow": { "min_level": 14, "max_level": 16, "rate": "30%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "jigglypuff",
+          "games": {
+            "Yellow": { "min_level": 3, "max_level": 7, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "oddish",
+          "games": {
+            "Red": { "min_level": 13, "max_level": 16, "rate": "35%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "meowth",
+          "games": {
+            "Blue": { "min_level": 10, "max_level": 16, "rate": "25%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "mankey",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 16, "rate": "25%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "abra",
+          "games": {
+            "Yellow": { "min_level": 7, "max_level": 7, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "bellsprout",
+          "games": {
+            "Blue": { "min_level": 13, "max_level": 16, "rate": "35%", "method": "Walking" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "underground_path_5-6",
+      "name": "Underground Path (Routes 5-6)",
+      "region": "Kanto",
+      "coordinates": [5196, 4227],
+      "type": "path",
+      "trades": [
+        {
+          "pokemon_id": "nidoran_♀",
+          "games": {
+            "Red": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Nidoran♂." },
+            "Blue": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Nidoran♂." }
+          }
+        },
+        {
+          "pokemon_id": "machoke",
+          "games": {
+            "Yellow": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Cubone." }
+          }
+        }
+      ]
     },
     {
       "id": "vermilion_city",
