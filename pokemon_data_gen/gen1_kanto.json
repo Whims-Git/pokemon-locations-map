@@ -2604,6 +2604,16 @@
             "Blue": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" }
           }
         }
+      ],
+      "gifts": [
+        {
+          "pokemon_id": "eevee",
+          "games": {
+            "Red": { "min_level": 25, "max_level": 25, "rate": "--%", "method": "Gift", "notes": "Received from the Celadon City Mansion." },
+            "Blue": { "min_level": 25, "max_level": 25, "rate": "--%", "method": "Gift", "notes": "Received from the Celadon City Mansion." },
+            "Yellow": { "min_level": 25, "max_level": 25, "rate": "--%", "method": "Gift", "notes": "Received from the Celadon City Mansion." }
+          }
+        }
       ]
     },
     {
