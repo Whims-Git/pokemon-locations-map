@@ -1921,7 +1921,8 @@
         {
           "pokemon_id": "nidorina",
           "games": {
-            "Yellow": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Nidorino." }
+            "Red": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Nidorino." },
+            "Blue": { "min_level": "??", "max_level": "??", "rate": "--%", "method": "Trade", "notes": "Trader requests a Nidorino." }
           }
         },
         {
