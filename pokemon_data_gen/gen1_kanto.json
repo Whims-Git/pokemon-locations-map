@@ -561,6 +561,8 @@
         {
           "pokemon_id": "magikarp",
           "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "--%", "method": "Gift", "notes": "Bought from a shady guy at the Pokémon Center for 500 Poké Dollar." },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "--%", "method": "Gift", "notes": "Bought from a shady guy at the Pokémon Center for 500 Poké Dollar." },
             "Yellow": { "min_level": 5, "max_level": 5, "rate": "--%", "method": "Gift", "notes": "Bought from a shady guy at the Pokémon Center for 500 Poké Dollar." }
           }
         }
@@ -2687,8 +2689,8 @@
       ]
     },
     {
-      "id": "celadon_mansion_eevee",
-      "name": "Celadon Mansion Eevee Gift",
+      "id": "eevee",
+      "name": "Eevee",
       "region": "Kanto",
       "coordinates": [4713, 2994],
       "type": "building",
