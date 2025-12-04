@@ -4,7 +4,7 @@
       "id": "pallet_town",
       "name": "Pallet Town",
       "region": "Kanto",
-      "coordinates": [2343, 1424],
+      "coordinates": [2208, 1373],
       "type": "town",
       "encounters": [
         {
@@ -52,7 +52,14 @@
             "Yellow": { "min_level": 5, "max_level": 10, "rate": "60%", "method": "Fishing", "rod": "Super Rod" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "starter_pokémon",
+      "name": "Starter Pokémon",
+      "region": "Kanto",
+      "coordinates": [2290, 1464],
+      "type": "town",
       "gifts": [
         {
           "pokemon_id": "pikachu",
@@ -203,7 +210,14 @@
             "Yellow": { "min_level": 4, "max_level": 6, "rate": "15%", "method": "Walking" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "route_2_trade",
+      "name": "Route 2 Trade",
+      "region": "Kanto",
+      "coordinates": [4842, 1508],
+      "type": "route",
       "trades": [
         {
           "pokemon_id": "mr.mime",
@@ -274,10 +288,10 @@
       ]
     },
     {
-      "id": "pewter_city",
-      "name": "Pewter City",
+      "id": "aerodactyl_amber",
+      "name": "Aerodactyl Amber",
       "region": "Kanto",
-      "coordinates": [5571, 1425],
+      "coordinates": [5802, 1438],
       "type": "city",
       "gifts": [
         {
@@ -465,7 +479,14 @@
             "Yellow": { "min_level": 9, "max_level": 13, "rate": "10%", "method": "Walking" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "mt_moon_fossils",
+      "name": "Mt. Moon Fossils",
+      "region": "Kanto",
+      "coordinates": [6621, 2409],
+      "type": "cave",
       "gifts": [
         {
           "pokemon_id": "omanyte",
@@ -528,7 +549,14 @@
             "Yellow": { "min_level": 9, "max_level": 9, "rate": "15%", "method": "Walking" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "magikarp_guy",
+      "name": "Magikarp Guy",
+      "region": "Kanto",
+      "coordinates": [5983, 2545],
+      "type": "route",
       "gifts": [
         {
           "pokemon_id": "magikarp",
@@ -542,7 +570,7 @@
       "id": "cerulean_city",
       "name": "Cerulean City",
       "region": "Kanto",
-      "coordinates": [5868, 3909],
+      "coordinates": [6133, 3821],
       "type": "city",
       "encounters": [
         {
@@ -597,7 +625,14 @@
             "Yellow": { "min_level": 30, "max_level": 40, "rate": "30%", "method": "Fishing", "rod": "Super Rod" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "cerulean_city_bulbasaur_trade",
+      "name": "Cerulean City Bulbasaur & Trade",
+      "region": "Kanto",
+      "coordinates": [5935, 3807],
+      "type": "city",
       "gifts": [
         {
           "pokemon_id": "bulbasaur",
@@ -621,7 +656,7 @@
       "name": "Cerulean City Gym",
       "region": "Kanto",
       "coordinates": [6249, 4244],
-      "type": "gym",
+      "type": "building",
       "encounters": [
         {
           "pokemon_id": "magikarp",
@@ -944,7 +979,7 @@
       "name": "Cerulean Cave B1F",
       "region": "Kanto",
       "coordinates": [6343, 3363],
-      "type": "city",
+      "type": "cave",
       "encounters": [
         {
           "pokemon_id": "arbok",
@@ -1093,7 +1128,14 @@
             "Blue": { "min_level": 23, "max_level": 23, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "mewtwo",
+      "name": "MewTwo",
+      "region": "Kanto",
+      "coordinates": [6256, 3540],
+      "type": "cave",
       "static": [
         {
           "pokemon_id": "mewtwo",
@@ -1109,7 +1151,7 @@
       "id": "route_24",
       "name": "Route 24",
       "region": "Kanto",
-      "coordinates": [6497, 3911],
+      "coordinates": [6441, 3811],
       "type": "route",
       "encounters": [
         {
@@ -1229,7 +1271,14 @@
             "Yellow": { "min_level": 30, "max_level": 30, "rate": "10%", "method": "Fishing", "rod": "Super Rod" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "charmander",
+      "name": "Charmander",
+      "region": "Kanto",
+      "coordinates": [6792, 3852],
+      "type": "route",
       "gifts": [
         {
           "pokemon_id": "charmander",
@@ -1435,8 +1484,8 @@
       ]
     },
     {
-      "id": "underground_path_5-6",
-      "name": "Underground Path (Routes 5-6)",
+      "id": "underground_path_5-6_trade",
+      "name": "Underground Path (Routes 5-6) Trade",
       "region": "Kanto",
       "coordinates": [5196, 4227],
       "type": "path",
@@ -1581,7 +1630,7 @@
       "id": "vermilion_city",
       "name": "Vermilion City",
       "region": "Kanto",
-      "coordinates": [3221, 3883],
+      "coordinates": [3064, 3892],
       "type": "city",
       "encounters": [
         {
@@ -1634,7 +1683,14 @@
             "Yellow": { "min_level": 5, "max_level": 5, "rate": "10%", "method": "Fishing", "rod": "Super Rod" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "squirtle",
+      "name": "Squirtle",
+      "region": "Kanto",
+      "coordinates": [3221, 3883],
+      "type": "city",
       "gifts": [
         {
           "pokemon_id": "squirtle",
@@ -1642,7 +1698,14 @@
             "Yellow": { "min_level": 10, "max_level": 10, "rate": "--%", "method": "Gift", "notes": "Received from Officer Jenny after getting the Thunder Badge." }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "vermilion_city_trade",
+      "name": "Vermilion City Trade",
+      "region": "Kanto",
+      "coordinates": [3278, 3825],
+      "type": "city",
       "trades": [
         {
           "pokemon_id": "farfetch'd",
@@ -1846,7 +1909,14 @@
             "Yellow": { "min_level": 5, "max_level": 5, "rate": "10%", "method": "Fishing", "rod": "Super Rod" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "route_11_trade",
+      "name": "Route 11 Trade",
+      "region": "Kanto",
+      "coordinates": [3203, 4888],
+      "type": "building",
       "trades": [
         {
           "pokemon_id": "nidorina",
@@ -2141,7 +2211,16 @@
             "Blue": { "min_level": 43, "max_level": 43, "rate": "--%", "method": "Static" },
             "Yellow": { "min_level": 43, "max_level": 43, "rate": "--%", "method": "Static" }
           }
-        },
+        }
+      ]
+    },
+    {
+      "id": "zapdos",
+      "name": "Zapdos",
+      "region": "Kanto",
+      "coordinates": [5233, 4484],
+      "type": "building",
+      "static": [
         {
           "pokemon_id": "zapdos",
           "games": {
@@ -2604,7 +2683,14 @@
             "Blue": { "min_level": 15, "max_level": 15, "rate": "50%", "method": "Fishing", "rod": "Super Rod" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "celadon_mansion_eevee",
+      "name": "Celadon Mansion Eevee Gift",
+      "region": "Kanto",
+      "coordinates": [4713, 2994],
+      "type": "building",
       "gifts": [
         {
           "pokemon_id": "eevee",
@@ -2621,7 +2707,7 @@
       "name": "Celadon Game Corner",
       "region": "Kanto",
       "coordinates": [4514, 3113],
-      "type": "city",
+      "type": "building",
       "gifts": [
         {
           "pokemon_id": "abra",
@@ -2738,7 +2824,14 @@
             "Yellow": { "min_level": 22, "max_level": 26, "rate": "40%", "method": "Walking" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "route_16_snorlax",
+      "name": "Route 16 Snorlax",
+      "region": "Kanto",
+      "coordinates": [4524, 2472],
+      "type": "route",
       "static": [
         {
           "pokemon_id": "snorlax",
@@ -2861,8 +2954,8 @@
       ]
     },
     {
-      "id": "route_18",
-      "name": "Route 18",
+      "id": "route_18_trade",
+      "name": "Route 18 & Trade",
       "region": "Kanto",
       "coordinates": [1412, 2635],
       "type": "route",
