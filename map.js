@@ -123,7 +123,8 @@ const filters = {
   types: new Set(),
   methodFilterEnabled: false,
   method: 'Any',
-  rod: 'Old'
+  rod: 'Old',
+  searchText: ''
 };
 
 const filterControl = L.control({ position: 'topright' });
@@ -135,6 +136,7 @@ filterControl.onAdd = function () {
   div.style.fontFamily = 'Arial, sans-serif';
   div.style.boxShadow = '0 0 15px rgba(0,0,0,0.2)';
   div.style.maxWidth = '400px';
+  const searchInput = div.querySelector('#pokemon_search');
 
   // Build HTML for the control. We keep markup simple so it's easy to read.
   div.innerHTML = `
@@ -175,6 +177,11 @@ filterControl.onAdd = function () {
         <option value="Good">Good Rod</option>
         <option value="Super">Super Rod</option>
       </select>
+    </div>
+    <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
+      <label style="font-weight:600">Search Pokémon:</label>
+      <input type="text" id="pokemon_search" placeholder="Type name..." 
+        style="width:100%;margin-top:4px;padding:4px;border:1px solid #ccc;border-radius:3px" />
     </div>
     <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
       <div style="font-weight:600;margin-bottom:4px">Pokémon List</div>
@@ -264,6 +271,11 @@ filterControl.onAdd = function () {
     if (rodContainer) rodContainer.style.display = (methodEnable.checked && methodSelect.value === 'Fishing') ? 'block' : 'none';
     updateMarkers(filters.game);
     renderPokemonList();
+  });
+
+  searchInput.addEventListener('input', () => {
+  filters.searchText = searchInput.value;
+  renderPokemonList();
   });
 
   // Default: only game is selected (others inactive)
@@ -638,6 +650,16 @@ function getEntriesForPokemonAndGame(pokeId, game) {
 
 function pokemonMatchesFilters(poke) {
   const game = filters.game;
+
+  // Search text filter
+  if (filters.searchText && filters.searchText.trim() !== '') {
+    const search = filters.searchText.toLowerCase();
+    const pokeName = poke.name.toLowerCase();
+    if (!pokeName.includes(search)) {
+      return false;  // Name doesn't match, don't show this Pokémon
+    }
+  }
+
   // Get all entries for this pokemon in the selected game
   const entries = getEntriesForPokemonAndGame(poke.id, game);
   
