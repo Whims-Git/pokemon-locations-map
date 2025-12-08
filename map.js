@@ -785,7 +785,9 @@ function renderPokemonList() {
     }
     
     // Build dropdown with default placeholder option
-    const defaultLabel = (obtainable || isEvolutionOnly) ? 'Location' : 'Unknown';
+    // Only show "Location" for truly catchable Pokemon (obtainable AND not evolution-only AND not event-only)
+    const isCatchable = obtainable && !isEvolutionOnly && !isEventOnly;
+    const defaultLabel = isCatchable ? 'Location' : 'Unknown';
     const locationOptions = locNames.length 
       ? `<option value=\"-1\" selected>${defaultLabel}</option>` + locNames.map((n, i) => `<option value=\"${i}\">${n}</option>`).join('')
       : `<option value=\"-1\">${defaultLabel}</option>`;
