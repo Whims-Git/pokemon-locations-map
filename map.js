@@ -136,7 +136,6 @@ filterControl.onAdd = function () {
   div.style.fontFamily = 'Arial, sans-serif';
   div.style.boxShadow = '0 0 15px rgba(0,0,0,0.2)';
   div.style.maxWidth = '400px';
-  const searchInput = div.querySelector('#pokemon_search');
 
   // Build HTML for the control. We keep markup simple so it's easy to read.
   div.innerHTML = `
@@ -201,6 +200,7 @@ filterControl.onAdd = function () {
 
   // Wire up events
   const gameSelect = div.querySelector('#filter_game');
+  const searchInput = div.querySelector('#pokemon_search');  // NOW it exists!
   gameSelect.value = filters.game;
   gameSelect.addEventListener('change', () => {
     filters.game = gameSelect.value;
