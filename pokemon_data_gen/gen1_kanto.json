@@ -55,8 +55,8 @@
       ]
     },
     {
-      "id": "starter_pokémon",
-      "name": "Starter Pokémon",
+      "id": "pallet_town_starters",
+      "name": "Pallet Town Starters",
       "region": "Kanto",
       "coordinates": [2290, 1464],
       "type": "town",
@@ -288,8 +288,8 @@
       ]
     },
     {
-      "id": "aerodactyl_amber",
-      "name": "Aerodactyl Amber",
+      "id": "pewter_city",
+      "name": "Pewter City",
       "region": "Kanto",
       "coordinates": [5802, 1438],
       "type": "city",
@@ -631,7 +631,7 @@
     },
     {
       "id": "cerulean_city_bulbasaur_trade",
-      "name": "Cerulean City Bulbasaur & Trade",
+      "name": "Cerulean City Bulbasaur/Trade",
       "region": "Kanto",
       "coordinates": [5935, 3807],
       "type": "city",
@@ -1133,8 +1133,8 @@
       ]
     },
     {
-      "id": "mewtwo",
-      "name": "MewTwo",
+      "id": "cerulean_cave_mewtwo",
+      "name": "Cerulean Cave Mewtwo",
       "region": "Kanto",
       "coordinates": [6256, 3540],
       "type": "cave",
@@ -1276,8 +1276,8 @@
       ]
     },
     {
-      "id": "charmander",
-      "name": "Charmander",
+      "id": "route_24_charmander",
+      "name": "Route 24Charmander",
       "region": "Kanto",
       "coordinates": [6792, 3852],
       "type": "route",
@@ -1688,8 +1688,8 @@
       ]
     },
     {
-      "id": "squirtle",
-      "name": "Squirtle",
+      "id": "vermilion_city_squirtle",
+      "name": "Vermilion City Squirtle",
       "region": "Kanto",
       "coordinates": [3221, 3883],
       "type": "city",
@@ -2218,8 +2218,8 @@
       ]
     },
     {
-      "id": "zapdos",
-      "name": "Zapdos",
+      "id": "power_plant_zapdos",
+      "name": "Power Plant Zapdos",
       "region": "Kanto",
       "coordinates": [5233, 4484],
       "type": "building",
@@ -2689,8 +2689,8 @@
       ]
     },
     {
-      "id": "eevee",
-      "name": "Eevee",
+      "id": "celadon_mansion",
+      "name": "Celadon Mansion",
       "region": "Kanto",
       "coordinates": [4713, 2994],
       "type": "building",
@@ -3060,7 +3060,14 @@
             "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "route_18_trade",
+      "name": "Route 18 Trade",
+      "region": "Kanto",
+      "coordinates": [1531, 2613],
+      "type": "route",
       "trades": [
         {
           "pokemon_id": "lickitung",

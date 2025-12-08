@@ -784,11 +784,17 @@ function renderPokemonList() {
       obtainabilityText = 'Not Obtainable';
     }
     
+    // Build dropdown with default placeholder option
+    const defaultLabel = (obtainable || isEvolutionOnly) ? 'Location' : 'Unknown';
+    const locationOptions = locNames.length 
+      ? `<option value=\"-1\" selected>${defaultLabel}</option>` + locNames.map((n, i) => `<option value=\"${i}\">${n}</option>`).join('')
+      : `<option value=\"-1\">${defaultLabel}</option>`;
+    
     info.innerHTML = `<strong style=\"font-weight:600\">${poke.regional_dex ? ('#'+poke.regional_dex) : ''} ${poke.name}${nameExtras.length? ' ('+nameExtras.join(', ')+')':''}</strong>` +
              `<div style=\"font-size:11px;color:#333\">${obtainabilityText}</div>` +
              `<div style=\"margin-top:4px\">` +
              `<select class=\"loc-select\" style=\"max-width:160px\">` +
-             `${locNames.length ? locNames.map((n, i) => `<option value=\"${i}\">${n}</option>`).join('') : `<option value=\"-1\">Unknown</option>`}` +
+             `${locationOptions}` +
              `</select>` +
              `</div>`;
 
