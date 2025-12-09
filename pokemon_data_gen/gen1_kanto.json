@@ -3116,15 +3116,252 @@
       "id": "fuchsia_city",
       "name": "Fuchsia City",
       "region": "Kanto",
-      "coordinates": [],
-      "type": "city"
+      "coordinates": [1420, 3206],
+      "type": "city",
+      "encounters": [
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Yellow": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" }
+          }
+        },
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Yellow": { "min_level": 5, "max_level": 15, "rate": "90%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "poliwag",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "seaking",
+          "games": {
+            "Red": { "min_level": 23, "max_level": 23, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 23, "max_level": 23, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "krabby",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "gyarados",
+          "games": {
+            "Yellow": { "min_level": 15, "max_level": 15, "rate": "10%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        }
+      ]
     },
     {
-      "id": "safari_zone",
-      "name": "Safari Zone",
-      "region": "Kanto",
+      "id": "safari_zone_area_1",
+      "name": "Safari Zone Area 1",
+      "coordinates": [2024, 3046],
+      "type": "field",
+      "encounters": [
+        {
+          "pokemon_id": "nidoran_♀",
+          "games": {
+            "Blue": { "min_level": 22, "max_level": 22, "rate": "20%", "method": "Walking" },
+            "Yellow": { "min_level": 36, "max_level": 36, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "nidorina",
+          "games": {
+            "Red": { "min_level": 31, "max_level": 31, "rate": "5%", "method": "Walking" },
+            "Blue": { "min_level": 31, "max_level": 31, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "nidoran_♂",
+          "games": {
+            "Red": { "min_level": 22, "max_level": 22, "rate": "20%", "method": "Walking" },
+            "Yellow": { "min_level": 14, "max_level": 14, "rate": "20%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "nidorino",
+          "games": {
+            "Red": { "min_level": 31, "max_level": 31, "rate": "10%", "method": "Walking" },
+            "Blue": { "min_level": 31, "max_level": 31, "rate": "5%", "method": "Walking" },
+            "Yellow": { "min_level": 23, "max_level": 23, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "paras",
+          "games": {
+            "Yellow": { "min_level": 27, "max_level": 27, "rate": "5%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "parasect",
+          "games": {
+            "Red": { "min_level": 30, "max_level": 30, "rate": "5%", "method": "Walking" },
+            "Blue": { "min_level": 30, "max_level": 30, "rate": "5%", "method": "Walking" },
+            "Yellow": { "min_level": 27, "max_level": 32, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "venonat",
+          "games": {
+            "Red": { "min_level": 22, "max_level": 22, "rate": "15%", "method": "Walking" },
+            "Blue": { "min_level": 22, "max_level": 22, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "exeggcute",
+          "games": {
+            "Red": { "min_level": 24, "max_level": 25, "rate": "20%", "method": "Walking" },
+            "Blue": { "min_level": 24, "max_level": 25, "rate": "20%", "method": "Walking" },
+            "Yellow": { "min_level": 24, "max_level": 24, "rate": "15%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "rhyhorn",
+          "games": {
+            "Red": { "min_level": 25, "max_level": 25, "rate": "20%", "method": "Walking" },
+            "Blue": { "min_level": 25, "max_level": 25, "rate": "20%", "method": "Walking" },
+            "Yellow": { "min_level": 20, "max_level": 20, "rate": "10%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "chansey",
+          "games": {
+            "Red": { "min_level": 23, "max_level": 23, "rate": "1%", "method": "Walking" },
+            "Blue": { "min_level": 23, "max_level": 23, "rate": "1%", "method": "Walking" },
+            "Yellow": { "min_level": 7, "max_level": 7, "rate": "1%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "tangela",
+          "games": {
+            "Yellow": { "min_level": 22, "max_level": 22, "rate": "4%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "scyther",
+          "games": {
+            "Red": { "min_level": 23, "max_level": 23, "rate": "4%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "pinsir",
+          "games": {
+            "Blue": { "min_level": 23, "max_level": 23, "rate": "4%", "method": "Walking" }
+          }
+        },
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Red": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Blue": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" },
+            "Yellow": { "min_level": 5, "max_level": 5, "rate": "100%", "method": "Fishing", "rod": "Old Rod" }
+          }
+        },
+        {
+          "pokemon_id": "magikarp",
+          "games": {
+            "Yellow": { "min_level": 5, "max_level": 10, "rate": "70%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "poliwag",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "goldeen",
+          "games": {
+            "Red": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Blue": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "50%", "method": "Fishing", "rod": "Good Rod" }
+          }
+        },
+        {
+          "pokemon_id": "psyduck",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "slowpoke",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "krabby",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "dratini",
+          "games": {
+            "Red": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Blue": { "min_level": 15, "max_level": 15, "rate": "25%", "method": "Fishing", "rod": "Super Rod" },
+            "Yellow": { "min_level": 10, "max_level": 10, "rate": "20%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        },
+        {
+          "pokemon_id": "dragonair",
+          "games": {
+            "Yellow": { "min_level": 15, "max_level": 15, "rate": "10%", "method": "Fishing", "rod": "Super Rod" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "safari_zone_area_2",
+      "name": "Safari Zone Area 2",
       "coordinates": [],
-      "type": "special"
+      "type": "field"
+    },
+    {
+      "id": "safari_zone_area_3",
+      "name": "Safari Zone Area 3",
+      "coordinates": [],
+      "type": "field"
+    },
+    {
+      "id": "safari_zone_area_4",
+      "name": "Safari Zone Area 4",
+      "coordinates": [],
+      "type": "field"
     },
     {
       "id": "route_19",
