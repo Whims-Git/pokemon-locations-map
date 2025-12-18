@@ -11,7 +11,7 @@ const map = L.map('map', {
 });
 
 // Load PNG as an overlay
-const image = L.imageOverlay('assets/images/gen1_map.png', mapBounds).addTo(map);
+const mapImage = L.imageOverlay('assets/images/gen1_map.png', mapBounds).addTo(map);
 
 // Set the map view to fit the image
 map.fitBounds(mapBounds);
@@ -129,74 +129,36 @@ const filters = {
 
 const filterControl = L.control({ position: 'topright' });
 filterControl.onAdd = function () {
-  const div = L.DomUtil.create('div', 'filter-control');
-  div.style.background = 'white';
-  div.style.padding = '10px';
-  div.style.borderRadius = '5px';
-  div.style.fontFamily = 'Arial, sans-serif';
-  div.style.boxShadow = '0 0 15px rgba(0,0,0,0.2)';
-  div.style.maxWidth = '400px';
+  const template = document.getElementById('filter-control-template');
+  if (!template || !template.content) {
+    console.error('Filter control template not found in index.html');
+    const fallback = L.DomUtil.create('div', 'filter-control');
+    fallback.textContent = 'Filter controls unavailable';
+    return fallback;
+  }
 
-  // Build HTML for the control. We keep markup simple so it's easy to read.
-  div.innerHTML = `
-    <div style="font-weight:bold;margin-bottom:6px">Map Filters</div>
-    <div style="margin-bottom:6px">
-      <label style="font-weight:600">Game:</label>
-      <select id="filter_game" style="width:100%;margin-top:4px;padding:4px">
-        <option value="Red">Red</option>
-        <option value="Blue">Blue</option>
-        <option value="Yellow">Yellow</option>
-      </select>
-    </div>
-    <div style="display:flex;gap:8px;margin-bottom:6px">
-      <label><input type="checkbox" id="filter_obtainable" /> Obtainable</label>
-      <label><input type="checkbox" id="filter_starter" /> Starter</label>
-      <label><input type="checkbox" id="filter_gift" /> Gift</label>
-    </div>
-    <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
-      <label><input type="checkbox" id="filter_type_enable" /> Filter by Type</label>
-      <div id="type_box" style="display:none;margin-top:6px;max-height:120px;overflow:auto;border:1px solid #f0f0f0;padding:6px">
-      </div>
-    </div>
-    <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
-      <label><input type="checkbox" id="filter_method_enable" /> Filter by Method</label>
-      <select id="filter_method" style="width:100%;margin-top:6px;padding:4px;display:none">
-        <option value="Any">Any</option>
-        <option value="Walking">Walking</option>
-        <option value="Fishing">Fishing</option>
-        <option value="Surfing">Surfing</option>
-        <option value="Evolution">Evolution</option>
-        <option value="Trade">Trade</option>
-      </select>
-    </div>
-    <div id="rod_container" style="border-top:1px solid #eee;padding-top:6px;margin-top:6px;display:none">
-      <label for="filter_rod">Rod:</label>
-      <select id="filter_rod" style="width:100%;margin-top:4px;padding:4px">
-        <option value="Old">Old Rod</option>
-        <option value="Good">Good Rod</option>
-        <option value="Super">Super Rod</option>
-      </select>
-    </div>
-    <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
-      <label style="font-weight:600">Search Pokémon:</label>
-      <input type="text" id="pokemon_search" placeholder="Type name..." 
-        style="width:100%;margin-top:4px;padding:4px;border:1px solid #ccc;border-radius:3px" />
-    </div>
-    <div style="border-top:1px solid #eee;padding-top:6px;margin-top:6px">
-      <div style="font-weight:600;margin-bottom:4px">Pokémon List</div>
-      <div id="pokemon_list" style="max-height:400px;overflow:auto;border:1px solid #f6f6f6;padding:6px;background:#fff"></div>
-    </div>
-  `;
+  const fragment = template.content.cloneNode(true);
+  const div = fragment.querySelector('.filter-control');
+  if (!div) {
+    console.error('Filter control template is missing the root .filter-control element');
+    const fallback = L.DomUtil.create('div', 'filter-control');
+    fallback.textContent = 'Filter controls unavailable';
+    return fallback;
+  }
 
   // Add type checkboxes dynamically from typeColors keys
   const typeBox = div.querySelector('#type_box');
-  Object.keys(typeColors).forEach(type => {
-    const id = `type_${type}`;
-    const row = document.createElement('div');
-    row.style.marginBottom = '4px';
-    row.innerHTML = `<label style="font-size:13px"><input type=\"checkbox\" id=\"${id}\" /> ${type}</label>`;
-    typeBox.appendChild(row);
-  });
+  if (typeBox) {
+    Object.keys(typeColors).forEach(type => {
+      const id = `type_${type}`;
+      const row = document.createElement('div');
+      row.className = 'checkbox-row';
+      row.innerHTML = `<label class="checkbox-label"><input type="checkbox" id="${id}" /> ${type}</label>`;
+      typeBox.appendChild(row);
+    });
+  } else {
+    console.warn('type_box container not found inside filter control');
+  }
 
   // Wire up events
   const gameSelect = div.querySelector('#filter_game');
@@ -241,7 +203,7 @@ filterControl.onAdd = function () {
 
   typeEnable.addEventListener('change', () => {
     filters.typeFilterEnabled = typeEnable.checked;
-    typeBox.style.display = typeEnable.checked ? 'block' : 'none';
+    if (typeBox) typeBox.classList.toggle('hidden', !typeEnable.checked);
     updateMarkers(filters.game);
     renderPokemonList();
   });
@@ -259,16 +221,16 @@ filterControl.onAdd = function () {
 
   methodEnable.addEventListener('change', () => {
     filters.methodFilterEnabled = methodEnable.checked;
-    methodSelect.style.display = methodEnable.checked ? 'block' : 'none';
+    if (methodSelect) methodSelect.classList.toggle('hidden', !methodEnable.checked);
     // Show rod selector only when method filter is enabled and Fishing is selected
-    if (rodContainer) rodContainer.style.display = (methodEnable.checked && methodSelect.value === 'Fishing') ? 'block' : 'none';
+    if (rodContainer) rodContainer.classList.toggle('hidden', !(methodEnable.checked && methodSelect && methodSelect.value === 'Fishing'));
     updateMarkers(filters.game);
     renderPokemonList();
   });
   methodSelect.addEventListener('change', () => {
     filters.method = methodSelect.value;
     // Show rod selector only when method filter is enabled and Fishing is selected
-    if (rodContainer) rodContainer.style.display = (methodEnable.checked && methodSelect.value === 'Fishing') ? 'block' : 'none';
+    if (rodContainer) rodContainer.classList.toggle('hidden', !(methodEnable.checked && methodSelect.value === 'Fishing'));
     updateMarkers(filters.game);
     renderPokemonList();
   });
@@ -285,7 +247,7 @@ filterControl.onAdd = function () {
   typeEnable.checked = false;
   methodEnable.checked = false;
   // Ensure rod container hidden by default (safety)
-  if (rodContainer) rodContainer.style.display = 'none';
+  if (rodContainer) rodContainer.classList.add('hidden');
 
   return div;
 };

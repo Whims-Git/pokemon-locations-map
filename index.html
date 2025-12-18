@@ -1,9 +1,69 @@
+<!DOCTYPE html>
+<html>
 <head>
   <title>Pokémon Map</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <link rel="stylesheet" href="styling.css" />
-  <body>
-  <div id="map"></div>
-  <script src="map.js"></script></body>
 </head>
+<body>
+  <div id="map"></div>
+  <template id="filter-control-template">
+    <div class="filter-control">
+      <div class="filter-title">Map Filters</div>
+
+      <div class="filter-block">
+        <label class="filter-label">Game:</label>
+        <select id="filter_game" class="filter-select">
+          <option value="Red">Red</option>
+          <option value="Blue">Blue</option>
+          <option value="Yellow">Yellow</option>
+        </select>
+      </div>
+
+      <div class="filter-block checkbox-row">
+        <label class="checkbox-label"><input type="checkbox" id="filter_obtainable" /> Obtainable</label>
+        <label class="checkbox-label"><input type="checkbox" id="filter_starter" /> Starter</label>
+        <label class="checkbox-label"><input type="checkbox" id="filter_gift" /> Gift</label>
+      </div>
+
+      <div class="filter-section">
+        <label class="checkbox-label"><input type="checkbox" id="filter_type_enable" /> Filter by Type</label>
+        <div id="type_box" class="type-box hidden"></div>
+      </div>
+
+      <div class="filter-section">
+        <label class="checkbox-label"><input type="checkbox" id="filter_method_enable" /> Filter by Method</label>
+        <select id="filter_method" class="filter-select hidden">
+          <option value="Any">Any</option>
+          <option value="Walking">Walking</option>
+          <option value="Fishing">Fishing</option>
+          <option value="Surfing">Surfing</option>
+          <option value="Evolution">Evolution</option>
+          <option value="Trade">Trade</option>
+        </select>
+      </div>
+
+      <div id="rod_container" class="filter-section hidden">
+        <label for="filter_rod" class="filter-label">Rod:</label>
+        <select id="filter_rod" class="filter-select">
+          <option value="Old">Old Rod</option>
+          <option value="Good">Good Rod</option>
+          <option value="Super">Super Rod</option>
+        </select>
+      </div>
+
+      <div class="filter-section">
+        <label class="filter-label">Search Pokémon:</label>
+        <input type="text" id="pokemon_search" class="search-input" placeholder="Type name..." />
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-label strong">Pokémon List</div>
+        <div id="pokemon_list" class="pokemon-list"></div>
+      </div>
+    </div>
+  </template>
+  <script src="map.js"></script>
+</body>
+</html>
